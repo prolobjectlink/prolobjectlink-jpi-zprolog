@@ -22,11 +22,11 @@ package org.logicware.prolog.wamkel;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.logicware.pdb.prolog.PrologClause;
-import org.logicware.pdb.prolog.PrologClauses;
-import org.logicware.pdb.prolog.PrologGoal;
-import org.logicware.pdb.prolog.PrologProgram;
-import org.logicware.pdb.prolog.PrologTerm;
+import org.logicware.prolog.PrologClause;
+import org.logicware.prolog.PrologClauses;
+import org.logicware.prolog.PrologGoal;
+import org.logicware.prolog.PrologProgram;
+import org.logicware.prolog.PrologTerm;
 
 final class ZPrologGoal extends ZPrologClause implements PrologGoal {
 

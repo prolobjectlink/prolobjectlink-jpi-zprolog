@@ -19,7 +19,7 @@
  */
 package org.logicware.prolog.wamkel;
 
-import org.logicware.pdb.prolog.PrologTerm;
+import org.logicware.prolog.PrologTerm;
 
 class ZPrologTerms {
 

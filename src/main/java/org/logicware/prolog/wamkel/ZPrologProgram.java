@@ -27,10 +27,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.logicware.pdb.prolog.PrologClause;
-import org.logicware.pdb.prolog.PrologClauses;
-import org.logicware.pdb.prolog.PrologGoal;
-import org.logicware.pdb.prolog.PrologProgram;
+import org.logicware.prolog.PrologClause;
+import org.logicware.prolog.PrologClauses;
+import org.logicware.prolog.PrologGoal;
+import org.logicware.prolog.PrologProgram;
 
 public final class ZPrologProgram extends AbstractSet<PrologClauses> implements PrologProgram {
 

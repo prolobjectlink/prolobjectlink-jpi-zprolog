@@ -24,10 +24,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import org.logicware.pdb.prolog.PredicateIndicator;
-import org.logicware.pdb.prolog.PrologClause;
-import org.logicware.pdb.prolog.PrologIndicator;
-import org.logicware.pdb.prolog.PrologTerm;
+import org.logicware.prolog.PredicateIndicator;
+import org.logicware.prolog.PrologClause;
+import org.logicware.prolog.PrologIndicator;
+import org.logicware.prolog.PrologTerm;
 
 public class ZPrologClause /* extends AbstractClause */ implements PrologClause {
 

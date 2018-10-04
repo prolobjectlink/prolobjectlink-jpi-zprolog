@@ -21,7 +21,7 @@ package org.logicware.prolog.wamkel;
 
 import static java.lang.Integer.MAX_VALUE;
 import static java.lang.Integer.MIN_VALUE;
-import static org.logicware.pdb.prolog.PrologTermType.EMPTY_TYPE;
+import static org.logicware.prolog.PrologTermType.EMPTY_TYPE;
 import static org.logicware.prolog.wamkel.ZPrologOperator.HIGH;
 import static org.logicware.prolog.wamkel.ZPrologOperator.LOW;
 
@@ -36,11 +36,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.logicware.pdb.prolog.PrologClause;
-import org.logicware.pdb.prolog.PrologGoal;
-import org.logicware.pdb.prolog.PrologProvider;
-import org.logicware.pdb.prolog.PrologTerm;
-import org.logicware.pdb.prolog.SyntaxError;
+import org.logicware.prolog.PrologClause;
+import org.logicware.prolog.PrologGoal;
+import org.logicware.prolog.PrologProvider;
+import org.logicware.prolog.PrologTerm;
+import org.logicware.prolog.SyntaxError;
 
 final class ZPrologParser extends ZPrologEngine {
 

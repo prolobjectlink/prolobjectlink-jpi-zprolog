@@ -23,14 +23,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.logicware.pdb.prolog.PrologAtom;
-import org.logicware.pdb.prolog.PrologDouble;
-import org.logicware.pdb.prolog.PrologFactory;
-import org.logicware.pdb.prolog.PrologInteger;
-import org.logicware.pdb.prolog.PrologProvider;
-import org.logicware.pdb.prolog.PrologQuery;
-import org.logicware.pdb.prolog.PrologTerm;
-import org.logicware.pdb.prolog.PrologVariable;
+import org.logicware.prolog.PrologAtom;
+import org.logicware.prolog.PrologDouble;
+import org.logicware.prolog.PrologFactory;
+import org.logicware.prolog.PrologInteger;
+import org.logicware.prolog.PrologProvider;
+import org.logicware.prolog.PrologQuery;
+import org.logicware.prolog.PrologTerm;
+import org.logicware.prolog.PrologVariable;
 import org.logicware.prolog.wamkel.ZPrologProvider;
 
 public abstract class PrologBaseTest {

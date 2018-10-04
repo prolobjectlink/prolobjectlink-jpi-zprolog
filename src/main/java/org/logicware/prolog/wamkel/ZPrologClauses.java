@@ -22,10 +22,10 @@ package org.logicware.prolog.wamkel;
 import java.util.Collection;
 import java.util.Iterator;
 
-import org.logicware.pdb.prolog.AbstractClause;
-import org.logicware.pdb.prolog.AbstractClauses;
-import org.logicware.pdb.prolog.PrologClause;
-import org.logicware.pdb.prolog.PrologClauses;
+import org.logicware.prolog.AbstractClause;
+import org.logicware.prolog.AbstractClauses;
+import org.logicware.prolog.PrologClause;
+import org.logicware.prolog.PrologClauses;
 
 public final class ZPrologClauses extends AbstractClauses implements PrologClauses {
 

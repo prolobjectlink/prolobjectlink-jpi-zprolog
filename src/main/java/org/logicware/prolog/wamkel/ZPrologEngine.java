@@ -22,13 +22,13 @@ package org.logicware.prolog.wamkel;
 import java.util.Calendar;
 import java.util.List;
 
-import org.logicware.pdb.Licenses;
-import org.logicware.pdb.prolog.PrologClause;
-import org.logicware.pdb.prolog.PrologEngine;
-import org.logicware.pdb.prolog.PrologProgram;
-import org.logicware.pdb.prolog.PrologProvider;
-import org.logicware.pdb.prolog.PrologQuery;
-import org.logicware.pdb.prolog.PrologTerm;
+import org.logicware.platform.Licenses;
+import org.logicware.prolog.PrologClause;
+import org.logicware.prolog.PrologEngine;
+import org.logicware.prolog.PrologProgram;
+import org.logicware.prolog.PrologProvider;
+import org.logicware.prolog.PrologQuery;
+import org.logicware.prolog.PrologTerm;
 
 public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
 

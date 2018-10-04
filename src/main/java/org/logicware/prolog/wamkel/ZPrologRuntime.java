@@ -19,8 +19,8 @@
  */
 package org.logicware.prolog.wamkel;
 
-import static org.logicware.pdb.prolog.PrologTermType.ATOM_TYPE;
-import static org.logicware.pdb.prolog.PrologTermType.STRUCTURE_TYPE;
+import static org.logicware.prolog.PrologTermType.ATOM_TYPE;
+import static org.logicware.prolog.PrologTermType.STRUCTURE_TYPE;
 import static org.logicware.prolog.wamkel.ZPrologOperator.AFTER;
 import static org.logicware.prolog.wamkel.ZPrologOperator.AFTER_EQUALS;
 import static org.logicware.prolog.wamkel.ZPrologOperator.BEFORE;
@@ -104,18 +104,18 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-import org.logicware.pdb.Stack;
-import org.logicware.pdb.TypedArrayStack;
-import org.logicware.pdb.logging.LoggerConstants;
-import org.logicware.pdb.logging.LoggerUtils;
-import org.logicware.pdb.prolog.PredicateIndicator;
-import org.logicware.pdb.prolog.PrologClause;
-import org.logicware.pdb.prolog.PrologClauses;
-import org.logicware.pdb.prolog.PrologIndicator;
-import org.logicware.pdb.prolog.PrologOperator;
-import org.logicware.pdb.prolog.PrologProgram;
-import org.logicware.pdb.prolog.PrologProvider;
-import org.logicware.pdb.prolog.PrologTerm;
+import org.logicware.platform.Stack;
+import org.logicware.platform.TypedArrayStack;
+import org.logicware.platform.logging.LoggerConstants;
+import org.logicware.platform.logging.LoggerUtils;
+import org.logicware.prolog.PredicateIndicator;
+import org.logicware.prolog.PrologClause;
+import org.logicware.prolog.PrologClauses;
+import org.logicware.prolog.PrologIndicator;
+import org.logicware.prolog.PrologOperator;
+import org.logicware.prolog.PrologProgram;
+import org.logicware.prolog.PrologProvider;
+import org.logicware.prolog.PrologTerm;
 
 abstract class ZPrologRuntime extends ZPrologMachine {
 

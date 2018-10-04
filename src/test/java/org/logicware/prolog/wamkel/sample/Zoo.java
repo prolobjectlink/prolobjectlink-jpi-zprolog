@@ -27,9 +27,9 @@ import java.util.HashMap;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.logicware.pdb.prolog.PrologEngine;
-import org.logicware.pdb.prolog.PrologQuery;
-import org.logicware.pdb.prolog.PrologTerm;
+import org.logicware.prolog.PrologEngine;
+import org.logicware.prolog.PrologQuery;
+import org.logicware.prolog.PrologTerm;
 import org.logicware.prolog.wamkel.PrologBaseTest;
 
 public class Zoo extends PrologBaseTest {

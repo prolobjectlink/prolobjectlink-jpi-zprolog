@@ -32,8 +32,8 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.logicware.pdb.prolog.PrologClause;
-import org.logicware.pdb.prolog.PrologClauses;
+import org.logicware.prolog.PrologClause;
+import org.logicware.prolog.PrologClauses;
 
 public class PrologClausesTest extends PrologBaseTest {
 

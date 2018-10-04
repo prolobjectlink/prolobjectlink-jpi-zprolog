@@ -36,10 +36,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.logicware.pdb.prolog.PrologClause;
-import org.logicware.pdb.prolog.PrologClauses;
-import org.logicware.pdb.prolog.PrologGoal;
-import org.logicware.pdb.prolog.PrologProgram;
+import org.logicware.prolog.PrologClause;
+import org.logicware.prolog.PrologClauses;
+import org.logicware.prolog.PrologGoal;
+import org.logicware.prolog.PrologProgram;
 
 public class PrologProgramTest extends PrologBaseTest {
 

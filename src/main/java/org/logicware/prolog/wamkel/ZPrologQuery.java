@@ -24,12 +24,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.logicware.pdb.RuntimeError;
-import org.logicware.pdb.prolog.AbstractEngine;
-import org.logicware.pdb.prolog.AbstractQuery;
-import org.logicware.pdb.prolog.PrologProvider;
-import org.logicware.pdb.prolog.PrologQuery;
-import org.logicware.pdb.prolog.PrologTerm;
+import org.logicware.platform.RuntimeError;
+import org.logicware.prolog.AbstractEngine;
+import org.logicware.prolog.AbstractQuery;
+import org.logicware.prolog.PrologProvider;
+import org.logicware.prolog.PrologQuery;
+import org.logicware.prolog.PrologTerm;
 
 public final class ZPrologQuery extends AbstractQuery implements PrologQuery {
 

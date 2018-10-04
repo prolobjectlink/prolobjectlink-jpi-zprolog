@@ -19,11 +19,11 @@
  */
 package org.logicware.prolog.wamkel;
 
-import static org.logicware.pdb.prolog.PrologTermType.FALSE_TYPE;
-import static org.logicware.pdb.prolog.PrologTermType.TRUE_TYPE;
+import static org.logicware.prolog.PrologTermType.FALSE_TYPE;
+import static org.logicware.prolog.PrologTermType.TRUE_TYPE;
 
-import org.logicware.pdb.prolog.PrologProvider;
-import org.logicware.pdb.prolog.PrologTerm;
+import org.logicware.prolog.PrologProvider;
+import org.logicware.prolog.PrologTerm;
 
 final class ZPrologFlag {
 

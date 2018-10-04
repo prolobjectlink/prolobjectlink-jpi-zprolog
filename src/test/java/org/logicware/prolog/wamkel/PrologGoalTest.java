@@ -24,8 +24,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.logicware.pdb.prolog.PrologClauses;
-import org.logicware.pdb.prolog.PrologProgram;
+import org.logicware.prolog.PrologClauses;
+import org.logicware.prolog.PrologProgram;
 
 public class PrologGoalTest extends PrologBaseTest {
 
