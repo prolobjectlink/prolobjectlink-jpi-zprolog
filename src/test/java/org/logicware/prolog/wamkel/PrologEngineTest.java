@@ -21,12 +21,14 @@ package org.logicware.prolog.wamkel;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -47,10 +49,6 @@ import org.logicware.prolog.PrologQuery;
 import org.logicware.prolog.PrologStructure;
 import org.logicware.prolog.PrologTerm;
 import org.logicware.prolog.PrologVariable;
-import org.logicware.prolog.wamkel.ZPrologClause;
-import org.logicware.prolog.wamkel.ZPrologEngine;
-import org.logicware.prolog.wamkel.ZPrologRuntime;
-import org.logicware.prolog.wamkel.ZPrologTerm;
 
 public class PrologEngineTest extends PrologBaseTest {
 
@@ -1241,6 +1239,26 @@ public class PrologEngineTest extends PrologBaseTest {
 		engine.dispose();
 		assertTrue(engine.isProgramEmpty());
 		assertEquals(0, engine.getProgramSize());
+	}
+
+	@Test
+	public final void testIterator() {
+
+		engine = provider.newEngine();
+		engine.consult("family.pl");
+
+		int counter = 0;
+		Iterator<?> i = engine.iterator();
+		int size = engine.getProgramSize();
+
+		assertNotNull(i);
+		while (i.hasNext()) {
+			counter++;
+			i.next();
+		}
+
+		assertEquals(size, counter);
+
 	}
 
 }

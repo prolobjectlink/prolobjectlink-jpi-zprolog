@@ -105,7 +105,7 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.logicware.platform.Stack;
-import org.logicware.platform.TypedArrayStack;
+import org.logicware.platform.ArrayStack;
 import org.logicware.platform.logging.LoggerConstants;
 import org.logicware.platform.logging.LoggerUtils;
 import org.logicware.prolog.PredicateIndicator;
@@ -156,7 +156,7 @@ abstract class ZPrologRuntime extends ZPrologMachine {
 	protected boolean hasMoreSolution;
 
 	// key of dynamics predicates
-	protected final Stack<File> systemPath = new TypedArrayStack<File>();
+	protected final Stack<File> systemPath = new ArrayStack<File>();
 
 	// statistics collector map
 	protected final Map<PrologTerm, PrologTerm> statistics = new HashMap<PrologTerm, PrologTerm>();
