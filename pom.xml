@@ -40,13 +40,18 @@
 	</developers>
 
 	<scm>
-		<url>D:\Desarrollo\EclipseWorkspace\eclipse-java-neon-workspace\prolobjectlink-zprolog\.git</url>
+		<url>http://gitlab.delnet.cu/logicware/prolobjectlink-jpi-zprolog.git</url>
 	</scm>
 
 	<ciManagement>
 		<system>jenkins</system>
-		<url>http://opteron:8080/jenkins/</url>
+		<url>http://jenkins.delnet.cu:8080/jenkins/</url>
 	</ciManagement>
+
+	<issueManagement>
+		<system>Bugzilla</system>
+		<url>http://bugzilla.delnet.cu/</url>
+	</issueManagement>
 
 	<distributionManagement>
 		<downloadUrl>http://www.logicware.org/download</downloadUrl>
