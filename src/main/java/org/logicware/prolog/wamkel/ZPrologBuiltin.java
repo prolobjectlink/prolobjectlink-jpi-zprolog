@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-db-zprolog
+ * prolobjectlink-jpi-zprolog
  * %%
  * Copyright (C) 2012 - 2017 Logicware Project
  * %%
@@ -196,17 +196,17 @@ public class ZPrologBuiltin {
 	private ZPrologBuiltin() {
 	}
 
-	static PrologClauses include_1(PrologProvider provider) {
+	static PrologClauses include1(PrologProvider provider) {
 		return new ZPrologClauses("include/1", new ZPrologClause(new ZPrologTerm(TOKEN_INCLUDE_BUILTIN, STRUCTURE_TYPE,
 				provider, ZPrologBuiltin.INCLUDE, new ZPrologTerm(provider, "X", 0))));
 	}
 
-	static PrologClauses initialization_1(PrologProvider provider) {
+	static PrologClauses initialization1(PrologProvider provider) {
 		return new ZPrologClauses("initialization/1", new ZPrologClause(new ZPrologTerm(TOKEN_INITIALIZATION_BUILTIN,
 				STRUCTURE_TYPE, provider, ZPrologBuiltin.INITIALIZATION, new ZPrologTerm(provider, "X", 0))));
 	}
 
-	static final ZPrologClauses ensure_loaded_1(PrologProvider provider) {
+	static final ZPrologClauses ensureLoaded1(PrologProvider provider) {
 		return new ZPrologClauses("ensure_loaded/1", new ZPrologClause(new ZPrologTerm(TOKEN_ENSURE_LOADED_BUILTIN,
 				STRUCTURE_TYPE, provider, ZPrologBuiltin.ENSURE_LOADED, new ZPrologTerm(provider, "X", 0))));
 	}

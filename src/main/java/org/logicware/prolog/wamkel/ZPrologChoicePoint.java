@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-db-zprolog
+ * prolobjectlink-jpi-zprolog
  * %%
  * Copyright (C) 2012 - 2017 Logicware Project
  * %%
@@ -37,32 +37,32 @@ package org.logicware.prolog.wamkel;
  */
 final class ZPrologChoicePoint {
 
-	private final ZPrologGoal current_goal;
-	private final ZPrologGoal next_goal;
+	private final ZPrologGoal currentGoal;
+	private final ZPrologGoal nextGoal;
 
-	ZPrologChoicePoint(ZPrologGoal current_goal) {
-		this(current_goal, null);
+	ZPrologChoicePoint(ZPrologGoal currentGoal) {
+		this(currentGoal, null);
 	}
 
-	ZPrologChoicePoint(ZPrologGoal current_goal, ZPrologGoal next_goal) {
-		this.current_goal = current_goal;
-		this.next_goal = next_goal;
+	ZPrologChoicePoint(ZPrologGoal currentGoal, ZPrologGoal nextGoal) {
+		this.currentGoal = currentGoal;
+		this.nextGoal = nextGoal;
 	}
 
-	public ZPrologGoal get_current_goal() {
-		return current_goal;
+	public ZPrologGoal getCurrentGoal() {
+		return currentGoal;
 	}
 
-	public ZPrologGoal get_next_goal() {
-		return next_goal;
+	public ZPrologGoal getNextGoal() {
+		return nextGoal;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((current_goal == null) ? 0 : current_goal.hashCode());
-		result = prime * result + ((next_goal == null) ? 0 : next_goal.hashCode());
+		result = prime * result + ((currentGoal == null) ? 0 : currentGoal.hashCode());
+		result = prime * result + ((nextGoal == null) ? 0 : nextGoal.hashCode());
 		return result;
 	}
 
@@ -75,22 +75,24 @@ final class ZPrologChoicePoint {
 		if (getClass() != obj.getClass())
 			return false;
 		ZPrologChoicePoint other = (ZPrologChoicePoint) obj;
-		if (current_goal == null) {
-			if (other.current_goal != null)
+		if (currentGoal == null) {
+			if (other.currentGoal != null)
 				return false;
-		} else if (!current_goal.equals(other.current_goal))
+		} else if (!currentGoal.equals(other.currentGoal)) {
 			return false;
-		if (next_goal == null) {
-			if (other.next_goal != null)
+		}
+		if (nextGoal == null) {
+			if (other.nextGoal != null)
 				return false;
-		} else if (!next_goal.equals(other.next_goal))
+		} else if (!nextGoal.equals(other.nextGoal)) {
 			return false;
+		}
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "ZPrologChoicePoint [current_goal=" + current_goal + ", next_goal=" + next_goal + "]";
+		return "ZPrologChoicePoint [current_goal=" + currentGoal + ", next_goal=" + nextGoal + "]";
 	}
 
 }

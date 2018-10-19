@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-db-zprolog
+ * prolobjectlink-jpi-zprolog
  * %%
  * Copyright (C) 2012 - 2017 Logicware Project
  * %%
@@ -42,16 +42,17 @@ class ZPrologTerms {
 	}
 
 	public String toString() {
-		String string = "";
+		StringBuilder string = new StringBuilder();
 		if (term != null) {
-			string += term;
+			string.append(term);
 			ZPrologTerms termsPtr = next;
 			while (termsPtr != null) {
-				string += ", " + termsPtr.term;
+				string.append(", ");
+				string.append(termsPtr.term);
 				termsPtr = termsPtr.next;
 			}
 		}
-		return string;
+		return "" + string + "";
 	}
 
 	@Override
@@ -75,13 +76,15 @@ class ZPrologTerms {
 		if (next == null) {
 			if (other.next != null)
 				return false;
-		} else if (!next.equals(other.next))
+		} else if (!next.equals(other.next)) {
 			return false;
+		}
 		if (term == null) {
 			if (other.term != null)
 				return false;
-		} else if (!term.equals(other.term))
+		} else if (!term.equals(other.term)) {
 			return false;
+		}
 		return true;
 	}
 

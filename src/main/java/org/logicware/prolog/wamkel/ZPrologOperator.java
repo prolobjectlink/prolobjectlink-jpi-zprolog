@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-db-zprolog
+ * prolobjectlink-jpi-zprolog
  * %%
  * Copyright (C) 2012 - 2017 Logicware Project
  * %%
@@ -280,7 +280,7 @@ public final class ZPrologOperator extends ZPrologToken implements PrologOperato
 	}
 
 	boolean less(ZPrologOperator operator) {
-		return this.compareTo(operator) == -1;
+		return this.compareTo(operator) < 0;
 	}
 
 	boolean lessEqual(ZPrologOperator operator) {
@@ -296,7 +296,7 @@ public final class ZPrologOperator extends ZPrologToken implements PrologOperato
 	}
 
 	boolean greater(ZPrologOperator operator) {
-		return this.compareTo(operator) == 1;
+		return this.compareTo(operator) > 0;
 	}
 
 	public int compareTo(PrologOperator operator) {
@@ -371,9 +371,7 @@ public final class ZPrologOperator extends ZPrologToken implements PrologOperato
 		ZPrologOperator other = (ZPrologOperator) obj;
 		if (position != other.position)
 			return false;
-		if (priority != other.priority)
-			return false;
-		return true;
+		return priority == other.priority;
 	}
 
 	boolean unify(ZPrologOperator op, ZPrologStack stack) {

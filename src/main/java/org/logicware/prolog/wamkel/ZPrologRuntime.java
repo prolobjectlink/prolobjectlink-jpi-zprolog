@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-db-zprolog
+ * prolobjectlink-jpi-zprolog
  * %%
  * Copyright (C) 2012 - 2017 Logicware Project
  * %%
@@ -187,9 +187,9 @@ abstract class ZPrologRuntime extends ZPrologMachine {
 		builtins = new HashMap<String, PrologClauses>();
 
 		// 7.4 directives
-		builtins.put("include/1", ZPrologBuiltin.include_1(provider));
-		builtins.put("ensure_loaded/1", ZPrologBuiltin.ensure_loaded_1(provider));
-		builtins.put("initialization/1", ZPrologBuiltin.initialization_1(provider));
+		builtins.put("include/1", ZPrologBuiltin.include1(provider));
+		builtins.put("ensure_loaded/1", ZPrologBuiltin.ensureLoaded1(provider));
+		builtins.put("initialization/1", ZPrologBuiltin.initialization1(provider));
 
 		// 7.8 control constructs
 		builtins.put("!/0", new ZPrologClauses("!/0", new ZPrologClause(ZPrologTerm.CUT_TERM)));
@@ -561,7 +561,7 @@ abstract class ZPrologRuntime extends ZPrologMachine {
 									// choicePoint.get_current_goal();
 									// next_goal = choicePoint.get_next_goal();
 
-									current_goal = choicePoint.get_next_goal();
+									current_goal = choicePoint.getNextGoal();
 
 								} else if (object instanceof PrologTerm) {
 									s.push(object);
@@ -741,8 +741,8 @@ abstract class ZPrologRuntime extends ZPrologMachine {
 			Object object = stack.pop();
 			if (object instanceof ZPrologChoicePoint) {
 				ZPrologChoicePoint choicePoint = (ZPrologChoicePoint) object;
-				current_goal = choicePoint.get_current_goal();
-				next_goal = choicePoint.get_next_goal();
+				current_goal = choicePoint.getCurrentGoal();
+				next_goal = choicePoint.getNextGoal();
 				return true;
 			} else if (object instanceof ZPrologTerm) {
 				ZPrologTerm term = (ZPrologTerm) object;

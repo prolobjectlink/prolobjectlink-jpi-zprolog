@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-db-zprolog
+ * prolobjectlink-jpi-zprolog
  * %%
  * Copyright (C) 2012 - 2017 Logicware Project
  * %%
@@ -49,8 +49,7 @@ public class ZPrologClause /* extends AbstractClause */ implements PrologClause 
 	/**
 	 * Used only for goals
 	 * 
-	 * @param terms
-	 *            goal array
+	 * @param terms goal array
 	 */
 	ZPrologClause(PrologTerm[] terms) {
 		term = terms[terms.length - 1];
@@ -196,13 +195,15 @@ public class ZPrologClause /* extends AbstractClause */ implements PrologClause 
 		if (next == null) {
 			if (other.next != null)
 				return false;
-		} else if (!next.equals(other.next))
+		} else if (!next.equals(other.next)) {
 			return false;
+		}
 		if (term == null) {
 			if (other.term != null)
 				return false;
-		} else if (!term.equals(other.term))
+		} else if (!term.equals(other.term)) {
 			return false;
+		}
 		return true;
 	}
 

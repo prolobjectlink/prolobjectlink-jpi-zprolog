@@ -29,7 +29,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.logicware.prolog.ArityError;
-import org.logicware.prolog.CompoundExpectedError;
 import org.logicware.prolog.FunctorError;
 import org.logicware.prolog.IndicatorError;
 import org.logicware.prolog.PrologAtom;
@@ -114,7 +113,6 @@ public class PrologIntegerTest extends PrologBaseTest {
 		assertEquals(0, integer.getArity());
 	}
 
-	@Test(expected = CompoundExpectedError.class)
 	public void testGetArguments() {
 		assertArrayEquals(new PrologTerm[0], integer.getArguments());
 	}

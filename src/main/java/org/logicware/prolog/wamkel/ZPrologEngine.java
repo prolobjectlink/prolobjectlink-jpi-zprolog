@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-db-zprolog
+ * prolobjectlink-jpi-zprolog
  * %%
  * Copyright (C) 2012 - 2017 Logicware Project
  * %%
@@ -40,7 +40,7 @@ public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
 	private static final String COPYRIGHT = "Copyright(C) 2012-" + Calendar.YEAR;
 
 	// parser helper to build the goal from prolog string
-	private static final ZPrologParser parser = new ZPrologParser(provider);
+	private static final ZPrologParserUtils parser = new ZPrologParserUtils(provider);
 
 	public ZPrologEngine(PrologProvider provider) {
 		super(provider);
@@ -72,11 +72,7 @@ public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
 	}
 
 	public void asserta(PrologTerm head, PrologTerm... body) {
-		// PrologTerm t = fromTerm(head, body, ZPrologTerm.class);
-		// program.push(new ZPrologClause(t));
-
 		program.push(new ZPrologClause(head, body));
-
 	}
 
 	public void assertz(String stringClause) {
@@ -84,20 +80,10 @@ public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
 	}
 
 	public void assertz(PrologTerm head, PrologTerm... body) {
-		// PrologTerm t = fromTerm(head, body, ZPrologTerm.class);
-		// program.add(new ZPrologClause(t));
-
-		// PrologTerm h = fromTerm(head, ZPrologTerm.class);
-		// PrologTerm[] b = fromTermArray(body, ZPrologTerm[].class);
-		// program.add(new ZPrologClause(h, b));
-
 		program.add(new ZPrologClause(head, body));
-
 	}
 
 	public boolean clause(String stringClause) {
-		// return program.contains(parser.parseClause(stringClause));
-
 		PrologClause c = parser.parseClause(stringClause);
 		List<PrologClause> family = program.get(c.getIndicator());
 		if (family != null) {
@@ -108,15 +94,9 @@ public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
 			}
 		}
 		return false;
-
 	}
 
 	public boolean clause(PrologTerm head, PrologTerm... body) {
-		// PrologTerm t = fromTerm(head, body, ZPrologTerm.class);
-		// return program.contains(new ZPrologClause(t));
-
-		// return program.contains(new ZPrologClause(head, body));
-
 		String key = head.getIndicator();
 		PrologClause c = new ZPrologClause(head, body);
 		List<PrologClause> family = program.get(key);
@@ -128,7 +108,6 @@ public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
 			}
 		}
 		return false;
-
 	}
 
 	public void retract(String stringClause) {
@@ -136,11 +115,7 @@ public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
 	}
 
 	public void retract(PrologTerm head, PrologTerm... body) {
-		// PrologTerm t = fromTerm(head, body, ZPrologTerm.class);
-		// program.remove(new ZPrologClause(t));
-
 		program.remove(new ZPrologClause(head, body));
-
 	}
 
 	public PrologQuery query(String stringQuery) {

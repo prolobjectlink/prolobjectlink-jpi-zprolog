@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-db-zprolog
+ * prolobjectlink-jpi-zprolog
  * %%
  * Copyright (C) 2012 - 2017 Logicware Project
  * %%
@@ -43,6 +43,7 @@ final class ZPrologGoal extends ZPrologClause implements PrologGoal {
 	}
 
 	/** @deprecated used only for test */
+	@Deprecated
 	ZPrologGoal(PrologTerm term, PrologClauses clauses) {
 		super(term);
 		this.clauses = clauses;
@@ -50,6 +51,7 @@ final class ZPrologGoal extends ZPrologClause implements PrologGoal {
 	}
 
 	/** @deprecated used only for test */
+	@Deprecated
 	ZPrologGoal(PrologTerm[] terms, PrologClauses clauses) {
 		super(terms);
 		this.clauses = clauses;
@@ -64,11 +66,9 @@ final class ZPrologGoal extends ZPrologClause implements PrologGoal {
 	 * Link the current goal with a clause recovery in the program database or
 	 * runtime built-in.
 	 * 
-	 * @param program
-	 *            program for lookup clause that match with the current goal
-	 * @param builtins
-	 *            prolog built-ins for lookup clause that match with the current
-	 *            goal
+	 * @param program  program for lookup clause that match with the current goal
+	 * @param builtins prolog built-ins for lookup clause that match with the
+	 *                 current goal
 	 * @return the current goal linked with the matched clause
 	 * @since 1.0
 	 */
@@ -112,8 +112,9 @@ final class ZPrologGoal extends ZPrologClause implements PrologGoal {
 		if (clauses == null) {
 			if (other.clauses != null)
 				return false;
-		} else if (!clauses.equals(other.clauses))
+		} else if (!clauses.equals(other.clauses)) {
 			return false;
+		}
 		return true;
 	}
 

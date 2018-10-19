@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-db-zprolog
+ * prolobjectlink-jpi-zprolog
  * %%
  * Copyright (C) 2012 - 2017 Logicware Project
  * %%
@@ -41,7 +41,7 @@ public final class ZPrologProgram extends AbstractSet<PrologClauses> implements 
 	private final List<PrologGoal> directives = new LinkedList<PrologGoal>();
 
 	// program (data base) in read order
-	private final LinkedHashMap<String, PrologClauses> clauses = new LinkedHashMap<String, PrologClauses>();;
+	private final LinkedHashMap<String, PrologClauses> clauses = new LinkedHashMap<String, PrologClauses>();
 
 	public PrologClauses get(String key) {
 		return clauses.get(key);
@@ -142,16 +142,16 @@ public final class ZPrologProgram extends AbstractSet<PrologClauses> implements 
 	}
 
 	public void markDynamic(String functor, int arity) {
-		PrologClauses clauses = get(functor + "/" + arity);
-		if (clauses instanceof ZPrologClauses) {
-			((ZPrologClauses) clauses).markDynamic();
+		PrologClauses cls = get(functor + "/" + arity);
+		if (cls instanceof ZPrologClauses) {
+			((ZPrologClauses) cls).markDynamic();
 		}
 	}
 
 	public void unmarkDynamic(String functor, int arity) {
-		PrologClauses clauses = get(functor + "/" + arity);
-		if (clauses instanceof ZPrologClauses) {
-			((ZPrologClauses) clauses).unmarkDynamic();
+		PrologClauses cls = get(functor + "/" + arity);
+		if (cls instanceof ZPrologClauses) {
+			((ZPrologClauses) cls).unmarkDynamic();
 		}
 	}
 
@@ -160,16 +160,16 @@ public final class ZPrologProgram extends AbstractSet<PrologClauses> implements 
 	}
 
 	public void markMultifile(String functor, int arity) {
-		PrologClauses clauses = get(functor + "/" + arity);
-		if (clauses instanceof ZPrologClauses) {
-			((ZPrologClauses) clauses).markMultifile();
+		PrologClauses cls = get(functor + "/" + arity);
+		if (cls instanceof ZPrologClauses) {
+			((ZPrologClauses) cls).markMultifile();
 		}
 	}
 
 	public void unmarkMultifile(String functor, int arity) {
-		PrologClauses clauses = get(functor + "/" + arity);
-		if (clauses instanceof ZPrologClauses) {
-			((ZPrologClauses) clauses).unmarkMultifile();
+		PrologClauses cls = get(functor + "/" + arity);
+		if (cls instanceof ZPrologClauses) {
+			((ZPrologClauses) cls).unmarkMultifile();
 		}
 	}
 
@@ -178,16 +178,16 @@ public final class ZPrologProgram extends AbstractSet<PrologClauses> implements 
 	}
 
 	public void markDiscontiguous(String functor, int arity) {
-		PrologClauses clauses = get(functor + "/" + arity);
-		if (clauses instanceof ZPrologClauses) {
-			((ZPrologClauses) clauses).markDiscontiguous();
+		PrologClauses cls = get(functor + "/" + arity);
+		if (cls instanceof ZPrologClauses) {
+			((ZPrologClauses) cls).markDiscontiguous();
 		}
 	}
 
 	public void unmarkDiscontiguous(String functor, int arity) {
-		PrologClauses clauses = get(functor + "/" + arity);
-		if (clauses instanceof ZPrologClauses) {
-			((ZPrologClauses) clauses).unmarkDiscontiguous();
+		PrologClauses cls = get(functor + "/" + arity);
+		if (cls instanceof ZPrologClauses) {
+			((ZPrologClauses) cls).unmarkDiscontiguous();
 		}
 	}
 
@@ -205,24 +205,34 @@ public final class ZPrologProgram extends AbstractSet<PrologClauses> implements 
 
 	@Override
 	public String toString() {
-		String families = "";
+		StringBuilder families = new StringBuilder();
 
 		if (!directives.isEmpty()) {
 			Iterator<PrologGoal> i = directives.iterator();
 			while (i.hasNext()) {
-				families += ":-" + i.next();
-				families += i.hasNext() ? "\n" : "\n\n";
+				families.append(":-" + i.next());
+				families.append(i.hasNext() ? "\n" : "\n\n");
 			}
 		}
 
 		if (!clauses.isEmpty()) {
 			Iterator<PrologClauses> i = iterator();
 			while (i.hasNext()) {
-				families += i.next() + "\n";
+				families.append(i.next() + "\n");
 			}
 		}
 
-		return families;
+		return "" + families + "";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + clauses.hashCode();
+		result = prime * result + directives.hashCode();
+		result = prime * result + goals.hashCode();
+		return result;
 	}
 
 	@Override
@@ -233,33 +243,12 @@ public final class ZPrologProgram extends AbstractSet<PrologClauses> implements 
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ZPrologProgram other = (ZPrologProgram) obj;
-		if (clauses == null) {
-			if (other.clauses != null)
-				return false;
-		} else if (!clauses.equals(other.clauses))
-			return false;
-		if (directives == null) {
-			if (other.directives != null)
-				return false;
-		} else if (!directives.equals(other.directives))
-			return false;
-		if (goals == null) {
-			if (other.goals != null)
-				return false;
-		} else if (!goals.equals(other.goals))
-			return false;
-		return true;
-	}
+		ZPrologProgram o = (ZPrologProgram) obj;
+		return clauses.equals(o.clauses) &&
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((clauses == null) ? 0 : clauses.hashCode());
-		result = prime * result + ((directives == null) ? 0 : directives.hashCode());
-		result = prime * result + ((goals == null) ? 0 : goals.hashCode());
-		return result;
+				directives.equals(o.directives) &&
+
+				goals.equals(o.goals);
 	}
 
 	@Override
@@ -279,7 +268,6 @@ public final class ZPrologProgram extends AbstractSet<PrologClauses> implements 
 		int size = 0;
 		Iterator<PrologClauses> i = iterator();
 		while (i.hasNext()) {
-			// System.out.println(i.next());
 			size += i.next().size();
 		}
 		return size;

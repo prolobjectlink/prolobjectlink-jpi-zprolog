@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-db-zprolog
+ * prolobjectlink-jpi-zprolog
  * %%
  * Copyright (C) 2012 - 2017 Logicware Project
  * %%
@@ -22,7 +22,6 @@ package org.logicware.prolog.wamkel;
 import java.util.Collection;
 import java.util.Iterator;
 
-import org.logicware.prolog.AbstractClause;
 import org.logicware.prolog.AbstractClauses;
 import org.logicware.prolog.PrologClause;
 import org.logicware.prolog.PrologClauses;
@@ -59,8 +58,8 @@ public final class ZPrologClauses extends AbstractClauses implements PrologClaus
 		Iterator<PrologClause> i = iterator();
 		while (i.hasNext()) {
 			PrologClause clause = i.next();
-			if (clause instanceof AbstractClause) {
-				((AbstractClause) clause).markDynamic();
+			if (clause instanceof ZPrologClause) {
+				((ZPrologClause) clause).markDynamic();
 			}
 		}
 	}
@@ -69,8 +68,8 @@ public final class ZPrologClauses extends AbstractClauses implements PrologClaus
 		Iterator<PrologClause> i = iterator();
 		while (i.hasNext()) {
 			PrologClause clause = i.next();
-			if (clause instanceof AbstractClause) {
-				((AbstractClause) clause).unmarkDynamic();
+			if (clause instanceof ZPrologClause) {
+				((ZPrologClause) clause).unmarkDynamic();
 			}
 		}
 	}
@@ -89,8 +88,8 @@ public final class ZPrologClauses extends AbstractClauses implements PrologClaus
 		Iterator<PrologClause> i = iterator();
 		while (i.hasNext()) {
 			PrologClause clause = i.next();
-			if (clause instanceof AbstractClause) {
-				((AbstractClause) clause).markMultifile();
+			if (clause instanceof ZPrologClause) {
+				((ZPrologClause) clause).markMultifile();
 			}
 		}
 	}
@@ -99,8 +98,8 @@ public final class ZPrologClauses extends AbstractClauses implements PrologClaus
 		Iterator<PrologClause> i = iterator();
 		while (i.hasNext()) {
 			PrologClause clause = i.next();
-			if (clause instanceof AbstractClause) {
-				((AbstractClause) clause).unmarkMultifile();
+			if (clause instanceof ZPrologClause) {
+				((ZPrologClause) clause).unmarkMultifile();
 			}
 		}
 	}
@@ -119,8 +118,8 @@ public final class ZPrologClauses extends AbstractClauses implements PrologClaus
 		Iterator<PrologClause> i = iterator();
 		while (i.hasNext()) {
 			PrologClause clause = i.next();
-			if (clause instanceof AbstractClause) {
-				((AbstractClause) clause).markDiscontiguous();
+			if (clause instanceof ZPrologClause) {
+				((ZPrologClause) clause).markDiscontiguous();
 			}
 		}
 	}
@@ -129,8 +128,8 @@ public final class ZPrologClauses extends AbstractClauses implements PrologClaus
 		Iterator<PrologClause> i = iterator();
 		while (i.hasNext()) {
 			PrologClause clause = i.next();
-			if (clause instanceof AbstractClause) {
-				((AbstractClause) clause).unmarkDiscontiguous();
+			if (clause instanceof ZPrologClause) {
+				((ZPrologClause) clause).unmarkDiscontiguous();
 			}
 		}
 	}
@@ -151,12 +150,39 @@ public final class ZPrologClauses extends AbstractClauses implements PrologClaus
 
 	@Override
 	public String toString() {
-		String clause = "";
+		StringBuilder clause = new StringBuilder();
 		Iterator<PrologClause> i = iterator();
 		while (i.hasNext()) {
-			clause += i.next() + "\n";
+			clause.append(i.next());
+			clause.append("\n");
 		}
-		return clause;
+		return "" + clause + "";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((indicator == null) ? 0 : indicator.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ZPrologClauses other = (ZPrologClauses) obj;
+		if (indicator == null) {
+			if (other.indicator != null)
+				return false;
+		} else if (!indicator.equals(other.indicator)) {
+			return false;
+		}
+		return true;
 	}
 
 }

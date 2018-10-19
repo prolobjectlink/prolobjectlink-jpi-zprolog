@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-db-zprolog
+ * prolobjectlink-jpi-zprolog
  * %%
  * Copyright (C) 2012 - 2017 Logicware Project
  * %%
@@ -27,46 +27,50 @@ import org.logicware.prolog.PrologTerm;
 
 final class ZPrologFlag {
 
-	static boolean NO = false;
-	static boolean YES = true;
+	static final boolean NO = false;
+	static final boolean YES = true;
 
 	static final PrologProvider provider = new ZPrologProvider();
 
-	static PrologTerm TRUE = new ZPrologTerm(ZPrologToken.TOKEN_TRUE, TRUE_TYPE, provider, ZPrologBuiltin.TRUE_FUNCTOR);
-	static PrologTerm FALSE = new ZPrologTerm(ZPrologToken.TOKEN_FALSE, FALSE_TYPE, provider,
+	static final PrologTerm TRUE = new ZPrologTerm(ZPrologToken.TOKEN_TRUE, TRUE_TYPE, provider,
+			ZPrologBuiltin.TRUE_FUNCTOR);
+	static final PrologTerm FALSE = new ZPrologTerm(ZPrologToken.TOKEN_FALSE, FALSE_TYPE, provider,
 			ZPrologBuiltin.FALSE_FUNCTOR);
 
-	static PrologTerm ON = new ZPrologTerm(provider, "on");
-	static PrologTerm OFF = new ZPrologTerm(provider, "off");
+	static final PrologTerm ON = new ZPrologTerm(provider, "on");
+	static final PrologTerm OFF = new ZPrologTerm(provider, "off");
 
-	static PrologTerm ATOM = new ZPrologTerm(provider, "atom");
-	static PrologTerm CHARS = new ZPrologTerm(provider, "chars");
-	static PrologTerm CODES = new ZPrologTerm(provider, "codes");
+	static final PrologTerm ATOM = new ZPrologTerm(provider, "atom");
+	static final PrologTerm CHARS = new ZPrologTerm(provider, "chars");
+	static final PrologTerm CODES = new ZPrologTerm(provider, "codes");
 
-	static PrologTerm FAIL = new ZPrologTerm(provider, "fail");
-	static PrologTerm ERROR = new ZPrologTerm(provider, "error");
-	static PrologTerm WARNING = new ZPrologTerm(provider, "warning");
+	static final PrologTerm FAIL = new ZPrologTerm(provider, "fail");
+	static final PrologTerm ERROR = new ZPrologTerm(provider, "error");
+	static final PrologTerm WARNING = new ZPrologTerm(provider, "warning");
 
-	static PrologTerm DOWN = new ZPrologTerm(provider, "down");
-	static PrologTerm TOWARD_ZERO = new ZPrologTerm(provider, "toward_zero");
+	static final PrologTerm DOWN = new ZPrologTerm(provider, "down");
+	static final PrologTerm TOWARD_ZERO = new ZPrologTerm(provider, "toward_zero");
 
 	static final PrologTerm CHAR_CONVERSION = new ZPrologTerm(provider, "char_conversion");
 
-	static PrologTerm MAX_INTEGER_VALUE = new ZPrologTerm(provider, Long.MAX_VALUE);
-	static PrologTerm MIN_INTEGER_VALUE = new ZPrologTerm(provider, Long.MIN_VALUE);
+	static final PrologTerm MAX_INTEGER_VALUE = new ZPrologTerm(provider, Long.MAX_VALUE);
+	static final PrologTerm MIN_INTEGER_VALUE = new ZPrologTerm(provider, Long.MIN_VALUE);
 
-	static PrologTerm MAX_ARITY_VALUE = new ZPrologTerm(provider, Integer.MAX_VALUE);
+	static final PrologTerm MAX_ARITY_VALUE = new ZPrologTerm(provider, Integer.MAX_VALUE);
 
 	// not supported yet
-	static ZPrologFlag DEBUG_FLAG = new ZPrologFlag("debug", OFF, OFF, YES);
-	static ZPrologFlag BOUNDED_FLAG = new ZPrologFlag("bounded", FALSE, FALSE, NO);
-	static ZPrologFlag UNKNOWN_FLAG = new ZPrologFlag("unknown", ERROR, ERROR, YES);
-	static ZPrologFlag CHAR_CONVERSION_FLAG = new ZPrologFlag("char_conversion", ON, ON, YES);
-	static ZPrologFlag DOUBLE_QUOTES_FLAG = new ZPrologFlag("double_quotes", CHARS, CHARS, YES);
-	static ZPrologFlag MAX_ARITY_FLAG = new ZPrologFlag(" max_arity ", MAX_ARITY_VALUE, MAX_ARITY_VALUE, NO);
-	static ZPrologFlag MAX_INTEGER_FLAG = new ZPrologFlag("max_integer", MAX_INTEGER_VALUE, MAX_INTEGER_VALUE, NO);
-	static ZPrologFlag MIN_INTEGER_FLAG = new ZPrologFlag("min_integer", MIN_INTEGER_VALUE, MIN_INTEGER_VALUE, NO);
-	static ZPrologFlag INTEGER_ROUNDING_FUNCTION_FLAG = new ZPrologFlag("integer_rounding_function", DOWN, DOWN, NO);
+	static final ZPrologFlag DEBUG_FLAG = new ZPrologFlag("debug", OFF, OFF, YES);
+	static final ZPrologFlag BOUNDED_FLAG = new ZPrologFlag("bounded", FALSE, FALSE, NO);
+	static final ZPrologFlag UNKNOWN_FLAG = new ZPrologFlag("unknown", ERROR, ERROR, YES);
+	static final ZPrologFlag CHAR_CONVERSION_FLAG = new ZPrologFlag("char_conversion", ON, ON, YES);
+	static final ZPrologFlag DOUBLE_QUOTES_FLAG = new ZPrologFlag("double_quotes", CHARS, CHARS, YES);
+	static final ZPrologFlag MAX_ARITY_FLAG = new ZPrologFlag(" max_arity ", MAX_ARITY_VALUE, MAX_ARITY_VALUE, NO);
+	static final ZPrologFlag MAX_INTEGER_FLAG = new ZPrologFlag("max_integer", MAX_INTEGER_VALUE, MAX_INTEGER_VALUE,
+			NO);
+	static final ZPrologFlag MIN_INTEGER_FLAG = new ZPrologFlag("min_integer", MIN_INTEGER_VALUE, MIN_INTEGER_VALUE,
+			NO);
+	static final ZPrologFlag INTEGER_ROUNDING_FUNCTION_FLAG = new ZPrologFlag("integer_rounding_function", DOWN, DOWN,
+			NO);
 
 	private String name;
 	private PrologTerm value;
@@ -162,23 +166,27 @@ final class ZPrologFlag {
 		if (defaultValue == null) {
 			if (other.defaultValue != null)
 				return false;
-		} else if (!defaultValue.equals(other.defaultValue))
+		} else if (!defaultValue.equals(other.defaultValue)) {
 			return false;
+		}
 		if (name == null) {
 			if (other.name != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!name.equals(other.name)) {
 			return false;
+		}
 		if (value == null) {
 			if (other.value != null)
 				return false;
-		} else if (!value.equals(other.value))
+		} else if (!value.equals(other.value)) {
 			return false;
+		}
 		if (values == null) {
 			if (other.values != null)
 				return false;
-		} else if (!values.equals(other.values))
+		} else if (!values.equals(other.values)) {
 			return false;
+		}
 		return true;
 	}
 

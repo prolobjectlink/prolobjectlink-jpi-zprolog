@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-db-zprolog
+ * prolobjectlink-jpi-zprolog
  * %%
  * Copyright (C) 2012 - 2017 Logicware Project
  * %%
@@ -392,8 +392,9 @@ class ZPrologToken {
 		if (token == null) {
 			if (other.token != null)
 				return false;
-		} else if (!token.equals(other.token))
+		} else if (!token.equals(other.token)) {
 			return false;
+		}
 		return true;
 	}
 

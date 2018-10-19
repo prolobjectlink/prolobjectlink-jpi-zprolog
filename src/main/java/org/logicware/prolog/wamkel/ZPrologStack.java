@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-db-zprolog
+ * prolobjectlink-jpi-zprolog
  * %%
  * Copyright (C) 2012 - 2017 Logicware Project
  * %%
@@ -28,13 +28,14 @@ final class ZPrologStack {
 
 	@Override
 	public String toString() {
-		String string = "";
+		StringBuilder string = new StringBuilder();
 		if (stack != null) {
 			for (int i = stack.size() - 1; i >= 0; i--) {
-				string += stack.get(i) + "\n";
+				string.append(stack.get(i));
+				string.append("\n");
 			}
 		}
-		return string;
+		return "" + string + "";
 	}
 
 	ZPrologStack() {
@@ -54,7 +55,7 @@ final class ZPrologStack {
 	}
 
 	void push(Object object) {
-		// checkOverflow();
+		// check Overflow
 		stack.push(object);
 		if (object instanceof ZPrologTerm) {
 			ZPrologTerm variable = (ZPrologTerm) object;

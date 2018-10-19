@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-db-zprolog
+ * prolobjectlink-jpi-zprolog
  * %%
  * Copyright (C) 2012 - 2017 Logicware Project
  * %%
@@ -24,7 +24,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.Map;
+import java.util.Map.Entry;
 
+import org.logicware.platform.logging.LoggerConstants;
+import org.logicware.platform.logging.LoggerUtils;
 import org.logicware.prolog.PrologEngine;
 import org.logicware.prolog.PrologProvider;
 import org.logicware.prolog.PrologQuery;
@@ -43,13 +46,13 @@ class ZPrologMain {
 
 	private static final PrologProvider provider = new ZPrologProvider();
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 
 		String stringQuery;
 		PrologEngine engine = provider.newEngine();
 
 		stdout.println();
-		// stdout.print(engine.getName());
+		stdout.print(engine.getName());
 		stdout.print(" v");
 		stdout.println(engine.getVersion());
 		// stdout.println(engine.getCopyright());
@@ -73,8 +76,8 @@ class ZPrologMain {
 					PrologQuery query = engine.query(stringQuery);
 					if (query.hasSolution()) {
 						Map<String, PrologTerm> s = query.oneVariablesSolution();
-						for (String key : s.keySet()) {
-							stdout.println(key + " = " + s.get(key));
+						for (Entry<String, PrologTerm> entry : s.entrySet()) {
+							stdout.println(entry.getKey() + " = " + entry.getValue());
 						}
 						stdout.println("Yes.");
 					} else {
@@ -105,7 +108,7 @@ class ZPrologMain {
 			}
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			LoggerUtils.error(ZPrologMain.class, LoggerConstants.IO, e);
 		}
 
 	}

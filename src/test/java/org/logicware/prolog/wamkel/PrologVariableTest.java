@@ -28,7 +28,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.logicware.prolog.ArityError;
-import org.logicware.prolog.CompoundExpectedError;
 import org.logicware.prolog.FunctorError;
 import org.logicware.prolog.IndicatorError;
 import org.logicware.prolog.PrologAtom;
@@ -108,7 +107,6 @@ public class PrologVariableTest extends PrologBaseTest {
 		variable.getArity();
 	}
 
-	@Test(expected = CompoundExpectedError.class)
 	public void testGetArguments() {
 		anonymous.getArguments();
 		variable.getArguments();

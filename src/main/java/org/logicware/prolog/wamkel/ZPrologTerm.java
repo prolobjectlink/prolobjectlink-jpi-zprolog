@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-db-zprolog
+ * prolobjectlink-jpi-zprolog
  * %%
  * Copyright (C) 2012 - 2017 Logicware Project
  * %%
@@ -44,7 +44,9 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import org.logicware.prolog.AbstractTerm;
+import org.logicware.prolog.ArityError;
 import org.logicware.prolog.CompoundExpectedError;
+import org.logicware.prolog.FunctorError;
 import org.logicware.prolog.IndicatorError;
 import org.logicware.prolog.PrologAtom;
 import org.logicware.prolog.PrologDouble;
@@ -76,9 +78,9 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	 * </pre>
 	 * 
 	 * <p>
-	 * <tt>!</tt> is true. All choice points between the cut and the parent goal
-	 * are removed. The effect is commit to use of both the current clause and
-	 * the substitutions found at the point of the cut.
+	 * <tt>!</tt> is true. All choice points between the cut and the parent goal are
+	 * removed. The effect is commit to use of both the current clause and the
+	 * substitutions found at the point of the cut.
 	 * </p>
 	 * 
 	 * @since 1.0
@@ -160,8 +162,7 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	/**
 	 * Create a shallow copy of the given term. Replace clone method.
 	 * 
-	 * @param term
-	 *            term to be cloned.
+	 * @param term term to be cloned.
 	 */
 	ZPrologTerm(ZPrologTerm term) {
 		super(term.type, term.getProvider());
@@ -179,8 +180,7 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	/**
 	 * Create a int number term.
 	 * 
-	 * @param value
-	 *            int value
+	 * @param value int value
 	 * @since 1.0
 	 */
 	ZPrologTerm(PrologProvider provider, int value) {
@@ -193,8 +193,7 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	/**
 	 * Create a long number term.
 	 * 
-	 * @param value
-	 *            long value
+	 * @param value long value
 	 * @since 1.0
 	 */
 	ZPrologTerm(PrologProvider provider, long value) {
@@ -207,8 +206,7 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	/**
 	 * Create a float number term.
 	 * 
-	 * @param value
-	 *            float value
+	 * @param value float value
 	 * @since 1.0
 	 */
 	ZPrologTerm(PrologProvider provider, float value) {
@@ -221,8 +219,7 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	/**
 	 * Create a double number term.
 	 * 
-	 * @param value
-	 *            double value
+	 * @param value double value
 	 * @since 1.0
 	 */
 	ZPrologTerm(PrologProvider provider, double value) {
@@ -250,10 +247,8 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	 * variable.
 	 * 
 	 * @param provider
-	 * @param name
-	 *            variable name
-	 * @param index
-	 *            variable index
+	 * @param name     variable name
+	 * @param index    variable index
 	 * @since 1.0
 	 */
 	ZPrologTerm(PrologProvider provider, String name, int index) {
@@ -267,10 +262,8 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	 * Create a structure term with specified functor arguments. If arguments
 	 * specifications are empty the created term will be an atom.
 	 * 
-	 * @param functor
-	 *            prolog structure functor.
-	 * @param arguments
-	 *            prolog structure arguments
+	 * @param functor   prolog structure functor.
+	 * @param arguments prolog structure arguments
 	 * @since 1.0
 	 */
 	ZPrologTerm(PrologProvider provider, String functor, ZPrologTerm... arguments) {
@@ -328,10 +321,8 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	 * @deprecated use
 	 *             {@code ZPrologTerm#ZPrologTerm(int, PrologProvider, ZPrologTerm, String, ZPrologTerm)}
 	 * 
-	 * @param left
-	 *            left operand
-	 * @param tail
-	 *            right operand
+	 * @param left left operand
+	 * @param tail right operand
 	 * @since 1.0
 	 */
 	ZPrologTerm(PrologProvider provider, ZPrologTerm left, String op, ZPrologTerm right) {
@@ -341,10 +332,8 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	/**
 	 * Create a prolog expression
 	 * 
-	 * @param left
-	 *            left operand
-	 * @param tail
-	 *            right operand
+	 * @param left left operand
+	 * @param tail right operand
 	 * @since 1.0
 	 */
 	ZPrologTerm(PrologProvider provider, PrologTerm left, String op, PrologTerm right) {
@@ -354,10 +343,8 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	/**
 	 * Create a prolog list term with specific head and tail
 	 * 
-	 * @param head
-	 *            list head
-	 * @param tail
-	 *            list tail
+	 * @param head list head
+	 * @param tail list tail
 	 * @since 1.0
 	 */
 	ZPrologTerm(PrologProvider provider, ZPrologTerm head, ZPrologTerm tail) {
@@ -373,10 +360,8 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	/**
 	 * Create a prolog list term with specific head and tail
 	 * 
-	 * @param head
-	 *            list head
-	 * @param tail
-	 *            list tail
+	 * @param head list head
+	 * @param tail list tail
 	 * @since 1.0
 	 */
 	ZPrologTerm(PrologProvider provider, PrologTerm head, PrologTerm tail) {
@@ -393,8 +378,7 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	/**
 	 * Create a prolog list term from arguments array
 	 * 
-	 * @param arguments
-	 *            arguments array
+	 * @param arguments arguments array
 	 * @since 1.0
 	 */
 	ZPrologTerm(PrologProvider provider, ZPrologTerm... arguments) {
@@ -405,8 +389,7 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	/**
 	 * Create a prolog list term from arguments array
 	 * 
-	 * @param arguments
-	 *            arguments array
+	 * @param arguments arguments array
 	 * @since 1.0
 	 */
 	ZPrologTerm(PrologProvider provider, PrologTerm... arguments) {
@@ -453,10 +436,8 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	 * 
 	 * @param id
 	 * @param provider
-	 * @param left
-	 *            left operand
-	 * @param tail
-	 *            right operand
+	 * @param left     left operand
+	 * @param tail     right operand
 	 * @since 1.0
 	 */
 	ZPrologTerm(int id, PrologProvider provider, ZPrologTerm left, String operator, ZPrologTerm right) {
@@ -540,10 +521,16 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	}
 
 	public final int getArity() {
+		if (isNumber() || isVariable()) {
+			throw new ArityError(this);
+		}
 		return arity;
 	}
 
 	public final String getFunctor() {
+		if (isNumber() || isVariable()) {
+			throw new FunctorError(this);
+		}
 		return functor;
 	}
 
@@ -1113,10 +1100,9 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 				string += listPtr.getHead();
 				PrologTerm tail = listPtr.getTail();
 				if (tail != null && tail.isList()) {
-					while (tail != null && tail
-							.isList() /*
-										 * && !(tail instanceof IPrologEmpty)
-										 */) {
+					while (tail != null && tail.isList() /*
+															 * && !(tail instanceof IPrologEmpty)
+															 */) {
 						listPtr = (PrologList) tail;
 						string += ", " + listPtr.getHead();
 						tail = listPtr.getTail();
@@ -1220,28 +1206,24 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	}
 
 	/**
-	 * Unification is the basic primitive operation in logic programming. Check
-	 * that two terms (x and y) unify. Prolog unification algorithm is based on
-	 * three principals rules:
+	 * Unification is the basic primitive operation in logic programming. Check that
+	 * two terms (x and y) unify. Prolog unification algorithm is based on three
+	 * principals rules:
 	 * <ul>
-	 * <li>If x and y are atomics constants then x and y unify only if they are
-	 * same object.</li>
+	 * <li>If x and y are atomics constants then x and y unify only if they are same
+	 * object.</li>
 	 * <li>If x is a variable and y is anything then they unify and x is
-	 * instantiated to y. Conversely, if y is a variable then this is
-	 * instantiated to x.</li>
+	 * instantiated to y. Conversely, if y is a variable then this is instantiated
+	 * to x.</li>
 	 * <li>If x and y are structured terms then unify only if they match (equals
 	 * funtor and arity) and all their correspondents arguments unify.</li>
 	 * </ul>
 	 * 
 	 * 
-	 * @param term
-	 *            the term to unify with the current term
-	 * @param stack
-	 *            the stack is used to store the addresses of variables which
-	 *            are bound by the unification. This is needed when
-	 *            backtracking.
-	 * @return true if the specified term unify whit the current term, false if
-	 *         not
+	 * @param term  the term to unify with the current term
+	 * @param stack the stack is used to store the addresses of variables which are
+	 *              bound by the unification. This is needed when backtracking.
+	 * @return true if the specified term unify whit the current term, false if not
 	 */
 	boolean unify(ZPrologTerm term, ZPrologStack stack) {
 
@@ -1300,17 +1282,15 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 
 	/**
 	 * If the current term is variable check that your occurrence in other term
-	 * passed as parameter. If the other term is compound and at less one
-	 * argument match with the current variable term then return true indicating
-	 * that the current variable term occurs in compound term. If the other term
-	 * is compound and at less one argument is another compound term, then the
-	 * current term check your occurrence in this compound term in recursive
-	 * way.
+	 * passed as parameter. If the other term is compound and at less one argument
+	 * match with the current variable term then return true indicating that the
+	 * current variable term occurs in compound term. If the other term is compound
+	 * and at less one argument is another compound term, then the current term
+	 * check your occurrence in this compound term in recursive way.
 	 * 
-	 * @param otherTerm
-	 *            term to check if current term occurs inside him
-	 * @return true if current term occurs in other compound term, false in
-	 *         another case
+	 * @param otherTerm term to check if current term occurs inside him
+	 * @return true if current term occurs in other compound term, false in another
+	 *         case
 	 */
 	boolean occurs(PrologTerm otherTerm) {
 		ZPrologTerm thisTerm = this;
@@ -1362,8 +1342,8 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	}
 
 	/**
-	 * Check if Variable and bound. A variable bound is synonym of not free
-	 * variable because this variable have instance value.
+	 * Check if Variable and bound. A variable bound is synonym of not free variable
+	 * because this variable have instance value.
 	 * 
 	 * @return true if Variable and bound.
 	 */
@@ -1372,8 +1352,8 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	}
 
 	/**
-	 * Check if current variable is not bound. A variable not bound is synonym
-	 * of free variable because this variable don't have instance value.
+	 * Check if current variable is not bound. A variable not bound is synonym of
+	 * free variable because this variable don't have instance value.
 	 * 
 	 * @return true if Variable and not bound.
 	 */
