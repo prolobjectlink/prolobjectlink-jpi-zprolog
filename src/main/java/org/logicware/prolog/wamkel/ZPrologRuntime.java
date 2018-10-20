@@ -767,17 +767,17 @@ abstract class ZPrologRuntime extends ZPrologMachine {
 		int size = builtins.size() + program.size();
 		Set<PrologIndicator> pis = new HashSet<PrologIndicator>(size);
 		for (PrologClauses clauses : builtins.values()) {
-			for (PrologClause clause : clauses) {
-				String functor = clause.getFunctor();
-				int arity = clause.getArity();
+			for (PrologClause c : clauses) {
+				String functor = c.getFunctor();
+				int arity = c.getArity();
 				PrologIndicator pi = new PredicateIndicator(functor, arity);
 				pis.add(pi);
 			}
 		}
 		for (PrologClauses clauses : program.getClauses().values()) {
-			for (PrologClause clause : clauses) {
-				String functor = clause.getFunctor();
-				int arity = clause.getArity();
+			for (PrologClause c : clauses) {
+				String functor = c.getFunctor();
+				int arity = c.getArity();
 				PrologIndicator pi = new PredicateIndicator(functor, arity);
 				pis.add(pi);
 			}

@@ -210,7 +210,8 @@ public final class ZPrologProgram extends AbstractSet<PrologClauses> implements 
 		if (!directives.isEmpty()) {
 			Iterator<PrologGoal> i = directives.iterator();
 			while (i.hasNext()) {
-				families.append(":-" + i.next());
+				families.append(":-"  );
+                                families.append(i.next());
 				families.append(i.hasNext() ? "\n" : "\n\n");
 			}
 		}
@@ -218,7 +219,8 @@ public final class ZPrologProgram extends AbstractSet<PrologClauses> implements 
 		if (!clauses.isEmpty()) {
 			Iterator<PrologClauses> i = iterator();
 			while (i.hasNext()) {
-				families.append(i.next() + "\n");
+				families.append(i.next()  );
+                                families.append("\n");
 			}
 		}
 

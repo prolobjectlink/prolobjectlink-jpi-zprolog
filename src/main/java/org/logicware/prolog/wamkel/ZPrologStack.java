@@ -19,12 +19,13 @@
  */
 package org.logicware.prolog.wamkel;
 
-import java.util.Stack;
+import org.logicware.platform.ArrayStack;
+import org.logicware.platform.Stack;
 
 final class ZPrologStack {
 
 	private int maxVarNumber;
-	private Stack<Object> stack;
+	private final Stack<Object> stack;
 
 	@Override
 	public String toString() {
@@ -40,7 +41,7 @@ final class ZPrologStack {
 
 	ZPrologStack() {
 		maxVarNumber = 0;
-		stack = new Stack<Object>();
+		stack = new ArrayStack<Object>();
 	}
 
 	Object pop() {

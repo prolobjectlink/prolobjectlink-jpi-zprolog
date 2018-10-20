@@ -1296,18 +1296,17 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 		ZPrologTerm thisTerm = this;
 		if (thisTerm.isVariable() && otherTerm.isCompound()) {
 			PrologTerm[] otherArguments = otherTerm.getArguments();
-			for (int i = 0; i < otherArguments.length; i++) {
-				PrologTerm argument = otherArguments[i];
-				if (argument != null) {
-					if (argument.isVariable()) {
-						return thisTerm == argument;
-					} else if (argument.isCompound()) {
-						if (thisTerm.occurs(argument)) {
-							return true;
-						}
-					}
-				}
-			}
+                    for (PrologTerm argument : otherArguments) {
+                        if (argument != null) {
+                            if (argument.isVariable()) {
+                                return thisTerm == argument;
+                            } else if (argument.isCompound()) {
+                                if (thisTerm.occurs(argument)) {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
 		}
 		return false;
 	}

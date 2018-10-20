@@ -34,7 +34,7 @@ import org.logicware.prolog.PrologTerm;
 public final class ZPrologQuery extends AbstractQuery implements PrologQuery {
 
 	// goal to be queried
-	private ZPrologGoal goal;
+	private final ZPrologGoal goal;
 
 	// query literals
 	private final String query;
@@ -151,9 +151,7 @@ public final class ZPrologQuery extends AbstractQuery implements PrologQuery {
 			PrologTerm[][] allSolutions = new PrologTerm[n][m];
 			for (int i = 0; i < n; i++) {
 				PrologTerm[] solution = all.get(i);
-				for (int j = 0; j < m; j++) {
-					allSolutions[i][j] = solution[j];
-				}
+                            System.arraycopy(solution, 0, allSolutions[i], 0, m);
 			}
 			return allSolutions;
 		}
@@ -189,9 +187,7 @@ public final class ZPrologQuery extends AbstractQuery implements PrologQuery {
 		PrologTerm[][] allSolutions = new PrologTerm[n][m];
 		for (int i = 0; i < n; i++) {
 			PrologTerm[] solution = all.get(i);
-			for (int j = 0; j < m; j++) {
-				allSolutions[i][j] = solution[j];
-			}
+                    System.arraycopy(solution, 0, allSolutions[i], 0, m);
 		}
 		return allSolutions;
 	}

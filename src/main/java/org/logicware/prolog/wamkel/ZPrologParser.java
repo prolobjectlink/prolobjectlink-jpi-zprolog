@@ -158,7 +158,7 @@ final class ZPrologParser extends ZPrologEngine {
 		reset();
 		scanner = new ZPrologScanner(in);
 		advance();
-		ZPrologProgram program = new ZPrologProgram();
+		ZPrologProgram p = new ZPrologProgram();
 		while (!current.isEndOfFile()) {
 			PrologTerm term = expr(HIGH, false);
 			if (term != null) {
@@ -170,9 +170,9 @@ final class ZPrologParser extends ZPrologEngine {
 				}
 				if (clause.isDirective()) {
 					PrologGoal d = new ZPrologGoal(clause.getBody());
-					program.addDirective(d);
+					p.addDirective(d);
 				} else {
-					program.add(clause);
+					p.add(clause);
 				}
 				while (current.isDot()) {
 					advance();
@@ -186,15 +186,15 @@ final class ZPrologParser extends ZPrologEngine {
 						}
 						if (clause.isDirective()) {
 							PrologGoal d = new ZPrologGoal(clause.getBody());
-							program.addDirective(d);
+							p.addDirective(d);
 						} else {
-							program.add(clause);
+							p.add(clause);
 						}
 					}
 				}
 			}
 		}
-		return program;
+		return p;
 	}
 
 	private ZPrologTerm expr(int maxPriority, boolean commaIsEndMarker) {
