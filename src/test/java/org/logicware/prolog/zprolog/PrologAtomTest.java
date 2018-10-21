@@ -28,7 +28,6 @@ import static org.logicware.prolog.PrologTermType.ATOM_TYPE;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.logicware.prolog.CompoundExpectedError;
 import org.logicware.prolog.PrologAtom;
 import org.logicware.prolog.PrologDouble;
 import org.logicware.prolog.PrologFloat;

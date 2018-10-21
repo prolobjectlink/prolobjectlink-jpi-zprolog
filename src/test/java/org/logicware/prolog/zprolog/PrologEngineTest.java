@@ -49,10 +49,6 @@ import org.logicware.prolog.PrologQuery;
 import org.logicware.prolog.PrologStructure;
 import org.logicware.prolog.PrologTerm;
 import org.logicware.prolog.PrologVariable;
-import org.logicware.prolog.zprolog.ZPrologClause;
-import org.logicware.prolog.zprolog.ZPrologEngine;
-import org.logicware.prolog.zprolog.ZPrologRuntime;
-import org.logicware.prolog.zprolog.ZPrologTerm;
 
 public class PrologEngineTest extends PrologBaseTest {
 

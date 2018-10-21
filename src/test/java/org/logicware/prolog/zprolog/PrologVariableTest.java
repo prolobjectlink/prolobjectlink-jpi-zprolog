@@ -39,7 +39,6 @@ import org.logicware.prolog.PrologLong;
 import org.logicware.prolog.PrologStructure;
 import org.logicware.prolog.PrologTerm;
 import org.logicware.prolog.PrologVariable;
-import org.logicware.prolog.zprolog.ZPrologTerm;
 
 public class PrologVariableTest extends PrologBaseTest {
 

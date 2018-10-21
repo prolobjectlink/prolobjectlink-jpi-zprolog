@@ -30,8 +30,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.logicware.prolog.PrologProgram;
 import org.logicware.prolog.PrologTerm;
-import org.logicware.prolog.zprolog.ZPrologClause;
-import org.logicware.prolog.zprolog.ZPrologParser;
 
 public class PrologParserTest extends PrologBaseTest {
 

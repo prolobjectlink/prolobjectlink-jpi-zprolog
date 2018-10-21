@@ -104,8 +104,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-import org.logicware.platform.Stack;
 import org.logicware.platform.ArrayStack;
+import org.logicware.platform.Stack;
 import org.logicware.platform.logging.LoggerConstants;
 import org.logicware.platform.logging.LoggerUtils;
 import org.logicware.prolog.PredicateIndicator;

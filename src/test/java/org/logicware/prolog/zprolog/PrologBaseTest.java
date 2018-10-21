@@ -31,7 +31,6 @@ import org.logicware.prolog.PrologProvider;
 import org.logicware.prolog.PrologQuery;
 import org.logicware.prolog.PrologTerm;
 import org.logicware.prolog.PrologVariable;
-import org.logicware.prolog.zprolog.ZPrologProvider;
 
 public abstract class PrologBaseTest {
 
