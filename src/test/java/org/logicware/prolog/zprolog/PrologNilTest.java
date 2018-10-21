@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-jpi-jtrolog
+ * prolobjectlink-jpi-tuprolog
  * %%
  * Copyright (C) 2012 - 2017 Logicware Project
  * %%
@@ -23,7 +23,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.logicware.prolog.PrologTermType.EMPTY_TYPE;
+import static org.logicware.prolog.PrologTermType.NIL_TYPE;
 
 import org.junit.Test;
 import org.logicware.prolog.PrologAtom;
@@ -36,110 +36,123 @@ import org.logicware.prolog.PrologStructure;
 import org.logicware.prolog.PrologTerm;
 import org.logicware.prolog.PrologVariable;
 
-public class PrologEmptyTest extends PrologBaseTest {
+public class PrologNilTest extends PrologBaseTest {
 
-	private PrologTerm empty = provider.prologEmpty();
+	private PrologTerm nil = provider.prologNil();
 
 	@Test
-	public final void testGetKey() {
-		assertEquals("[]/0", empty.getIndicator());
+	public final void testGetIndicator() {
+		assertEquals("nil/0", nil.getIndicator());
+	}
+
+	@Test
+	public void testHasIndicator() {
+		assertFalse(nil.hasIndicator("an", 100));
+		assertFalse(nil.hasIndicator("an", 0));
+		assertFalse(nil.hasIndicator("nil", 100));
+		assertTrue(nil.hasIndicator("nil", 0));
 	}
 
 	@Test
 	public final void testGetArity() {
-		assertEquals(0, empty.getArity());
+		assertEquals(0, nil.getArity());
 	}
 
 	@Test
 	public final void testGetFunctor() {
-		assertEquals("[]", empty.getFunctor());
+		assertEquals("nil", nil.getFunctor());
 	}
 
 	@Test
 	public final void testGetArguments() {
-		assertArrayEquals(new PrologTerm[0], empty.getArguments());
+		assertArrayEquals(new PrologTerm[0], nil.getArguments());
 	}
 
 	@Test
 	public final void testToString() {
-		assertEquals("[]", empty.toString());
+		assertEquals("nil", nil.toString());
 	}
 
 	@Test
 	public final void testHashCode() {
-		assertEquals(provider.prologEmpty().hashCode(), empty.hashCode());
+		assertEquals(provider.prologNil().hashCode(), nil.hashCode());
 	}
 
 	@Test
 	public final void testGetType() {
-		assertEquals(EMPTY_TYPE, empty.getType());
+		assertEquals(NIL_TYPE, nil.getType());
+	}
+
+	@Test
+	public final void testGetTerm() {
+		assertEquals(nil, nil.getTerm());
 	}
 
 	@Test
 	public final void testIsAtom() {
-		assertTrue(empty.isAtom());
+		assertTrue(nil.isAtom());
 	}
 
 	@Test
 	public final void testIsNumber() {
-		assertFalse(empty.isNumber());
+		assertFalse(nil.isNumber());
 	}
 
 	@Test
 	public final void testIsFloat() {
-		assertFalse(empty.isFloat());
+		assertFalse(nil.isFloat());
 	}
 
 	@Test
 	public final void testIsDouble() {
-		assertFalse(empty.isDouble());
+		assertFalse(nil.isDouble());
 	}
 
 	@Test
 	public final void testIsInteger() {
-		assertFalse(empty.isInteger());
+		assertFalse(nil.isInteger());
 	}
 
 	@Test
 	public final void testIsLong() {
-		assertFalse(empty.isLong());
+		assertFalse(nil.isLong());
 	}
 
 	@Test
 	public final void testIsVariable() {
-		assertFalse(empty.isVariable());
+		assertFalse(nil.isVariable());
 	}
 
 	@Test
 	public final void testIsList() {
-		assertTrue(empty.isList());
+		assertFalse(nil.isList());
 	}
 
 	@Test
 	public final void testIsStructure() {
-		assertFalse(empty.isStructure());
+		assertFalse(nil.isStructure());
 	}
 
 	@Test
 	public final void testIsNil() {
-		assertFalse(empty.isNil());
+		assertTrue(nil.isNil());
 	}
 
 	@Test
 	public final void testIsEmptyList() {
-		assertTrue(empty.isEmptyList());
+		assertFalse(nil.isEmptyList());
 	}
 
 	@Test
 	public final void testIsExpression() {
-		assertFalse(empty.isEvaluable());
+		assertFalse(nil.isEvaluable());
 	}
 
 	@Test
 	public final void testUnify() {
 
 		// with atom
-		PrologTerm empty = provider.prologEmpty();
+		PrologTerm empty = provider.prologNil();
 		PrologAtom atom = provider.newAtom("John Doe");
 		assertFalse(empty.unify(atom));
 
@@ -183,7 +196,7 @@ public class PrologEmptyTest extends PrologBaseTest {
 	public final void testCompareTo() {
 
 		// with atom
-		PrologTerm empty = provider.prologEmpty();
+		PrologTerm empty = provider.prologNil();
 		PrologAtom atom = provider.newAtom("John Doe");
 		assertEquals(1, empty.compareTo(atom));
 
@@ -205,7 +218,6 @@ public class PrologEmptyTest extends PrologBaseTest {
 
 		// with variable
 		PrologVariable variable = provider.newVariable("X", 0);
-		// true. case [] and variable
 		assertEquals(1, empty.compareTo(variable));
 
 		// with predicate
@@ -225,7 +237,7 @@ public class PrologEmptyTest extends PrologBaseTest {
 
 	@Test
 	public final void testEqualsObject() {
-		assertEquals(provider.prologEmpty(), empty);
+		assertEquals(provider.prologNil(), nil);
 	}
 
 }

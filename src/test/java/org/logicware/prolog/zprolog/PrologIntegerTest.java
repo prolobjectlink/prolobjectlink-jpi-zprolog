@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-jpi-zprolog
+ * prolobjectlink-jpi-jtrolog
  * %%
  * Copyright (C) 2012 - 2017 Logicware Project
  * %%
@@ -43,10 +43,11 @@ import org.logicware.prolog.PrologVariable;
 
 public class PrologIntegerTest extends PrologBaseTest {
 
-	private PrologInteger integer = provider.newInteger(100);
+	private PrologInteger integer;
 
 	@Before
 	public void setUp() throws Exception {
+		integer = provider.newInteger(100);
 	}
 
 	@After
@@ -54,96 +55,77 @@ public class PrologIntegerTest extends PrologBaseTest {
 	}
 
 	@Test
-	public void testClone() {
-		assertEquals(provider.newInteger(100), integer);
+	public final void testGetArguments() {
+		assertArrayEquals(new PrologInteger[0], integer.getArguments());
 	}
 
 	@Test
-	public void testGetLongValue() {
-		assertEquals(100, integer.getLongValue());
-	}
-
-	@Test
-	public void testGetDoubleValue() {
-		assertEquals(100.0, integer.getDoubleValue(), 0);
-	}
-
-	@Test
-	public void testGetPrologInteger() {
+	public final void testGetPrologInteger() {
 		assertEquals(provider.newInteger(100), integer.getPrologInteger());
 	}
 
 	@Test
-	public void testGetPrologFloat() {
-		assertEquals(provider.newFloat(100.0F), integer.getPrologFloat());
+	public final void testGetPrologFloat() {
+		assertEquals(provider.newFloat(100.0), integer.getPrologFloat());
 	}
 
 	@Test
-	public void testPrologInteger() {
-		assertEquals(0, provider.newInteger(0).getLongValue());
+	public final void testGetPrologLong() {
+		assertEquals(provider.newLong(100), integer.getPrologLong());
 	}
 
 	@Test
-	public void testPrologIntegerLong() {
-		assertEquals(100, provider.newInteger(100).getLongValue());
+	public final void testGetPrologDouble() {
+		assertEquals(provider.newDouble(100.0), integer.getPrologDouble());
 	}
 
-	@Test(expected = FunctorError.class)
-	public void testGetFunctor() {
-		assertEquals("100", integer.getFunctor());
+	@Test
+	public final void testGetLongValue() {
+		assertEquals(100, integer.getLongValue());
+	}
+
+	@Test
+	public final void testGetDoubleValue() {
+		assertEquals(100.0, integer.getDoubleValue(), 0);
+	}
+
+	@Test
+	public final void testGetIntValue() {
+		assertEquals(100, integer.getIntValue());
+	}
+
+	@Test
+	public final void testGetFloatValue() {
+		assertEquals(100.0, integer.getFloatValue(), 0);
 	}
 
 	@Test(expected = IndicatorError.class)
-	public void testHasIndicator() {
-		assertFalse(integer.hasIndicator("100", 0));
+	public final void testGetKey() {
+		integer.getIndicator();
 	}
 
 	@Test
-	public void testEqualsObject() {
-		assertTrue(integer.equals(provider.newInteger(100)));
-	}
-
-	@Test
-	public void testToString() {
-		assertEquals("100", integer.toString());
-	}
-
-	@Test(expected = ArityError.class)
-	public void testGetArity() {
-		assertEquals(0, integer.getArity());
-	}
-
-	public void testGetArguments() {
-		assertArrayEquals(new PrologTerm[0], integer.getArguments());
-	}
-
-	@Test
-	public void testPrologAtomic() {
-		assertTrue(integer.isAtomic());
-	}
-
-	@Test
-	public void testGetType() {
+	public final void testGetType() {
 		assertEquals(INTEGER_TYPE, integer.getType());
 	}
 
 	@Test
-	public void testIsAtom() {
+	public final void testIsAtom() {
 		assertFalse(integer.isAtom());
 	}
 
 	@Test
-	public void testIsNumber() {
+	public final void testIsNumber() {
 		assertTrue(integer.isNumber());
 	}
 
 	@Test
-	public void testIsFloat() {
+	public final void testIsFloat() {
 		assertFalse(integer.isFloat());
 	}
 
 	@Test
-	public void testIsInteger() {
+	public final void testIsInteger() {
 		assertTrue(integer.isInteger());
 	}
 
@@ -158,48 +140,43 @@ public class PrologIntegerTest extends PrologBaseTest {
 	}
 
 	@Test
-	public void testIsVariable() {
+	public final void testIsVariable() {
 		assertFalse(integer.isVariable());
 	}
 
 	@Test
-	public void testIsList() {
+	public final void testIsList() {
 		assertFalse(integer.isList());
 	}
 
 	@Test
-	public void testIsAtomic() {
-		assertTrue(integer.isAtomic());
-	}
-
-	@Test
-	public void testIsCompound() {
-		assertFalse(integer.isCompound());
-	}
-
-	@Test
-	public void testIsStructure() {
+	public final void testIsStructure() {
 		assertFalse(integer.isStructure());
 	}
 
 	@Test
-	public void testIsNil() {
+	public final void testIsNil() {
 		assertFalse(integer.isNil());
 	}
 
 	@Test
-	public void testIsEmptyList() {
+	public final void testIsEmptyList() {
 		assertFalse(integer.isEmptyList());
 	}
 
 	@Test
-	public void testIsExpression() {
+	public final void testIsExpression() {
 		assertFalse(integer.isEvaluable());
 	}
 
-	@Test(expected = IndicatorError.class)
-	public void testGetKey() {
-		integer.getIndicator();
+	@Test(expected = ArityError.class)
+	public final void testGetArity() {
+		integer.getArity();
+	}
+
+	@Test(expected = FunctorError.class)
+	public final void testGetFunctor() {
+		integer.getFunctor();
 	}
 
 	@Test
@@ -226,7 +203,7 @@ public class PrologIntegerTest extends PrologBaseTest {
 		assertFalse(iValue.unify(lValue1));
 
 		// with float
-		PrologFloat fValue = provider.newFloat(36.47F);
+		PrologFloat fValue = provider.newFloat(36.47);
 		assertFalse(iValue.unify(fValue));
 
 		// with double
@@ -234,7 +211,7 @@ public class PrologIntegerTest extends PrologBaseTest {
 		assertFalse(iValue.unify(dValue));
 
 		// with variable
-		PrologVariable variable = provider.newVariable("X");
+		PrologVariable variable = provider.newVariable("X", 0);
 		// true. case atom and variable
 		assertTrue(iValue.unify(variable));
 
@@ -257,47 +234,47 @@ public class PrologIntegerTest extends PrologBaseTest {
 		// with atom
 		PrologInteger iValue = provider.newInteger(28);
 		PrologAtom atom = provider.newAtom("John Doe");
-		assertEquals(iValue.compareTo(atom), -1);
+		assertEquals(-1, iValue.compareTo(atom));
 
 		// with integer
 		PrologInteger iValue1 = provider.newInteger(36);
 		// true because are equals
-		assertEquals(iValue.compareTo(iValue), 0);
+		assertEquals(0, iValue.compareTo(iValue));
 		// false because they are different
-		assertEquals(iValue.compareTo(iValue1), -1);
+		assertEquals(-1, iValue.compareTo(iValue1));
 
 		// with long
 		PrologLong lValue = provider.newLong(28);
 		PrologLong lValue1 = provider.newLong(100);
 		// true because are equals
-		assertEquals(iValue.compareTo(lValue), 0);
+		assertEquals(0, iValue.compareTo(lValue));
 		// false because they are different
-		assertEquals(iValue.compareTo(lValue1), -1);
+		assertEquals(-1, iValue.compareTo(lValue1));
 
 		// with float
-		PrologFloat fValue = provider.newFloat(36.47F);
-		assertEquals(iValue.compareTo(fValue), -1);
+		PrologFloat fValue = provider.newFloat(36.47);
+		assertEquals(-1, iValue.compareTo(fValue));
 
 		// with double
 		PrologDouble dValue = provider.newDouble(36.47);
-		assertEquals(iValue.compareTo(dValue), -1);
+		assertEquals(-1, iValue.compareTo(dValue));
 
 		// with variable
-		PrologVariable variable = provider.newVariable("X");
+		PrologVariable variable = provider.newVariable("X",0);
 		// true. case atom and variable
-		assertEquals(iValue.compareTo(variable), 1);
+		assertEquals(1, iValue.compareTo(variable));
 
 		// with predicate
 		PrologStructure structure = provider.parsePrologStructure("some_predicate(a,b,c)");
-		assertEquals(iValue.compareTo(structure), -1);
+		assertEquals(-1, iValue.compareTo(structure));
 
 		// with list
 		PrologList list = provider.parsePrologList("[a,b,c]");
-		assertEquals(iValue.compareTo(list), -1);
+		assertEquals(-1, iValue.compareTo(list));
 
 		// with expression
 		PrologTerm expression = provider.parsePrologTerm("58+93*10");
-		assertEquals(iValue.compareTo(expression), -1);
+		assertEquals(-1, iValue.compareTo(expression));
 	}
 
 }

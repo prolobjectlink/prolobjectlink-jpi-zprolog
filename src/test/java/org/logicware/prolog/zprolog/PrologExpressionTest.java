@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-jpi-zprolog
+ * prolobjectlink-jpi-jtrolog
  * %%
  * Copyright (C) 2012 - 2017 Logicware Project
  * %%
@@ -40,20 +40,11 @@ import org.logicware.prolog.PrologVariable;
 
 public class PrologExpressionTest extends PrologBaseTest {
 
-	private String operator = "+";
-
-	private PrologVariable variable = provider.newVariable("X");
-	private PrologInteger integer = provider.newInteger(100);
-	private PrologDouble double1 = provider.newDouble(1.6180339887);
-
-	private PrologTerm expression0 = provider.newStructure(variable, operator, integer);
-	private PrologTerm expression1 = provider.newStructure(integer, operator, variable);
-
-	private PrologTerm expression2 = provider.newStructure(variable, operator, double1);
-	private PrologTerm expression3 = provider.newStructure(double1, operator, variable);
+	private PrologTerm expression;
 
 	@Before
 	public void setUp() throws Exception {
+		expression = provider.newStructure(x, "+", y);
 	}
 
 	@After
@@ -61,183 +52,97 @@ public class PrologExpressionTest extends PrologBaseTest {
 	}
 
 	@Test
-	public void testPrecedence() {
-
-		expression0 = provider.parsePrologTerm("Y1 - Y =\\= Xdist");
-		assertTrue(expression0.getLeft().isEvaluable());
-		assertTrue(expression0.getRight().isVariable());
-
-		expression0 = provider.parsePrologTerm("Y1 is Y * Xdist");
-		assertTrue(expression0.getLeft().isVariable());
-		assertTrue(expression0.getRight().isEvaluable());
-
-		expression0 = provider.parsePrologTerm("Y1 - Y * Xdist");
-		assertTrue(expression0.getLeft().isVariable());
-		assertTrue(expression0.getRight().isEvaluable());
-
-		expression0 = provider.parsePrologTerm("Y1 / Y + Xdist");
-		assertTrue(expression0.getLeft().isEvaluable());
-		assertTrue(expression0.getRight().isVariable());
-
-		expression0 = provider.parsePrologTerm("Z - Y1 / Y + Xdist");
-		assertTrue(expression0.getLeft().isEvaluable());
-		assertTrue(expression0.getRight().isVariable());
-
-		expression0 = provider.parsePrologTerm("Z - Y1 - Y * Xdist");
-		assertTrue(expression0.getLeft().isEvaluable());
-		assertTrue(expression0.getRight().isEvaluable());
-
-		expression0 = provider.parsePrologTerm("Z * Y1 / Y + Xdist");
-		assertTrue(expression0.getLeft().isEvaluable());
-		assertTrue(expression0.getRight().isVariable());
-
-		expression0 = provider.parsePrologTerm("Z * Y1 - Y * Xdist");
-		assertTrue(expression0.getLeft().isEvaluable());
-		assertTrue(expression0.getRight().isEvaluable());
-
+	public final void testGetArguments() {
+		assertArrayEquals(new PrologTerm[] { x, y }, expression.getArguments());
 	}
 
 	@Test
-	public void testHasIndicator() {
-		assertTrue(expression0.hasIndicator("+", 2));
+	public final void testGetOperator() {
+		assertEquals("+", expression.getFunctor());
 	}
 
 	@Test
-	public void testClone() {
-		PrologTerm expected = provider.newStructure(variable, operator, integer);
-		assertEquals(expected, expression0);
+	public final void testGetLeft() {
+		assertEquals(provider.newVariable("X", 0), expression.getArguments()[0]);
 	}
 
 	@Test
-	public void testToString() {
-		assertEquals("X + 100", expression0.toString());
+	public final void testGetRight() {
+		assertEquals(provider.newVariable("Y", 1), expression.getArguments()[1]);
 	}
 
 	@Test
-	public void testPrologExpressionPrologTermStringPrologTerm() {
-		PrologTerm expression = provider.newStructure(variable, "+", integer);
-		assertEquals(expression0, expression);
+	public final void testGetType() {
+		assertEquals(STRUCTURE_TYPE, expression.getType());
 	}
 
 	@Test
-	public void testPrologExpressionPrologTermPrologOperatorPrologTerm() {
-		PrologTerm expression = provider.newStructure(variable, operator, integer);
-		assertEquals(expression0, expression);
+	public final void testIsAtom() {
+		assertFalse(expression.isAtom());
 	}
 
 	@Test
-	public void testGetOperator() {
-		assertEquals("+", expression0.getFunctor());
+	public final void testIsNumber() {
+		assertFalse(expression.isNumber());
 	}
 
 	@Test
-	public void testGetLeft() {
-		assertEquals(provider.newVariable("X"), expression0.getArguments()[0]);
+	public final void testIsFloat() {
+		assertFalse(expression.isFloat());
 	}
 
 	@Test
-	public void testGetRight() {
-		assertEquals(provider.newInteger(100), expression0.getArguments()[1]);
+	public final void testIsInteger() {
+		assertFalse(expression.isInteger());
 	}
 
 	@Test
-	public void testGetArity() {
-		assertEquals(2, expression0.getArity());
+	public final void testIsVariable() {
+		assertFalse(expression.isVariable());
 	}
 
 	@Test
-	public void testGetFunctor() {
-		assertEquals("+", expression0.getFunctor());
+	public final void testIsList() {
+		assertFalse(expression.isList());
 	}
 
 	@Test
-	public void testGetArguments() {
-		PrologVariable variable = provider.newVariable("X");
-		PrologInteger integer = provider.newInteger(100);
-		PrologTerm[] args = new PrologTerm[] { variable, integer };
-		assertArrayEquals(args, expression0.getArguments());
+	public final void testIsStructure() {
+		assertTrue(expression.isStructure());
 	}
 
 	@Test
-	public void testEqualsObject() {
-		PrologVariable variable = provider.newVariable("X");
-		PrologInteger integer = provider.newInteger(100);
-		PrologTerm otherExpression = provider.newStructure(variable, "+", integer);
-		assertTrue(expression0.equals(otherExpression));
+	public final void testIsNil() {
+		assertFalse(expression.isNil());
 	}
 
 	@Test
-	public void testGetType() {
-		assertEquals(STRUCTURE_TYPE, expression0.getType());
+	public final void testIsEmptyList() {
+		assertFalse(expression.isEmptyList());
 	}
 
 	@Test
-	public void testIsAtom() {
-		assertFalse(expression0.isAtom());
+	public final void testIsExpression() {
+		assertTrue(expression.isEvaluable());
 	}
 
 	@Test
-	public void testIsNumber() {
-		assertFalse(expression0.isNumber());
+	public final void testGetKey() {
+		assertEquals("+/2", expression.getIndicator());
 	}
 
 	@Test
-	public void testIsFloat() {
-		assertFalse(expression0.isFloat());
+	public final void testGetArity() {
+		assertEquals(2, expression.getArity());
 	}
 
 	@Test
-	public void testIsInteger() {
-		assertFalse(expression0.isInteger());
+	public final void testGetFunctor() {
+		assertEquals("+", expression.getFunctor());
 	}
 
 	@Test
-	public void testIsVariable() {
-		assertFalse(expression0.isVariable());
-	}
-
-	@Test
-	public void testIsList() {
-		assertFalse(expression0.isList());
-	}
-
-	@Test
-	public void testIsAtomic() {
-		assertFalse(expression0.isAtomic());
-	}
-
-	@Test
-	public void testIsCompound() {
-		assertTrue(expression0.isCompound());
-	}
-
-	@Test
-	public void testIsStructure() {
-		assertTrue(expression0.isStructure());
-	}
-
-	@Test
-	public void testIsNil() {
-		assertFalse(expression0.isNil());
-	}
-
-	@Test
-	public void testIsEmptyList() {
-		assertFalse(expression0.isEmptyList());
-	}
-
-	@Test
-	public void testIsExpression() {
-		assertTrue(expression0.isEvaluable());
-	}
-
-	@Test
-	public void testGetIndicator() {
-		assertEquals("+/2", expression0.getIndicator());
-	}
-
-	@Test
-	public void testUnify() {
+	public final void testUnify() {
 
 		PrologTerm expression = provider.parsePrologTerm("58+93*10");
 
@@ -262,7 +167,7 @@ public class PrologExpressionTest extends PrologBaseTest {
 		assertFalse(expression.unify(dValue));
 
 		// with variable
-		PrologVariable variable = provider.newVariable("X");
+		PrologVariable variable = provider.newVariable("X", 0);
 		// true. case expression and variable
 		assertTrue(expression.unify(variable));
 
@@ -281,6 +186,7 @@ public class PrologExpressionTest extends PrologBaseTest {
 		// with expression
 		PrologTerm expression1 = provider.parsePrologTerm("X+Y*Z");
 		PrologTerm expression2 = provider.parsePrologTerm("3.14+1.58*2.71");
+
 		// true because are equals
 		assertTrue(expression.unify(expression));
 		// true because match and their arguments unify
@@ -291,58 +197,57 @@ public class PrologExpressionTest extends PrologBaseTest {
 	}
 
 	@Test
-	public void testCompareTo() {
+	public final void testCompareTo() {
 
 		PrologTerm expression = provider.parsePrologTerm("58+93*10");
 
 		// with atom
 		PrologAtom atom = provider.newAtom("John Doe");
-		assertEquals(expression.compareTo(atom), 1);
+		assertEquals(1, expression.compareTo(atom));
 
 		// with integer
 		PrologInteger iValue = provider.newInteger(28);
-		assertEquals(expression.compareTo(iValue), 1);
+		assertEquals(1, expression.compareTo(iValue));
 
 		// with long
 		PrologLong lValue = provider.newLong(28);
-		assertEquals(expression.compareTo(lValue), 1);
+		assertEquals(1, expression.compareTo(lValue));
 
 		// with float
 		PrologFloat fValue = provider.newFloat(36.47);
-		assertEquals(expression.compareTo(fValue), 1);
+		assertEquals(1, expression.compareTo(fValue));
 
 		// with double
 		PrologDouble dValue = provider.newDouble(36.47);
-		assertEquals(expression.compareTo(dValue), 1);
+		assertEquals(1, expression.compareTo(dValue));
 
 		// with variable
-		PrologVariable variable = provider.newVariable("X");
+		PrologVariable variable = provider.newVariable("X",0);
 		// true. case expression and variable
-		assertEquals(expression.compareTo(variable), 1);
+		assertEquals(1, expression.compareTo(variable));
 
 		// with predicate
 		PrologStructure structure = provider.parsePrologStructure("some_predicate(a)");
-		assertEquals(expression.compareTo(structure), 1);
+		assertEquals(1, expression.compareTo(structure));
 
 		// with list
 		PrologList flattenList = provider.parsePrologList("['Some Literal']");
 		PrologList headTailList = provider.parsePrologList("['Some Literal'|[]]");
 		PrologTerm empty = provider.prologEmpty();
-
-		assertEquals(expression.compareTo(flattenList), -1);
-		assertEquals(expression.compareTo(headTailList), -1);
-		assertEquals(expression.compareTo(empty), 1);
+		assertEquals(-1, expression.compareTo(flattenList));
+		assertEquals(-1, expression.compareTo(headTailList));
+		assertEquals(1, expression.compareTo(empty));
 
 		// with expression
 		PrologTerm expression1 = provider.parsePrologTerm("X+Y*Z");
 		PrologTerm expression2 = provider.parsePrologTerm("3.14+1.58*2.71");
 
 		// true because are equals
-		assertEquals(expression.compareTo(expression), 0);
+		assertEquals(0, expression.compareTo(expression));
 		// true because match and their arguments are equals
-		assertEquals(expression.compareTo(expression1), 1);
+		assertEquals(1, expression.compareTo(expression1));
 		// false because match but their arguments not equals
-		assertEquals(expression.compareTo(expression2), 1);
+		assertEquals(1, expression.compareTo(expression2));
 
 	}
 

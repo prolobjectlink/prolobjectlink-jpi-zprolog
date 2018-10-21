@@ -52,8 +52,8 @@ public class PrologParserTest extends PrologBaseTest {
 		assertEquals(provider.prologTrue(), parser.parseTerm("true"));
 		assertEquals(provider.prologEmpty(), parser.parseTerm("[]"));
 
-		assertEquals(provider.newVariable(), parser.parseTerm("_"));
-		assertEquals(provider.newVariable("X"), parser.parseTerm("X"));
+		assertEquals(provider.newVariable(0), parser.parseTerm("_"));
+		assertEquals(provider.newVariable("X", 0), parser.parseTerm("X"));
 
 		assertEquals(provider.newInteger(), parser.parseTerm("0"));
 		assertEquals(provider.newInteger(28), parser.parseTerm("28"));
@@ -182,8 +182,8 @@ public class PrologParserTest extends PrologBaseTest {
 		assertEquals(provider.prologTrue(), parser.parseTerm("(true)"));
 		assertEquals(provider.prologEmpty(), parser.parseTerm("([])"));
 
-		assertEquals(provider.newVariable(), parser.parseTerm("(_)"));
-		assertEquals(provider.newVariable("X"), parser.parseTerm("(X)"));
+		assertEquals(provider.newVariable(0), parser.parseTerm("(_)"));
+		assertEquals(provider.newVariable("X", 0), parser.parseTerm("(X)"));
 
 		assertEquals(provider.newInteger(), parser.parseTerm("(0)"));
 		assertEquals(provider.newInteger(28), parser.parseTerm("(28)"));
@@ -231,8 +231,8 @@ public class PrologParserTest extends PrologBaseTest {
 		assertEquals(provider.prologTrue(), parser.parseTerm("{true}"));
 		assertEquals(provider.prologEmpty(), parser.parseTerm("{[]}"));
 
-		assertEquals(provider.newVariable(), parser.parseTerm("{_}"));
-		assertEquals(provider.newVariable("X"), parser.parseTerm("{X}"));
+		assertEquals(provider.newVariable(0), parser.parseTerm("{_}"));
+		assertEquals(provider.newVariable("X", 0), parser.parseTerm("{X}"));
 
 		assertEquals(provider.newInteger(), parser.parseTerm("{0}"));
 		assertEquals(provider.newInteger(28), parser.parseTerm("{28}"));

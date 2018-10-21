@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-jpi-zprolog
+ * prolobjectlink-jpi-jtrolog
  * %%
  * Copyright (C) 2012 - 2017 Logicware Project
  * %%
@@ -40,150 +40,116 @@ import org.logicware.prolog.PrologVariable;
 
 public class PrologAtomTest extends PrologBaseTest {
 
-	private PrologAtom atom = provider.newAtom("prolobjectlink");
+	private PrologAtom atom;
 
 	@Before
 	public void setUp() throws Exception {
-
+		atom = provider.newAtom("an_atom");
 	}
 
 	@After
 	public void tearDown() throws Exception {
 	}
 
-	public void testPrologAtom() {
-		assertEquals("prolog", provider.newAtom("prolog").getStringValue());
-		assertEquals("'somebody@mail.subdomain.domain'",
-				provider.newAtom("somebody@mail.subdomain.domain").getStringValue());
-		assertEquals("'1.6180339887'", provider.newAtom("1.6180339887").getStringValue());
-		assertEquals("'100'", provider.newAtom("100").getStringValue());
+	@Test
+	public final void testGetArguments() {
+		assertArrayEquals(new PrologAtom[0], atom.getArguments());
 	}
 
 	@Test
-	public void testGetValue() {
-		assertEquals("prolobjectlink", atom.getStringValue());
+	public final void testGetValue() {
+		assertEquals("an_atom", atom.getStringValue());
 	}
 
 	@Test
-	public void testSetValue() {
-		atom.setStringValue("prolog");
-		assertEquals("prolog", atom.getStringValue());
+	public final void testSetValue() {
+		assertEquals("an_atom", atom.getStringValue());
+		atom.setStringValue("other_atom_value");
+		assertEquals("other_atom_value", atom.getStringValue());
 	}
 
 	@Test
-	public void testGetFunctor() {
-		assertEquals("prolobjectlink", atom.getFunctor());
+	public final void testGetKey() {
+		assertEquals("an_atom/0", atom.getIndicator());
 	}
 
 	@Test
-	public void testHasIndicatorStringInt() {
-		assertTrue(atom.hasIndicator("prolobjectlink", 0));
-		assertFalse(atom.hasIndicator("prolobjectlink", 3));
-	}
-
-	@Test
-	public void testEqualsObject() {
-		assertTrue(atom.equals(provider.newAtom("prolobjectlink")));
-		assertFalse(atom.equals(provider.newAtom("prolog")));
-	}
-
-	@Test
-	public void testToString() {
-		assertEquals("prolobjectlink", atom.toString());
-	}
-
-	@Test
-	public void testGetArity() {
-		assertEquals(0, atom.getArity());
-	}
-
-	public void testGetArguments() {
-		assertArrayEquals(new PrologTerm[0], atom.getArguments());
-	}
-
-	@Test
-	public void testGetType() {
+	public final void testGetType() {
 		assertEquals(ATOM_TYPE, atom.getType());
 	}
 
 	@Test
-	public void testIsAtom() {
+	public final void testIsAtom() {
 		assertTrue(atom.isAtom());
 	}
 
 	@Test
-	public void testIsNumber() {
+	public final void testIsNumber() {
 		assertFalse(atom.isNumber());
 	}
 
 	@Test
-	public void testIsFloat() {
+	public final void testIsFloat() {
 		assertFalse(atom.isFloat());
 	}
 
 	@Test
-	public void testIsInteger() {
+	public final void testIsInteger() {
 		assertFalse(atom.isInteger());
 	}
 
 	@Test
-	public final void testIsDouble() {
-		assertFalse(atom.isDouble());
-	}
-
-	@Test
-	public final void testIsLong() {
-		assertFalse(atom.isLong());
-	}
-
-	@Test
-	public void testIsVariable() {
+	public final void testIsVariable() {
 		assertFalse(atom.isVariable());
 	}
 
 	@Test
-	public void testIsList() {
+	public final void testIsList() {
 		assertFalse(atom.isList());
 	}
 
 	@Test
-	public void testIsAtomic() {
-		assertTrue(atom.isAtomic());
-	}
-
-	@Test
-	public void testIsCompound() {
-		assertFalse(atom.isCompound());
-	}
-
-	@Test
-	public void testIsStructure() {
+	public final void testIsStructure() {
 		assertFalse(atom.isStructure());
 	}
 
 	@Test
-	public void testIsNil() {
+	public final void testIsNil() {
 		assertFalse(atom.isNil());
 	}
 
 	@Test
-	public void testIsEmptyList() {
+	public final void testIsEmptyList() {
 		assertFalse(atom.isEmptyList());
 	}
 
 	@Test
-	public void testIsExpression() {
+	public final void testIsExpression() {
 		assertFalse(atom.isEvaluable());
 	}
 
 	@Test
-	public void testGetIndicator() {
-		assertEquals("prolobjectlink/0", atom.getIndicator());
+	public final void testIsAtomic() {
+		assertTrue(atom.isAtomic());
 	}
 
 	@Test
-	public void testUnify() {
+	public final void testIsCompound() {
+		assertFalse(atom.isCompound());
+	}
 
+	@Test
+	public final void testGetArity() {
+		assertEquals(0, atom.getArity());
+	}
+
+	@Test
+	public final void testGetFunctor() {
+		assertEquals("an_atom", atom.getFunctor());
+	}
+
+	@Test
+	public final void testUnify() {
 		// with atom
 		PrologAtom atom = provider.newAtom("smith");
 		PrologAtom atom1 = provider.newAtom("doe");
@@ -209,7 +175,7 @@ public class PrologAtomTest extends PrologBaseTest {
 		assertFalse(atom.unify(dValue));
 
 		// with variable
-		PrologVariable variable = provider.newVariable("X");
+		PrologVariable variable = provider.newVariable("X", 0);
 		// true. case atom and variable
 		assertTrue(atom.unify(variable));
 
@@ -227,48 +193,48 @@ public class PrologAtomTest extends PrologBaseTest {
 	}
 
 	@Test
-	public void testCompareTo() {
+	public final void testCompareTo() {
 
 		// with atom
 		PrologAtom atom = provider.newAtom("smith");
 		PrologAtom atom1 = provider.newAtom("doe");
 		// true because the atoms are equals
-		assertEquals(atom.compareTo(atom), 0);
+		assertEquals(0, atom.compareTo(atom));
 		// false because the atoms are different
-		assertEquals(atom.compareTo(atom1), 1);
+		assertEquals(1, atom.compareTo(atom1));
 
 		// with integer
 		PrologInteger iValue = provider.newInteger(28);
-		assertEquals(atom.compareTo(iValue), 1);
+		assertEquals(1, atom.compareTo(iValue));
 
 		// with long
 		PrologLong lValue = provider.newLong(28);
-		assertEquals(atom.compareTo(lValue), 1);
+		assertEquals(1, atom.compareTo(lValue));
 
 		// with float
 		PrologFloat fValue = provider.newFloat(36.47);
-		assertEquals(atom.compareTo(fValue), 1);
+		assertEquals(1, atom.compareTo(fValue));
 
 		// with double
 		PrologDouble dValue = provider.newDouble(36.47);
-		assertEquals(atom.compareTo(dValue), 1);
+		assertEquals(1, atom.compareTo(dValue));
 
 		// with variable
-		PrologVariable variable = provider.newVariable("X");
+		PrologVariable variable = provider.newVariable("X",0);
 		// true. case atom and variable
-		assertEquals(atom.compareTo(variable), 1);
+		assertEquals(1, atom.compareTo(variable));
 
 		// with predicate
 		PrologStructure structure = provider.parsePrologStructure("some_predicate(a,b,c)");
-		assertEquals(atom.compareTo(structure), -1);
+		assertEquals(-1, atom.compareTo(structure));
 
 		// with list
 		PrologList flattenedList = provider.parsePrologList("[a,b,c]");
-		assertEquals(atom.compareTo(flattenedList), -1);
+		assertEquals(-1, atom.compareTo(flattenedList));
 
 		// with expression
 		PrologTerm expression = provider.parsePrologTerm("58+93*10");
-		assertEquals(atom.compareTo(expression), -1);
+		assertEquals(-1, atom.compareTo(expression));
 
 	}
 

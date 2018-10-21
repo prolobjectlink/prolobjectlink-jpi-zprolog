@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-jpi-zprolog
+ * prolobjectlink-jpi-jtrolog
  * %%
  * Copyright (C) 2012 - 2017 Logicware Project
  * %%
@@ -54,43 +54,43 @@ public class PrologDoubleTest extends PrologBaseTest {
 	}
 
 	@Test
-	public void testGetLongValue() {
-		assertEquals(1, double1.getLongValue());
-	}
-
-	@Test
-	public void testGetDoubleValue() {
-		assertEquals(1.6180339887, double1.getDoubleValue(), 0);
-	}
-
-	@Test
-	public void testGetPrologInteger() {
+	public final void testGetPrologInteger() {
 		assertEquals(provider.newInteger(1), double1.getPrologInteger());
 	}
 
 	@Test
-	public void testGetPrologFloat() {
+	public final void testGetPrologFloat() {
 		assertEquals(provider.newFloat(1.618034), double1.getPrologFloat());
 	}
 
 	@Test
-	public void testPrologFloat() {
-		assertEquals(0, provider.newFloat(0).getDoubleValue(), 0);
+	public final void testGetPrologLong() {
+		assertEquals(provider.newLong(1), double1.getPrologLong());
 	}
 
 	@Test
-	public void testPrologFloatDouble() {
-		assertEquals(1.6180340051651, provider.newFloat(1.6180339887).getDoubleValue(), 0);
+	public final void testGetPrologDouble() {
+		assertEquals(provider.newDouble(1.6180339887), double1.getPrologDouble());
 	}
 
-	@Test(expected = FunctorError.class)
-	public void testGetFunctor() {
-		assertEquals("1.6180339887", double1.getFunctor());
+	@Test
+	public final void testGetLongValue() {
+		assertEquals(1, double1.getLongValue());
 	}
 
-	@Test(expected = IndicatorError.class)
-	public void testHasIndicator() {
-		assertFalse(double1.hasIndicator("1.6180339887", 0));
+	@Test
+	public final void testGetDoubleValue() {
+		assertEquals(1.6180339887, double1.getDoubleValue(), 0);
+	}
+
+	@Test
+	public final void testGetIntValue() {
+		assertEquals(1, double1.getIntValue());
+	}
+
+	@Test
+	public final void testGetFloatValue() {
+		assertEquals(1.618034F, double1.getFloatValue(), 0);
 	}
 
 	@Test
@@ -104,10 +104,16 @@ public class PrologDoubleTest extends PrologBaseTest {
 	}
 
 	@Test(expected = ArityError.class)
-	public void testGetArity() {
-		assertEquals(0, double1.getArity());
+	public final void testGetArity() {
+		double1.getArity();
 	}
 
+	@Test(expected = FunctorError.class)
+	public final void testGetFunctor() {
+		double1.getFunctor();
+	}
+
+	@Test
 	public void testGetArguments() {
 		assertArrayEquals(new PrologTerm[0], double1.getArguments());
 	}
@@ -158,16 +164,6 @@ public class PrologDoubleTest extends PrologBaseTest {
 	}
 
 	@Test
-	public void testIsAtomic() {
-		assertTrue(double1.isAtomic());
-	}
-
-	@Test
-	public void testIsCompound() {
-		assertFalse(double1.isCompound());
-	}
-
-	@Test
 	public void testIsStructure() {
 		assertFalse(double1.isStructure());
 	}
@@ -209,10 +205,7 @@ public class PrologDoubleTest extends PrologBaseTest {
 		assertFalse(dValue.unify(lValue));
 
 		// with float
-		PrologFloat fValue = provider.newFloat(36.47F);
-		PrologFloat fValue1 = provider.newFloat(100.98F);
-		// true because are equals
-		assertTrue(fValue.unify(dValue));
+		PrologFloat fValue1 = provider.newFloat(100.98);
 		// false because are different
 		assertFalse(dValue.unify(fValue1));
 
@@ -224,7 +217,7 @@ public class PrologDoubleTest extends PrologBaseTest {
 		assertFalse(dValue.unify(dValue1));
 
 		// with variable
-		PrologVariable variable = provider.newVariable("X");
+		PrologVariable variable = provider.newVariable("X", 0);
 		// true. case float and variable
 		assertTrue(dValue.unify(variable));
 
@@ -248,44 +241,44 @@ public class PrologDoubleTest extends PrologBaseTest {
 		// with atom
 		PrologDouble dValue = provider.newDouble(36.47);
 		PrologAtom atom = provider.newAtom("doe");
-		assertEquals(dValue.compareTo(atom), -1);
+		assertEquals(-1, dValue.compareTo(atom));
 
 		// with integer
 		PrologInteger iValue = provider.newInteger(28);
-		assertEquals(dValue.compareTo(iValue), 1);
+		assertEquals(1, dValue.compareTo(iValue));
 
 		// with long
-		PrologLong lValue = provider.newLong(28L);
-		assertEquals(dValue.compareTo(lValue), 1);
+		PrologLong lValue = provider.newLong(28);
+		assertEquals(1, dValue.compareTo(lValue));
 
 		// with float
-		PrologFloat fValue = provider.newFloat(36.47);
+		PrologFloat fValue1 = provider.newFloat(100.98);
 		// false because are different
-		assertEquals(dValue.compareTo(fValue), -1);
+		assertEquals(-1, dValue.compareTo(fValue1));
 
 		// with float
 		PrologDouble dValue1 = provider.newDouble(100.98);
 		// true because are equals
-		assertEquals(dValue.compareTo(dValue), 0);
+		assertEquals(0, dValue.compareTo(dValue));
 		// false because are different
-		assertEquals(dValue.compareTo(dValue1), -1);
+		assertEquals(-1, dValue.compareTo(dValue1));
 
 		// with variable
-		PrologVariable variable = provider.newVariable("X");
+		PrologVariable variable = provider.newVariable("X",0);
 		// true. case float and variable
-		assertEquals(dValue.compareTo(variable), 1);
+		assertEquals(1, dValue.compareTo(variable));
 
 		// with predicate
 		PrologStructure structure = provider.parsePrologStructure("some_predicate(a,b,c)");
-		assertEquals(dValue.compareTo(structure), -1);
+		assertEquals(-1, dValue.compareTo(structure));
 
 		// with list
 		PrologList flattenedList = provider.parsePrologList("[a,b,c]");
-		assertEquals(dValue.compareTo(flattenedList), -1);
+		assertEquals(-1, dValue.compareTo(flattenedList));
 
 		// with expression
 		PrologTerm expression = provider.parsePrologTerm("58+93*10");
-		assertEquals(dValue.compareTo(expression), -1);
+		assertEquals(-1, dValue.compareTo(expression));
 
 	}
 

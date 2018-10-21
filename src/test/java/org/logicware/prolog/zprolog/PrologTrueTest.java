@@ -2,7 +2,7 @@
  * #%L
  * prolobjectlink-jpi-jtrolog
  * %%
- * Copyright (C) 2012 - 2017 Logicware Project
+ * Copyright (C) 2012 - 2018 Logicware Project
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.logicware.prolog.PrologTermType.EMPTY_TYPE;
 
 import org.junit.Test;
 import org.logicware.prolog.PrologAtom;
@@ -36,146 +35,153 @@ import org.logicware.prolog.PrologStructure;
 import org.logicware.prolog.PrologTerm;
 import org.logicware.prolog.PrologVariable;
 
-public class PrologEmptyTest extends PrologBaseTest {
+public class PrologTrueTest extends PrologBaseTest {
 
-	private PrologTerm empty = provider.prologEmpty();
+	private PrologTerm t = provider.prologTrue();
 
 	@Test
-	public final void testGetKey() {
-		assertEquals("[]/0", empty.getIndicator());
+	public void testGetArguments() {
+		assertArrayEquals(new PrologTerm[0], t.getArguments());
 	}
 
 	@Test
-	public final void testGetArity() {
-		assertEquals(0, empty.getArity());
+	public void testGetArity() {
+		assertEquals(0, t.getArity());
 	}
 
 	@Test
-	public final void testGetFunctor() {
-		assertEquals("[]", empty.getFunctor());
+	public void testGetFunctor() {
+		assertEquals("true", t.getFunctor());
 	}
 
 	@Test
-	public final void testGetArguments() {
-		assertArrayEquals(new PrologTerm[0], empty.getArguments());
+	public void testGetIndicator() {
+		assertEquals("true/0", t.getIndicator());
 	}
 
 	@Test
-	public final void testToString() {
-		assertEquals("[]", empty.toString());
+	public void testHasIndicator() {
+		assertTrue(t.hasIndicator("true", 0));
 	}
 
 	@Test
-	public final void testHashCode() {
-		assertEquals(provider.prologEmpty().hashCode(), empty.hashCode());
+	public void testHashCode() {
+		assertFalse(provider.prologCut().hashCode() == t.hashCode());
+		assertFalse(provider.prologFail().hashCode() == t.hashCode());
+		assertEquals(provider.prologTrue().hashCode(), t.hashCode());
 	}
 
 	@Test
-	public final void testGetType() {
-		assertEquals(EMPTY_TYPE, empty.getType());
+	public void testIsAtom() {
+		assertTrue(t.isAtom());
 	}
 
 	@Test
-	public final void testIsAtom() {
-		assertTrue(empty.isAtom());
-	}
-
-	@Test
-	public final void testIsNumber() {
-		assertFalse(empty.isNumber());
+	public void testIsNumber() {
+		assertFalse(t.isNumber());
 	}
 
 	@Test
 	public final void testIsFloat() {
-		assertFalse(empty.isFloat());
+		assertFalse(t.isFloat());
 	}
 
 	@Test
 	public final void testIsDouble() {
-		assertFalse(empty.isDouble());
+		assertFalse(t.isDouble());
 	}
 
 	@Test
 	public final void testIsInteger() {
-		assertFalse(empty.isInteger());
+		assertFalse(t.isInteger());
 	}
 
 	@Test
 	public final void testIsLong() {
-		assertFalse(empty.isLong());
+		assertFalse(t.isLong());
 	}
 
 	@Test
 	public final void testIsVariable() {
-		assertFalse(empty.isVariable());
+		assertFalse(t.isVariable());
 	}
 
 	@Test
 	public final void testIsList() {
-		assertTrue(empty.isList());
+		assertFalse(t.isList());
 	}
 
 	@Test
 	public final void testIsStructure() {
-		assertFalse(empty.isStructure());
+		assertFalse(t.isStructure());
 	}
 
 	@Test
 	public final void testIsNil() {
-		assertFalse(empty.isNil());
+		assertFalse(t.isNil());
 	}
 
 	@Test
 	public final void testIsEmptyList() {
-		assertTrue(empty.isEmptyList());
+		assertFalse(t.isEmptyList());
 	}
 
 	@Test
-	public final void testIsExpression() {
-		assertFalse(empty.isEvaluable());
+	public final void testIsEvaluable() {
+		assertFalse(t.isEvaluable());
+	}
+
+	@Test
+	public void testIsAtomic() {
+		assertTrue(t.isAtomic());
+	}
+
+	@Test
+	public void testIsCompound() {
+		assertFalse(t.isCompound());
 	}
 
 	@Test
 	public final void testUnify() {
 
 		// with atom
-		PrologTerm empty = provider.prologEmpty();
+		PrologTerm t = provider.prologTrue();
 		PrologAtom atom = provider.newAtom("John Doe");
-		assertFalse(empty.unify(atom));
+		assertFalse(t.unify(atom));
 
 		// with integer
 		PrologInteger iValue = provider.newInteger(36);
-		assertFalse(empty.unify(iValue));
+		assertFalse(t.unify(iValue));
 
 		// with long
 		PrologLong lValue = provider.newLong(28);
-		assertFalse(empty.unify(lValue));
+		assertFalse(t.unify(lValue));
 
 		// with float
 		PrologFloat fValue = provider.newFloat(36.47);
-		assertFalse(empty.unify(fValue));
+		assertFalse(t.unify(fValue));
 
 		// with double
 		PrologDouble dValue = provider.newDouble(36.47);
-		assertFalse(empty.unify(dValue));
+		assertFalse(t.unify(dValue));
 
 		// with variable
 		PrologVariable variable = provider.newVariable("X", 0);
 		// true. case [] and variable
-		assertTrue(empty.unify(variable));
+		assertTrue(t.unify(variable));
 
 		// with predicate
 		PrologStructure structure = provider.parsePrologStructure("some_predicate(a,b,c)");
-		assertFalse(empty.unify(structure));
+		assertFalse(t.unify(structure));
 
 		// with list
 		PrologList list = provider.parsePrologList("[a,b,c]");
-		assertFalse(empty.unify(list));
-		assertTrue(empty.unify(empty));
+		assertFalse(t.unify(list));
+		assertTrue(t.unify(t));
 
 		// with expression
 		PrologTerm expression = provider.parsePrologTerm("58+93*10");
-		assertFalse(empty.unify(expression));
+		assertFalse(t.unify(expression));
 
 	}
 
@@ -183,49 +189,55 @@ public class PrologEmptyTest extends PrologBaseTest {
 	public final void testCompareTo() {
 
 		// with atom
-		PrologTerm empty = provider.prologEmpty();
+		PrologTerm t = provider.prologTrue();
 		PrologAtom atom = provider.newAtom("John Doe");
-		assertEquals(1, empty.compareTo(atom));
+		assertEquals(1, t.compareTo(atom));
 
 		// with integer
 		PrologInteger iValue = provider.newInteger(36);
-		assertEquals(1, empty.compareTo(iValue));
+		assertEquals(1, t.compareTo(iValue));
 
 		// with long
 		PrologLong lValue = provider.newLong(28);
-		assertEquals(1, empty.compareTo(lValue));
+		assertEquals(1, t.compareTo(lValue));
 
 		// with float
 		PrologFloat fValue = provider.newFloat(36.47);
-		assertEquals(1, empty.compareTo(fValue));
+		assertEquals(1, t.compareTo(fValue));
 
 		// with double
 		PrologDouble dValue = provider.newDouble(36.47);
-		assertEquals(1, empty.compareTo(dValue));
+		assertEquals(1, t.compareTo(dValue));
 
 		// with variable
 		PrologVariable variable = provider.newVariable("X", 0);
-		// true. case [] and variable
-		assertEquals(1, empty.compareTo(variable));
+		assertEquals(1, t.compareTo(variable));
 
 		// with predicate
 		PrologStructure structure = provider.parsePrologStructure("some_predicate(a,b,c)");
-		assertEquals(-1, empty.compareTo(structure));
+		assertEquals(-1, t.compareTo(structure));
 
 		// with list
 		PrologList list = provider.parsePrologList("[a,b,c]");
-		assertEquals(-1, empty.compareTo(list));
-		assertEquals(0, empty.compareTo(empty));
+		assertEquals(-1, t.compareTo(list));
+		assertEquals(0, t.compareTo(t));
 
 		// with expression
 		PrologTerm expression = provider.parsePrologTerm("58+93*10");
-		assertEquals(-1, empty.compareTo(expression));
+		assertEquals(-1, t.compareTo(expression));
 
 	}
 
 	@Test
-	public final void testEqualsObject() {
-		assertEquals(provider.prologEmpty(), empty);
+	public void testEqualsObject() {
+		assertFalse(t.equals(provider.prologCut()));
+		assertFalse(t.equals(provider.prologFail()));
+		assertTrue(t.equals(provider.prologTrue()));
+	}
+
+	@Test
+	public void testToString() {
+		assertEquals("true", t.toString());
 	}
 
 }

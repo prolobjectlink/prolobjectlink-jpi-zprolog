@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-jpi-zprolog
+ * prolobjectlink-jpi-jtrolog
  * %%
  * Copyright (C) 2012 - 2017 Logicware Project
  * %%
@@ -38,7 +38,7 @@ import org.logicware.prolog.PrologStructure;
 import org.logicware.prolog.PrologTerm;
 import org.logicware.prolog.PrologVariable;
 
-public final class PrologStructureTest extends PrologBaseTest {
+public class PrologStructureTest extends PrologBaseTest {
 
 	private PrologStructure structure;
 
@@ -52,155 +52,100 @@ public final class PrologStructureTest extends PrologBaseTest {
 	}
 
 	@Test
-	public void testGetIndicator() {
-		assertEquals("digits/10", structure.getIndicator());
+	public final void testGetArguments() {
+		PrologTerm[] terms = { zero, one, two, three, four, five, six, seven, eight, nine };
+		assertArrayEquals(terms, structure.getArguments());
+	}
+
+	@Test(expected = ArrayIndexOutOfBoundsException.class)
+	public final void testGetArgument() {
+		assertEquals(zero, structure.getArgument(0));
+		assertEquals(one, structure.getArgument(1));
+		assertEquals(two, structure.getArgument(2));
+		assertEquals(three, structure.getArgument(3));
+		assertEquals(four, structure.getArgument(4));
+		assertEquals(five, structure.getArgument(5));
+		assertEquals(six, structure.getArgument(6));
+		assertEquals(seven, structure.getArgument(7));
+		assertEquals(eight, structure.getArgument(8));
+		assertEquals(nine, structure.getArgument(9));
+
+		structure.getArgument(-25);
+		structure.getArgument(10);
 	}
 
 	@Test
-	public void testHasIndicator() {
-		assertFalse(structure.hasIndicator("an_", 100));
-		assertFalse(structure.hasIndicator("an_", 0));
-		assertFalse(structure.hasIndicator("an_atom", 100));
-		assertTrue(structure.hasIndicator("digits", 10));
-	}
-
-	@Test
-	public void testToString() {
-		assertEquals("digits( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 )", structure.toString());
-	}
-
-	// @Test
-	// public void testIterator() {
-	// Iterator<PrologTerm> iterator = structure.iterator();
-	// assertTrue(iterator.hasNext());
-	// assertEquals(zero, iterator.next());
-	// assertTrue(iterator.hasNext());
-	// assertEquals(one, iterator.next());
-	// assertTrue(iterator.hasNext());
-	// assertEquals(two, iterator.next());
-	// assertTrue(iterator.hasNext());
-	// assertEquals(three, iterator.next());
-	// assertTrue(iterator.hasNext());
-	// assertEquals(four, iterator.next());
-	// assertTrue(iterator.hasNext());
-	// assertEquals(five, iterator.next());
-	// assertTrue(iterator.hasNext());
-	// assertEquals(six, iterator.next());
-	// assertTrue(iterator.hasNext());
-	// assertEquals(seven, iterator.next());
-	// assertTrue(iterator.hasNext());
-	// assertEquals(eight, iterator.next());
-	// assertTrue(iterator.hasNext());
-	// assertEquals(nine, iterator.next());
-	//
-	// assertFalse(iterator.hasNext());
-	// }
-
-	@Test
-	public void testGetArity() {
-		assertEquals(10, structure.getArity());
-	}
-
-	@Test
-	public void testGetFunctor() {
-		assertEquals("digits", structure.getFunctor());
-	}
-
-	@Test
-	public void testGetArguments() {
-		PrologTerm[] expecteds = new PrologTerm[] { zero, one, two, three, four, five, six, seven, eight, nine };
-		assertArrayEquals(expecteds, structure.getArguments());
-	}
-
-	@Test
-	public void testEqualsObject() {
-		PrologStructure prologStructure = provider.newStructure("digits", zero, one, two, three, four, five, six, seven,
-				eight, nine);
-		assertTrue(structure.equals(prologStructure));
-	}
-
-	@Test
-	public void testGetType() {
-		assertEquals(STRUCTURE_TYPE, structure.getType());
-	}
-
-	@Test
-	public void testIsAtom() {
+	public final void testIsAtom() {
 		assertFalse(structure.isAtom());
 	}
 
 	@Test
-	public void testIsNumber() {
+	public final void testIsNumber() {
 		assertFalse(structure.isNumber());
 	}
 
 	@Test
-	public void testIsFloat() {
+	public final void testIsFloat() {
 		assertFalse(structure.isFloat());
 	}
 
 	@Test
-	public void testIsInteger() {
+	public final void testIsInteger() {
 		assertFalse(structure.isInteger());
 	}
 
 	@Test
-	public void testIsDouble() {
-		assertFalse(structure.isDouble());
-	}
-
-	@Test
-	public void testIsLong() {
-		assertFalse(structure.isLong());
-	}
-
-	@Test
-	public void testIsVariable() {
+	public final void testIsVariable() {
 		assertFalse(structure.isVariable());
 	}
 
 	@Test
-	public void testIsList() {
+	public final void testIsList() {
 		assertFalse(structure.isList());
 	}
 
 	@Test
-	public void testIsAtomic() {
-		assertFalse(structure.isAtomic());
-	}
-
-	@Test
-	public void testIsCompound() {
-		assertTrue(structure.isCompound());
-	}
-
-	@Test
-	public void testIsStructure() {
+	public final void testIsStructure() {
 		assertTrue(structure.isStructure());
 	}
 
 	@Test
-	public void testIsNil() {
+	public final void testIsNil() {
 		assertFalse(structure.isNil());
 	}
 
 	@Test
-	public void testIsEmptyList() {
+	public final void testIsEmptyList() {
 		assertFalse(structure.isEmptyList());
 	}
 
 	@Test
-	public void testIsExpression() {
+	public final void testIsExpression() {
 		assertFalse(structure.isEvaluable());
 	}
 
 	@Test
-	public void testGetKey() {
+	public final void testGetType() {
+		assertEquals(STRUCTURE_TYPE, structure.getType());
+	}
+
+	@Test
+	public final void testGetKey() {
 		assertEquals("digits/10", structure.getIndicator());
 	}
 
 	@Test
-	public void testUnify() {
+	public final void testGetArity() {
+		assertEquals(10, structure.getArity());
+	}
+
+	@Test
+	public final void testGetFunctor() {
+		assertEquals("digits", structure.getFunctor());
+	}
+
+	@Test
+	public final void testUnify() {
 
 		// with atom
 		PrologAtom atom = provider.newAtom("John Doe");
@@ -216,7 +161,7 @@ public final class PrologStructureTest extends PrologBaseTest {
 		assertFalse(structure.unify(lValue));
 
 		// with float
-		PrologFloat fValue = provider.newFloat(36.47F);
+		PrologFloat fValue = provider.newFloat(36.47);
 		assertFalse(structure.unify(fValue));
 
 		// with double
@@ -224,7 +169,7 @@ public final class PrologStructureTest extends PrologBaseTest {
 		assertFalse(structure.unify(dValue));
 
 		// with variable
-		PrologVariable variable = provider.newVariable("X");
+		PrologVariable variable = provider.newVariable("X", 0);
 		// true. case predicate and variable
 		assertTrue(structure.unify(variable));
 
@@ -241,7 +186,7 @@ public final class PrologStructureTest extends PrologBaseTest {
 		// with list
 		PrologList flattenList = provider.parsePrologList("['Some Literal']");
 		PrologList headTailList = provider.parsePrologList("['Some Literal'|[]]");
-		PrologTerm empty = ZPrologTerm.EMPTY_TERM;
+		PrologTerm empty = provider.prologEmpty();
 		assertFalse(structure.unify(flattenList));
 		assertFalse(structure.unify(headTailList));
 		assertFalse(structure.unify(empty));
@@ -253,55 +198,54 @@ public final class PrologStructureTest extends PrologBaseTest {
 	}
 
 	@Test
-	public void testCompareTo() {
+	public final void testCompareTo() {
 
 		// with atom
 		PrologAtom atom = provider.newAtom("John Doe");
 		PrologStructure structure = provider.parsePrologStructure("some_predicate(a)");
-		assertEquals(structure.compareTo(atom), 1);
+		assertEquals(1, structure.compareTo(atom));
 
 		// with integer
 		PrologInteger iValue = provider.newInteger(28);
-		assertEquals(structure.compareTo(iValue), 1);
+		assertEquals(1, structure.compareTo(iValue));
 
 		// with long
 		PrologLong lValue = provider.newLong(28);
-		assertEquals(structure.compareTo(lValue), 1);
+		assertEquals(1, structure.compareTo(lValue));
 
 		// with float
-		PrologFloat fValue = provider.newFloat(36.47F);
-		assertEquals(structure.compareTo(fValue), 1);
+		PrologFloat fValue = provider.newFloat(36.47);
+		assertEquals(1, structure.compareTo(fValue));
 
 		// with double
 		PrologDouble dValue = provider.newDouble(36.47);
-		assertEquals(structure.compareTo(dValue), 1);
+		assertEquals(1, structure.compareTo(dValue));
 
 		// with variable
-		PrologVariable variable = provider.newVariable("X");
-		// true. case predicate and variable
-		assertEquals(structure.compareTo(variable), 1);
+		PrologVariable variable = provider.newVariable("X", 0);
+		assertEquals(1, structure.compareTo(variable));
 
 		// with predicate
 		PrologStructure structure1 = provider.parsePrologStructure("some_predicate(X)");
 		PrologStructure structure2 = provider.parsePrologStructure("some_predicate(28)");
 		// true because are equals
-		assertEquals(structure.compareTo(structure), 0);
+		assertEquals(0, structure.compareTo(structure));
 		// true because match and their arguments compareTo
-		assertEquals(structure.compareTo(structure1), 1);
+		assertEquals(1, structure.compareTo(structure1));
 		// false because match but their arguments not compareTo
-		assertEquals(structure.compareTo(structure2), 1);
+		assertEquals(1, structure.compareTo(structure2));
 
 		// with list
 		PrologList flattenList = provider.parsePrologList("['Some Literal']");
 		PrologList headTailList = provider.parsePrologList("['Some Literal'|[]]");
-		PrologTerm empty = ZPrologTerm.EMPTY_TERM;
-		assertEquals(structure.compareTo(flattenList), -1);
-		assertEquals(structure.compareTo(headTailList), -1);
-		assertEquals(structure.compareTo(empty), 1);
+		PrologTerm empty = provider.prologEmpty();
+		assertEquals(-1, structure.compareTo(flattenList));
+		assertEquals(-1, structure.compareTo(headTailList));
+		assertEquals(1, structure.compareTo(empty));
 
 		// with expression
 		PrologTerm expression = provider.parsePrologTerm("58+93*10");
-		assertEquals(structure.compareTo(expression), -1);
+		assertEquals(-1, structure.compareTo(expression));
 
 	}
 

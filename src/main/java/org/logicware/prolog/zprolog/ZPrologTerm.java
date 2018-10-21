@@ -594,6 +594,11 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 		}
 
 		switch (type) {
+		case NIL_TYPE:
+		case CUT_TYPE:
+		case FAIL_TYPE:
+		case TRUE_TYPE:
+		case FALSE_TYPE:
 		case ATOM_TYPE:
 
 			// alphabetic functor comparison
@@ -1296,17 +1301,17 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 		ZPrologTerm thisTerm = this;
 		if (thisTerm.isVariable() && otherTerm.isCompound()) {
 			PrologTerm[] otherArguments = otherTerm.getArguments();
-                    for (PrologTerm argument : otherArguments) {
-                        if (argument != null) {
-                            if (argument.isVariable()) {
-                                return thisTerm == argument;
-                            } else if (argument.isCompound()) {
-                                if (thisTerm.occurs(argument)) {
-                                    return true;
-                                }
-                            }
-                        }
-                    }
+			for (PrologTerm argument : otherArguments) {
+				if (argument != null) {
+					if (argument.isVariable()) {
+						return thisTerm == argument;
+					} else if (argument.isCompound()) {
+						if (thisTerm.occurs(argument)) {
+							return true;
+						}
+					}
+				}
+			}
 		}
 		return false;
 	}
