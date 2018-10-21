@@ -24,6 +24,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.logicware.platform.AbstractIterator;
 import org.logicware.prolog.PredicateIndicator;
 import org.logicware.prolog.PrologClause;
 import org.logicware.prolog.PrologIndicator;
@@ -239,7 +240,7 @@ public class ZPrologClause /* extends AbstractClause */ implements PrologClause 
 		return "" + term + ".";
 	}
 
-	private class BodyIterator implements Iterator<PrologTerm> {
+	private class BodyIterator extends AbstractIterator<PrologTerm> implements Iterator<PrologTerm> {
 
 		private int nextIndex;
 
@@ -260,9 +261,6 @@ public class ZPrologClause /* extends AbstractClause */ implements PrologClause 
 			return elements[nextIndex++];
 		}
 
-		public void remove() {
-			throw new UnsupportedOperationException();
-		}
 	}
 
 }
