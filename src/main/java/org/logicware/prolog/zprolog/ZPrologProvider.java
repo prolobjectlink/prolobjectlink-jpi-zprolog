@@ -51,10 +51,6 @@ public final class ZPrologProvider extends AbstractProvider implements PrologPro
 		return false;
 	}
 
-	public boolean preserveQuotes() {
-		return true;
-	}
-
 	public PrologTerm prologNil() {
 		return ZPrologTerm.NIL_TERM;
 	}
@@ -101,16 +97,6 @@ public final class ZPrologProvider extends AbstractProvider implements PrologPro
 
 	public PrologLong newLong(Number value) {
 		return new ZPrologTerm(this, value.longValue());
-	}
-
-	@Deprecated
-	public PrologVariable newVariable() {
-		return newVariable(ZPrologTerm.ANONYMOUS);
-	}
-
-	@Deprecated
-	public PrologVariable newVariable(String name) {
-		return new ZPrologTerm(this, name, vIndexer++);
 	}
 
 	public PrologVariable newVariable(int position) {
