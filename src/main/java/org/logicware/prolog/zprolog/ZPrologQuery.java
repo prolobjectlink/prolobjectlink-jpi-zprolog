@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.logicware.platform.RuntimeError;
+import org.logicware.RuntimeError;
 import org.logicware.prolog.AbstractEngine;
 import org.logicware.prolog.AbstractQuery;
 import org.logicware.prolog.PrologProvider;

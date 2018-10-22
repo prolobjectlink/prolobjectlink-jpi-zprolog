@@ -22,7 +22,7 @@ package org.logicware.prolog.zprolog;
 import java.util.Calendar;
 import java.util.List;
 
-import org.logicware.platform.Licenses;
+import org.logicware.Licenses;
 import org.logicware.prolog.PrologClause;
 import org.logicware.prolog.PrologEngine;
 import org.logicware.prolog.PrologProgram;

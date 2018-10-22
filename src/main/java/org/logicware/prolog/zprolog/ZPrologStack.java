@@ -19,8 +19,8 @@
  */
 package org.logicware.prolog.zprolog;
 
-import org.logicware.platform.ArrayStack;
-import org.logicware.platform.Stack;
+import org.logicware.ArrayStack;
+import org.logicware.Stack;
 
 final class ZPrologStack {
 
