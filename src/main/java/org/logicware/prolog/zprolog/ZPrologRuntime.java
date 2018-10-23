@@ -763,28 +763,6 @@ abstract class ZPrologRuntime extends ZPrologMachine {
 		operators.put(operator, op);
 	}
 
-	public final Set<PrologIndicator> currentPredicates() {
-		int size = builtins.size() + program.size();
-		Set<PrologIndicator> pis = new HashSet<PrologIndicator>(size);
-		for (PrologClauses clauses : builtins.values()) {
-			for (PrologClause c : clauses) {
-				String functor = c.getFunctor();
-				int arity = c.getArity();
-				PrologIndicator pi = new PredicateIndicator(functor, arity);
-				pis.add(pi);
-			}
-		}
-		for (PrologClauses clauses : program.getClauses().values()) {
-			for (PrologClause c : clauses) {
-				String functor = c.getFunctor();
-				int arity = c.getArity();
-				PrologIndicator pi = new PredicateIndicator(functor, arity);
-				pis.add(pi);
-			}
-		}
-		return pis;
-	}
-
 	public final Set<PrologOperator> currentOperators() {
 		int size = operators.size();
 		Set<PrologOperator> ops = new HashSet<PrologOperator>(size);
@@ -804,7 +782,33 @@ abstract class ZPrologRuntime extends ZPrologMachine {
 		return op != null && priority == op.priority && specifier.equals(op.getSpecifier());
 	}
 
-	public Iterator<PrologClause> iterator() {
+	public final Set<PrologIndicator> getPredicates() {
+		Set<PrologIndicator> pis = new HashSet<PrologIndicator>(program.size());
+		for (PrologClauses clauses : program.getClauses().values()) {
+			for (PrologClause c : clauses) {
+				String functor = c.getFunctor();
+				int arity = c.getArity();
+				PrologIndicator pi = new PredicateIndicator(functor, arity);
+				pis.add(pi);
+			}
+		}
+		return pis;
+	}
+
+	public final Set<PrologIndicator> getBuiltIns() {
+		Set<PrologIndicator> pis = new HashSet<PrologIndicator>(builtins.size());
+		for (PrologClauses clauses : builtins.values()) {
+			for (PrologClause c : clauses) {
+				String functor = c.getFunctor();
+				int arity = c.getArity();
+				PrologIndicator pi = new PredicateIndicator(functor, arity);
+				pis.add(pi);
+			}
+		}
+		return pis;
+	}
+
+	public final Iterator<PrologClause> iterator() {
 		Collection<PrologClauses> list = program.getClauses().values();
 		Collection<PrologClause> clauses = new LinkedList<PrologClause>();
 		for (PrologClauses prologClauses : list) {
