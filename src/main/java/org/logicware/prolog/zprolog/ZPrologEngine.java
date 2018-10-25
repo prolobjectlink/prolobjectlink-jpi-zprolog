@@ -122,8 +122,12 @@ public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
 		return new ZPrologQuery(this, stringQuery);
 	}
 
-	public PrologQuery query(PrologTerm... goals) {
+	public PrologQuery query(PrologTerm[] goals) {
 		return new ZPrologQuery(this, goals);
+	}
+
+	public PrologQuery query(PrologTerm term, PrologTerm... terms) {
+		return new ZPrologQuery(this, term, terms);
 	}
 
 	public final int getProgramSize() {

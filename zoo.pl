@@ -9,10 +9,10 @@ black( cat ).
 
 gray( elephant ).
 
-dark( ann ) :- 
-	black( ann ).
+dark( Z ) :- 
+	black( Z ).
 
-dark( ann ) :- 
-	brown( ann ).
+dark( Z ) :- 
+	brown( Z ).
 
 

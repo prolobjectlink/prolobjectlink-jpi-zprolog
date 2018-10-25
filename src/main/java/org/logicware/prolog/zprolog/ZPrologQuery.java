@@ -53,9 +53,16 @@ public final class ZPrologQuery extends AbstractQuery implements PrologQuery {
 		hasSolution = engine.unwrap(ZPrologEngine.class).run(goal);
 	}
 
-	ZPrologQuery(AbstractEngine engine, PrologTerm... goals) {
+	ZPrologQuery(AbstractEngine engine, PrologTerm[] goals) {
 		super(engine);
 		goal = new ZPrologGoal(goals);
+		this.query = "" + goal + "";
+		hasSolution = engine.unwrap(ZPrologEngine.class).run(goal);
+	}
+
+	ZPrologQuery(AbstractEngine engine, PrologTerm term, PrologTerm[] terms) {
+		super(engine);
+		goal = new ZPrologGoal(term,terms);
 		this.query = "" + goal + "";
 		hasSolution = engine.unwrap(ZPrologEngine.class).run(goal);
 	}
@@ -151,7 +158,7 @@ public final class ZPrologQuery extends AbstractQuery implements PrologQuery {
 			PrologTerm[][] allSolutions = new PrologTerm[n][m];
 			for (int i = 0; i < n; i++) {
 				PrologTerm[] solution = all.get(i);
-                            System.arraycopy(solution, 0, allSolutions[i], 0, m);
+				System.arraycopy(solution, 0, allSolutions[i], 0, m);
 			}
 			return allSolutions;
 		}
@@ -187,7 +194,7 @@ public final class ZPrologQuery extends AbstractQuery implements PrologQuery {
 		PrologTerm[][] allSolutions = new PrologTerm[n][m];
 		for (int i = 0; i < n; i++) {
 			PrologTerm[] solution = all.get(i);
-                    System.arraycopy(solution, 0, allSolutions[i], 0, m);
+			System.arraycopy(solution, 0, allSolutions[i], 0, m);
 		}
 		return allSolutions;
 	}

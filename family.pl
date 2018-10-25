@@ -23,14 +23,14 @@ mother( pam, bob ) :-
 	female( pam ).
 
 
-grandparent( pam, ann ) :- 
+grandparent( pam, Z ) :- 
 	parent( pam, bob ),
-	parent( bob, ann ).
+	parent( bob, Z ).
 
 
 sister( pam, bob ) :- 
-	parent( ann, pam ),
-	parent( ann, bob ),
+	parent( Z, pam ),
+	parent( Z, bob ),
 	female( pam ),
 	different( pam, bob ).
 
@@ -41,11 +41,11 @@ different( pam, pam ) :-
 
 different( pam, bob ).
 
-predecessor( pam, ann ) :- 
-	parent( pam, ann ).
+predecessor( pam, Z ) :- 
+	parent( pam, Z ).
 
-predecessor( pam, ann ) :- 
+predecessor( pam, Z ) :- 
 	parent( pam, bob ),
-	predecessor( bob, ann ).
+	predecessor( bob, Z ).
 
 

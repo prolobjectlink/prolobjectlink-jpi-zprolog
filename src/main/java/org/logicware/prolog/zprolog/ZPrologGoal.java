@@ -58,6 +58,10 @@ final class ZPrologGoal extends ZPrologClause implements PrologGoal {
 		this.i = clauses.listIterator();
 	}
 
+	public ZPrologGoal(PrologTerm term, PrologTerm[] terms) {
+		super(term, terms);
+	}
+
 	public ZPrologGoal resolve(PrologProgram program, Map<String, PrologClauses> builtins) {
 		return resolve(program, builtins, null);
 	}
