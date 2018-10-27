@@ -47,7 +47,6 @@ import org.logicware.prolog.AbstractTerm;
 import org.logicware.prolog.ArityError;
 import org.logicware.prolog.CompoundExpectedError;
 import org.logicware.prolog.FunctorError;
-import org.logicware.prolog.IndicatorError;
 import org.logicware.prolog.PrologAtom;
 import org.logicware.prolog.PrologDouble;
 import org.logicware.prolog.PrologFloat;
@@ -457,11 +456,13 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	}
 
 	public final boolean hasIndicator(String functor, int arity) {
-		assertHasIndicator();
-		if (isVariableBound()) {
-			return vValue.dereference().hasIndicator(functor, arity);
+		if (assertHasIndicator()) {
+			if (isVariableBound()) {
+				return vValue.dereference().hasIndicator(functor, arity);
+			}
+			return this.functor.equals(functor) && this.arity == arity;
 		}
-		return this.functor.equals(functor) && this.arity == arity;
+		return false;
 	}
 
 	public final boolean isAtom() {
@@ -1388,10 +1389,8 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	/**
 	 * Pull up to abstract term
 	 */
-	void assertHasIndicator() {
-		if (!isCompound() && !isAtom() && !isEmptyList() && !isVariableBound()) {
-			throw new IndicatorError(this);
-		}
+	boolean assertHasIndicator() {
+		return isCompound() || isAtom() || isEmptyList() || isVariableBound();
 	}
 
 	/**
