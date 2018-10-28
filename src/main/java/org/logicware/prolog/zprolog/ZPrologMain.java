@@ -44,7 +44,7 @@ class ZPrologMain {
 	// standard output stream
 	private static final PrintStream stdout = System.out;
 
-	private static final PrologProvider provider = new ZPrologProvider();
+	private static final PrologProvider provider = new ZProlog();
 
 	public static void main(String[] args) {
 

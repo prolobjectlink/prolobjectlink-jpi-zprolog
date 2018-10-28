@@ -66,7 +66,7 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	static final int LEFT_POSITION = 0;
 	static final int RIGHT_POSITION = 1;
 
-	protected static final PrologProvider provider = new ZPrologProvider();
+	protected static final PrologProvider provider = new ZProlog();
 
 	/** Anonymous variable name */
 	public static final String ANONYMOUS = "_";

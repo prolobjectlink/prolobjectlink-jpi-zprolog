@@ -161,7 +161,7 @@ abstract class ZPrologRuntime extends ZPrologMachine {
 	// statistics collector map
 	protected final Map<PrologTerm, PrologTerm> statistics = new HashMap<PrologTerm, PrologTerm>();
 
-	protected static final PrologProvider provider = new ZPrologProvider();
+	protected static final PrologProvider provider = new ZProlog();
 
 	//
 	private static final ZPrologGoal FAIL = new ZPrologGoal(ZPrologTerm.FAIL_TERM);

@@ -30,7 +30,7 @@ final class ZPrologFlag {
 	static final boolean NO = false;
 	static final boolean YES = true;
 
-	static final PrologProvider provider = new ZPrologProvider();
+	static final PrologProvider provider = new ZProlog();
 
 	static final PrologTerm TRUE = new ZPrologTerm(ZPrologToken.TOKEN_TRUE, TRUE_TYPE, provider,
 			ZPrologBuiltin.TRUE_FUNCTOR);

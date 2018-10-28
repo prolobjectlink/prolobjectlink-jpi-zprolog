@@ -35,15 +35,15 @@ import org.logicware.prolog.PrologStructure;
 import org.logicware.prolog.PrologTerm;
 import org.logicware.prolog.PrologVariable;
 
-public final class ZPrologProvider extends AbstractProvider implements PrologProvider {
+public final class ZProlog extends AbstractProvider implements PrologProvider {
 
 	static int vIndexer = 0;
 
-	public ZPrologProvider() {
+	public ZProlog() {
 		super(new ZPrologConverter());
 	}
 
-	public ZPrologProvider(PrologConverter<ZPrologTerm> converter) {
+	public ZProlog(PrologConverter<ZPrologTerm> converter) {
 		super(converter);
 	}
 

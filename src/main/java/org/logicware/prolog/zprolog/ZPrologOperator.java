@@ -153,7 +153,7 @@ public final class ZPrologOperator extends ZPrologToken implements PrologOperato
 	static final ZPrologOperator FLOAT_POW = new ZPrologOperator(TOKEN_FLOAT_POW, "**", 200, XFX);
 	static final ZPrologOperator INT_FLOAT_POW = new ZPrologOperator(TOKEN_INT_FLOAT_POW, "^", 200, XFY);
 
-	protected static final PrologProvider provider = new ZPrologProvider();
+	protected static final PrologProvider provider = new ZProlog();
 
 	int priority;
 	int position;

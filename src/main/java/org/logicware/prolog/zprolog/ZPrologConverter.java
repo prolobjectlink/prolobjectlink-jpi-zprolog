@@ -122,7 +122,7 @@ public class ZPrologConverter extends AbstractConverter<ZPrologTerm> implements 
 	}
 
 	public PrologProvider createProvider() {
-		return new ZPrologProvider(this);
+		return new ZProlog(this);
 	}
 
 }
