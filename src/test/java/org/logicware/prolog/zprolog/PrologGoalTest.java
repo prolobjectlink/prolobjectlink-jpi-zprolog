@@ -121,12 +121,12 @@ public class PrologGoalTest extends PrologBaseTest {
 		//
 		// parent relationship
 		PrologClauses parents = new ZPrologClauses("parent/2");
-		parents.add(new ZPrologClause(provider.parsePrologTerm("parent( pam, bob )")));
-		parents.add(new ZPrologClause(provider.parsePrologTerm("parent( tom, bob )")));
-		parents.add(new ZPrologClause(provider.parsePrologTerm("parent( tom, liz )")));
-		parents.add(new ZPrologClause(provider.parsePrologTerm("parent( bob, ann )")));
-		parents.add(new ZPrologClause(provider.parsePrologTerm("parent( bob, pat )")));
-		parents.add(new ZPrologClause(provider.parsePrologTerm("parent( pat, jim )")));
+		parents.add(new ZPrologClause(provider.parseTerm("parent( pam, bob )")));
+		parents.add(new ZPrologClause(provider.parseTerm("parent( tom, bob )")));
+		parents.add(new ZPrologClause(provider.parseTerm("parent( tom, liz )")));
+		parents.add(new ZPrologClause(provider.parseTerm("parent( bob, ann )")));
+		parents.add(new ZPrologClause(provider.parseTerm("parent( bob, pat )")));
+		parents.add(new ZPrologClause(provider.parseTerm("parent( pat, jim )")));
 		assertEquals(parents, program.get("parent/2"));
 
 		// female relationship
@@ -262,12 +262,12 @@ public class PrologGoalTest extends PrologBaseTest {
 
 		// parent relationship
 		PrologClauses parents = new ZPrologClauses("parent/2");
-		parents.add(new ZPrologClause(provider.parsePrologTerm("parent( pam, bob )")));
-		parents.add(new ZPrologClause(provider.parsePrologTerm("parent( tom, bob )")));
-		parents.add(new ZPrologClause(provider.parsePrologTerm("parent( tom, liz )")));
-		parents.add(new ZPrologClause(provider.parsePrologTerm("parent( bob, ann )")));
-		parents.add(new ZPrologClause(provider.parsePrologTerm("parent( bob, pat )")));
-		parents.add(new ZPrologClause(provider.parsePrologTerm("parent( pat, jim )")));
+		parents.add(new ZPrologClause(provider.parseTerm("parent( pam, bob )")));
+		parents.add(new ZPrologClause(provider.parseTerm("parent( tom, bob )")));
+		parents.add(new ZPrologClause(provider.parseTerm("parent( tom, liz )")));
+		parents.add(new ZPrologClause(provider.parseTerm("parent( bob, ann )")));
+		parents.add(new ZPrologClause(provider.parseTerm("parent( bob, pat )")));
+		parents.add(new ZPrologClause(provider.parseTerm("parent( pat, jim )")));
 		assertEquals(new ZPrologGoal(provider.newStructure(parent, x, y), parents),
 				new ZPrologGoal(provider.newStructure(parent, x, y)).resolve(program, ZPrologRuntime.builtins));
 

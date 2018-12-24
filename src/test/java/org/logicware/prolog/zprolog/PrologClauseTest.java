@@ -27,19 +27,19 @@ import org.junit.Test;
 
 public class PrologClauseTest extends PrologBaseTest {
 
-	ZPrologClause fact = new ZPrologClause(provider.parsePrologTerm("p(a,b,c)"));
-	ZPrologClause rule = new ZPrologClause(provider.parsePrologTerm("p(a,X,b):-q,r"));
+	ZPrologClause fact = new ZPrologClause(provider.parseTerm("p(a,b,c)"));
+	ZPrologClause rule = new ZPrologClause(provider.parseTerm("p(a,X,b):-q,r"));
 
 	@Test
 	public final void testHashCode() {
-		assertEquals(fact.hashCode(), new ZPrologClause(provider.parsePrologTerm("p(a,b,c)")).hashCode());
-		assertEquals(rule.hashCode(), new ZPrologClause(provider.parsePrologTerm("p(a,X,b):-q,r")).hashCode());
+		assertEquals(fact.hashCode(), new ZPrologClause(provider.parseTerm("p(a,b,c)")).hashCode());
+		assertEquals(rule.hashCode(), new ZPrologClause(provider.parseTerm("p(a,X,b):-q,r")).hashCode());
 	}
 
 	@Test
 	public final void testGetTerm() {
-		assertEquals(fact, new ZPrologClause(provider.parsePrologTerm("p(a,b,c)")));
-		assertEquals(rule, new ZPrologClause(provider.parsePrologTerm("p(a,X,b):-q,r")));
+		assertEquals(fact, new ZPrologClause(provider.parseTerm("p(a,b,c)")));
+		assertEquals(rule, new ZPrologClause(provider.parseTerm("p(a,X,b):-q,r")));
 	}
 
 	@Test
@@ -171,14 +171,14 @@ public class PrologClauseTest extends PrologBaseTest {
 
 	@Test
 	public final void testUnify() {
-		assertTrue(fact.unify(new ZPrologClause(provider.parsePrologTerm("p(a,b,c)"))));
-		assertTrue(rule.unify(new ZPrologClause(provider.parsePrologTerm("p(a,X,b):-q,r"))));
+		assertTrue(fact.unify(new ZPrologClause(provider.parseTerm("p(a,b,c)"))));
+		assertTrue(rule.unify(new ZPrologClause(provider.parseTerm("p(a,X,b):-q,r"))));
 	}
 
 	@Test
 	public final void testEqualsObject() {
-		assertEquals(fact, new ZPrologClause(provider.parsePrologTerm("p(a,b,c)")));
-		assertEquals(rule, new ZPrologClause(provider.parsePrologTerm("p(a,X,b):-q,r")));
+		assertEquals(fact, new ZPrologClause(provider.parseTerm("p(a,b,c)")));
+		assertEquals(rule, new ZPrologClause(provider.parseTerm("p(a,X,b):-q,r")));
 	}
 
 }

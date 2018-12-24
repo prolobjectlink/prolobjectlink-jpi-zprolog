@@ -23,9 +23,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.logicware.prolog.Prolog;
 import org.logicware.prolog.PrologAtom;
 import org.logicware.prolog.PrologDouble;
-import org.logicware.prolog.Prolog;
 import org.logicware.prolog.PrologInteger;
 import org.logicware.prolog.PrologProvider;
 import org.logicware.prolog.PrologQuery;
@@ -49,6 +49,9 @@ public abstract class PrologBaseTest {
 	protected String department = "department";
 
 	protected static final PrologProvider provider = Prolog.newProvider(ZProlog.class);
+
+	protected PrologTerm nil = provider.prologNil();
+	protected PrologTerm empty = provider.prologEmpty();
 
 	protected PrologVariable x = provider.newVariable("X", 0);
 	protected PrologVariable y = provider.newVariable("Y", 1);

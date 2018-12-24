@@ -47,25 +47,25 @@ public class PrologClausesTest extends PrologBaseTest {
 	public void setUp() throws Exception {
 
 		fact = new ZPrologClauses("parent/2");
-		fact.add(new ZPrologClause(provider.parsePrologTerm("parent( pam, bob )")));
-		fact.add(new ZPrologClause(provider.parsePrologTerm("parent( tom, bob )")));
-		fact.add(new ZPrologClause(provider.parsePrologTerm("parent( tom, liz )")));
-		fact.add(new ZPrologClause(provider.parsePrologTerm("parent( bob, ann )")));
-		fact.add(new ZPrologClause(provider.parsePrologTerm("parent( bob, pat )")));
-		fact.add(new ZPrologClause(provider.parsePrologTerm("parent( pat, jim )")));
+		fact.add(new ZPrologClause(provider.parseTerm("parent( pam, bob )")));
+		fact.add(new ZPrologClause(provider.parseTerm("parent( tom, bob )")));
+		fact.add(new ZPrologClause(provider.parseTerm("parent( tom, liz )")));
+		fact.add(new ZPrologClause(provider.parseTerm("parent( bob, ann )")));
+		fact.add(new ZPrologClause(provider.parseTerm("parent( bob, pat )")));
+		fact.add(new ZPrologClause(provider.parseTerm("parent( pat, jim )")));
 
 		rule = new ZPrologClauses("grandparent/2",
-				new ZPrologClause(provider.parsePrologTerm("grandparent( X, Z ) :- parent( X, Y ), parent( Y, Z )")));
+				new ZPrologClause(provider.parseTerm("grandparent( X, Z ) :- parent( X, Y ), parent( Y, Z )")));
 
 		ruleArray[0] = new ZPrologClause(
-				provider.parsePrologTerm("grandparent( X, Z ) :- parent( X, Y ), parent( Y, Z )"));
+				provider.parseTerm("grandparent( X, Z ) :- parent( X, Y ), parent( Y, Z )"));
 
-		factsArray[0] = new ZPrologClause(provider.parsePrologTerm("parent( pam, bob )"));
-		factsArray[1] = new ZPrologClause(provider.parsePrologTerm("parent( tom, bob )"));
-		factsArray[2] = new ZPrologClause(provider.parsePrologTerm("parent( tom, liz )"));
-		factsArray[3] = new ZPrologClause(provider.parsePrologTerm("parent( bob, ann )"));
-		factsArray[4] = new ZPrologClause(provider.parsePrologTerm("parent( bob, pat )"));
-		factsArray[5] = new ZPrologClause(provider.parsePrologTerm("parent( pat, jim )"));
+		factsArray[0] = new ZPrologClause(provider.parseTerm("parent( pam, bob )"));
+		factsArray[1] = new ZPrologClause(provider.parseTerm("parent( tom, bob )"));
+		factsArray[2] = new ZPrologClause(provider.parseTerm("parent( tom, liz )"));
+		factsArray[3] = new ZPrologClause(provider.parseTerm("parent( bob, ann )"));
+		factsArray[4] = new ZPrologClause(provider.parseTerm("parent( bob, pat )"));
+		factsArray[5] = new ZPrologClause(provider.parseTerm("parent( pat, jim )"));
 
 	}
 
@@ -77,15 +77,15 @@ public class PrologClausesTest extends PrologBaseTest {
 	public final void testHashCode() {
 
 		PrologClauses newFact = new ZPrologClauses("parent/2");
-		newFact.add(new ZPrologClause(provider.parsePrologTerm("parent( pam, bob )")));
-		newFact.add(new ZPrologClause(provider.parsePrologTerm("parent( tom, bob )")));
-		newFact.add(new ZPrologClause(provider.parsePrologTerm("parent( tom, liz )")));
-		newFact.add(new ZPrologClause(provider.parsePrologTerm("parent( bob, ann )")));
-		newFact.add(new ZPrologClause(provider.parsePrologTerm("parent( bob, pat )")));
-		newFact.add(new ZPrologClause(provider.parsePrologTerm("parent( pat, jim )")));
+		newFact.add(new ZPrologClause(provider.parseTerm("parent( pam, bob )")));
+		newFact.add(new ZPrologClause(provider.parseTerm("parent( tom, bob )")));
+		newFact.add(new ZPrologClause(provider.parseTerm("parent( tom, liz )")));
+		newFact.add(new ZPrologClause(provider.parseTerm("parent( bob, ann )")));
+		newFact.add(new ZPrologClause(provider.parseTerm("parent( bob, pat )")));
+		newFact.add(new ZPrologClause(provider.parseTerm("parent( pat, jim )")));
 
 		PrologClauses newRule = new ZPrologClauses("grandparent/2",
-				new ZPrologClause(provider.parsePrologTerm("grandparent( X, Z ) :- parent( X, Y ), parent( Y, Z )")));
+				new ZPrologClause(provider.parseTerm("grandparent( X, Z ) :- parent( X, Y ), parent( Y, Z )")));
 
 		assertEquals(fact.hashCode(), newFact.hashCode());
 		assertEquals(rule.hashCode(), newRule.hashCode());
@@ -117,26 +117,26 @@ public class PrologClausesTest extends PrologBaseTest {
 		fact = new ZPrologClauses("parent/2");
 		assertEquals(0, fact.size());
 
-		assertTrue(fact.add(new ZPrologClause(provider.parsePrologTerm("parent( pam, bob )"))));
+		assertTrue(fact.add(new ZPrologClause(provider.parseTerm("parent( pam, bob )"))));
 		assertEquals(1, fact.size());
 
-		assertTrue(fact.add(new ZPrologClause(provider.parsePrologTerm("parent( tom, bob )"))));
+		assertTrue(fact.add(new ZPrologClause(provider.parseTerm("parent( tom, bob )"))));
 		assertEquals(2, fact.size());
 
-		assertTrue(fact.add(new ZPrologClause(provider.parsePrologTerm("parent( tom, liz )"))));
+		assertTrue(fact.add(new ZPrologClause(provider.parseTerm("parent( tom, liz )"))));
 		assertEquals(3, fact.size());
 
-		assertTrue(fact.add(new ZPrologClause(provider.parsePrologTerm("parent( bob, ann )"))));
+		assertTrue(fact.add(new ZPrologClause(provider.parseTerm("parent( bob, ann )"))));
 		assertEquals(4, fact.size());
 
-		assertTrue(fact.add(new ZPrologClause(provider.parsePrologTerm("parent( bob, pat )"))));
+		assertTrue(fact.add(new ZPrologClause(provider.parseTerm("parent( bob, pat )"))));
 		assertEquals(5, fact.size());
 
-		assertTrue(fact.add(new ZPrologClause(provider.parsePrologTerm("parent( pat, jim )"))));
+		assertTrue(fact.add(new ZPrologClause(provider.parseTerm("parent( pat, jim )"))));
 		assertEquals(6, fact.size());
 
 		// already exist
-		assertFalse(fact.add(new ZPrologClause(provider.parsePrologTerm("parent( pat, jim )"))));
+		assertFalse(fact.add(new ZPrologClause(provider.parseTerm("parent( pat, jim )"))));
 		assertEquals(6, fact.size());
 
 	}
@@ -144,53 +144,53 @@ public class PrologClausesTest extends PrologBaseTest {
 	@Test
 	public final void testContains() {
 
-		assertTrue(fact.contains(new ZPrologClause(provider.parsePrologTerm("parent( pam, bob )"))));
-		assertTrue(fact.contains(new ZPrologClause(provider.parsePrologTerm("parent( tom, bob )"))));
-		assertTrue(fact.contains(new ZPrologClause(provider.parsePrologTerm("parent( tom, liz )"))));
-		assertTrue(fact.contains(new ZPrologClause(provider.parsePrologTerm("parent( bob, ann )"))));
-		assertTrue(fact.contains(new ZPrologClause(provider.parsePrologTerm("parent( bob, pat )"))));
-		assertTrue(fact.contains(new ZPrologClause(provider.parsePrologTerm("parent( pat, jim )"))));
+		assertTrue(fact.contains(new ZPrologClause(provider.parseTerm("parent( pam, bob )"))));
+		assertTrue(fact.contains(new ZPrologClause(provider.parseTerm("parent( tom, bob )"))));
+		assertTrue(fact.contains(new ZPrologClause(provider.parseTerm("parent( tom, liz )"))));
+		assertTrue(fact.contains(new ZPrologClause(provider.parseTerm("parent( bob, ann )"))));
+		assertTrue(fact.contains(new ZPrologClause(provider.parseTerm("parent( bob, pat )"))));
+		assertTrue(fact.contains(new ZPrologClause(provider.parseTerm("parent( pat, jim )"))));
 		assertFalse(fact.contains(
-				new ZPrologClause(provider.parsePrologTerm("grandparent( X, Z ) :- parent( X, Y ), parent( Y, Z )"))));
+				new ZPrologClause(provider.parseTerm("grandparent( X, Z ) :- parent( X, Y ), parent( Y, Z )"))));
 
-		assertFalse(rule.contains(new ZPrologClause(provider.parsePrologTerm("parent( pam, bob )"))));
-		assertFalse(rule.contains(new ZPrologClause(provider.parsePrologTerm("parent( tom, bob )"))));
-		assertFalse(rule.contains(new ZPrologClause(provider.parsePrologTerm("parent( tom, liz )"))));
-		assertFalse(rule.contains(new ZPrologClause(provider.parsePrologTerm("parent( bob, ann )"))));
-		assertFalse(rule.contains(new ZPrologClause(provider.parsePrologTerm("parent( bob, pat )"))));
-		assertFalse(rule.contains(new ZPrologClause(provider.parsePrologTerm("parent( pat, jim )"))));
+		assertFalse(rule.contains(new ZPrologClause(provider.parseTerm("parent( pam, bob )"))));
+		assertFalse(rule.contains(new ZPrologClause(provider.parseTerm("parent( tom, bob )"))));
+		assertFalse(rule.contains(new ZPrologClause(provider.parseTerm("parent( tom, liz )"))));
+		assertFalse(rule.contains(new ZPrologClause(provider.parseTerm("parent( bob, ann )"))));
+		assertFalse(rule.contains(new ZPrologClause(provider.parseTerm("parent( bob, pat )"))));
+		assertFalse(rule.contains(new ZPrologClause(provider.parseTerm("parent( pat, jim )"))));
 		assertTrue(rule.contains(
-				new ZPrologClause(provider.parsePrologTerm("grandparent( X, Z ) :- parent( X, Y ), parent( Y, Z )"))));
+				new ZPrologClause(provider.parseTerm("grandparent( X, Z ) :- parent( X, Y ), parent( Y, Z )"))));
 
 	}
 
 	@Test
 	public final void testRemoveObject() {
 
-		assertTrue(fact.remove(new ZPrologClause(provider.parsePrologTerm("parent( pam, bob )"))));
+		assertTrue(fact.remove(new ZPrologClause(provider.parseTerm("parent( pam, bob )"))));
 		assertEquals(5, fact.size());
 
-		assertTrue(fact.remove(new ZPrologClause(provider.parsePrologTerm("parent( tom, bob )"))));
+		assertTrue(fact.remove(new ZPrologClause(provider.parseTerm("parent( tom, bob )"))));
 		assertEquals(4, fact.size());
 
-		assertTrue(fact.remove(new ZPrologClause(provider.parsePrologTerm("parent( tom, liz )"))));
+		assertTrue(fact.remove(new ZPrologClause(provider.parseTerm("parent( tom, liz )"))));
 		assertEquals(3, fact.size());
 
-		assertTrue(fact.remove(new ZPrologClause(provider.parsePrologTerm("parent( bob, ann )"))));
+		assertTrue(fact.remove(new ZPrologClause(provider.parseTerm("parent( bob, ann )"))));
 		assertEquals(2, fact.size());
 
-		assertTrue(fact.remove(new ZPrologClause(provider.parsePrologTerm("parent( bob, pat )"))));
+		assertTrue(fact.remove(new ZPrologClause(provider.parseTerm("parent( bob, pat )"))));
 		assertEquals(1, fact.size());
 
-		assertTrue(fact.remove(new ZPrologClause(provider.parsePrologTerm("parent( pat, jim )"))));
+		assertTrue(fact.remove(new ZPrologClause(provider.parseTerm("parent( pat, jim )"))));
 		assertEquals(0, fact.size());
 
-		assertFalse(fact.remove(new ZPrologClause(provider.parsePrologTerm("parent( pat, jim )"))));
+		assertFalse(fact.remove(new ZPrologClause(provider.parseTerm("parent( pat, jim )"))));
 		assertEquals(0, fact.size());
 		assertTrue(fact.isEmpty());
 
 		assertTrue(rule.remove(
-				new ZPrologClause(provider.parsePrologTerm("grandparent( X, Z ) :- parent( X, Y ), parent( Y, Z )"))));
+				new ZPrologClause(provider.parseTerm("grandparent( X, Z ) :- parent( X, Y ), parent( Y, Z )"))));
 		assertEquals(0, rule.size());
 		assertTrue(rule.isEmpty());
 
@@ -320,15 +320,15 @@ public class PrologClausesTest extends PrologBaseTest {
 	public final void testEqualsObject() {
 
 		PrologClauses newFact = new ZPrologClauses("parent/2");
-		newFact.add(new ZPrologClause(provider.parsePrologTerm("parent( pam, bob )")));
-		newFact.add(new ZPrologClause(provider.parsePrologTerm("parent( tom, bob )")));
-		newFact.add(new ZPrologClause(provider.parsePrologTerm("parent( tom, liz )")));
-		newFact.add(new ZPrologClause(provider.parsePrologTerm("parent( bob, ann )")));
-		newFact.add(new ZPrologClause(provider.parsePrologTerm("parent( bob, pat )")));
-		newFact.add(new ZPrologClause(provider.parsePrologTerm("parent( pat, jim )")));
+		newFact.add(new ZPrologClause(provider.parseTerm("parent( pam, bob )")));
+		newFact.add(new ZPrologClause(provider.parseTerm("parent( tom, bob )")));
+		newFact.add(new ZPrologClause(provider.parseTerm("parent( tom, liz )")));
+		newFact.add(new ZPrologClause(provider.parseTerm("parent( bob, ann )")));
+		newFact.add(new ZPrologClause(provider.parseTerm("parent( bob, pat )")));
+		newFact.add(new ZPrologClause(provider.parseTerm("parent( pat, jim )")));
 
 		PrologClauses newRule = new ZPrologClauses("grandparent/2",
-				new ZPrologClause(provider.parsePrologTerm("grandparent( X, Z ) :- parent( X, Y ), parent( Y, Z )")));
+				new ZPrologClause(provider.parseTerm("grandparent( X, Z ) :- parent( X, Y ), parent( Y, Z )")));
 
 		assertEquals(fact, newFact);
 		assertEquals(rule, newRule);
@@ -363,7 +363,7 @@ public class PrologClausesTest extends PrologBaseTest {
 		assertArrayEquals(factsArray, fact.toArray());
 
 		Object[] rules = new Object[1];
-		rules[0] = new ZPrologClause(provider.parsePrologTerm("grandparent( X, Z ) :- parent( X, Y ), parent( Y, Z )"));
+		rules[0] = new ZPrologClause(provider.parseTerm("grandparent( X, Z ) :- parent( X, Y ), parent( Y, Z )"));
 
 		assertArrayEquals(rules, rule.toArray());
 
@@ -375,7 +375,7 @@ public class PrologClausesTest extends PrologBaseTest {
 		assertArrayEquals(factsArray, fact.toArray(new PrologClause[0]));
 
 		PrologClause[] rules = new PrologClause[1];
-		rules[0] = new ZPrologClause(provider.parsePrologTerm("grandparent( X, Z ) :- parent( X, Y ), parent( Y, Z )"));
+		rules[0] = new ZPrologClause(provider.parseTerm("grandparent( X, Z ) :- parent( X, Y ), parent( Y, Z )"));
 
 		assertArrayEquals(rules, rule.toArray(new PrologClause[0]));
 
@@ -423,9 +423,9 @@ public class PrologClausesTest extends PrologBaseTest {
 
 		PrologClause[] array = {
 
-				new ZPrologClause(provider.parsePrologTerm("parent( tom, liz )")),
+				new ZPrologClause(provider.parseTerm("parent( tom, liz )")),
 
-				new ZPrologClause(provider.parsePrologTerm("parent( bob, ann )"))
+				new ZPrologClause(provider.parseTerm("parent( bob, ann )"))
 
 		};
 

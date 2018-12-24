@@ -285,7 +285,7 @@ public class PrologParserTest extends PrologBaseTest {
 
 		PrologTerm[] structures = new PrologTerm[] { employeeStructure, departmentStructure, salaryStructure,
 				expression };
-		assertArrayEquals(structures, provider.parsePrologTerms(
+		assertArrayEquals(structures, provider.parseTerms(
 				"employee(Name,Dpto,Scale),department(Dpto,DepartmentName),salary(Scale,Money),Money < 2000"));
 
 	}

@@ -40,7 +40,9 @@ import static org.logicware.prolog.zprolog.ZPrologOperator.TOKEN_REM;
 import static org.logicware.prolog.zprolog.ZPrologOperator.TOKEN_TIMES;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 import org.logicware.prolog.AbstractTerm;
@@ -582,6 +584,22 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 			}
 		}
 		return false;
+	}
+
+	public final Map<String, PrologTerm> match(PrologTerm term) {
+		ZPrologStack stack = new ZPrologStack();
+		if (unify(fromTerm(term, ZPrologTerm.class), stack)) {
+			int l = stack.size();
+			Map<String, PrologTerm> s = new HashMap<String, PrologTerm>(l);
+			while (l > 0) {
+				ZPrologTerm variable = (ZPrologTerm) stack.pop();
+				s.put(variable.vName, variable.vValue);
+				variable.unbind();
+				l--;
+			}
+			return s;
+		}
+		return new HashMap<String, PrologTerm>();
 	}
 
 	public final int compareTo(PrologTerm term) {

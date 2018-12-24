@@ -135,11 +135,11 @@ public final class ZProlog extends AbstractProvider implements PrologProvider {
 		return new ZPrologTerm(this, left, operator, right);
 	}
 
-	public PrologTerm parsePrologTerm(String term) {
+	public PrologTerm parseTerm(String term) {
 		return new ZPrologParser(this).parseTerm(term);
 	}
 
-	public PrologTerm[] parsePrologTerms(String stringTerms) {
+	public PrologTerm[] parseTerms(String stringTerms) {
 		return new ZPrologParser(this).parseTerms(stringTerms);
 	}
 
