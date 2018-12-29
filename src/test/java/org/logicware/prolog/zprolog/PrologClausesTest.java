@@ -57,8 +57,7 @@ public class PrologClausesTest extends PrologBaseTest {
 		rule = new ZPrologClauses("grandparent/2",
 				new ZPrologClause(provider.parseTerm("grandparent( X, Z ) :- parent( X, Y ), parent( Y, Z )")));
 
-		ruleArray[0] = new ZPrologClause(
-				provider.parseTerm("grandparent( X, Z ) :- parent( X, Y ), parent( Y, Z )"));
+		ruleArray[0] = new ZPrologClause(provider.parseTerm("grandparent( X, Z ) :- parent( X, Y ), parent( Y, Z )"));
 
 		factsArray[0] = new ZPrologClause(provider.parseTerm("parent( pam, bob )"));
 		factsArray[1] = new ZPrologClause(provider.parseTerm("parent( tom, bob )"));
@@ -396,7 +395,7 @@ public class PrologClausesTest extends PrologBaseTest {
 
 		List<PrologClause> clauseList = Arrays.asList(factsArray);
 
-		PrologClauses clauses = new ZPrologClauses("empty/0");
+		PrologClauses clauses = new ZPrologClauses("parent/2");
 		assertEquals(0, clauses.size());
 
 		assertTrue(clauses.addAll(clauseList));
