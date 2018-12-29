@@ -2,7 +2,7 @@
  * #%L
  * prolobjectlink-jpi-zprolog
  * %%
- * Copyright (C) 2012 - 2017 Logicware Project
+ * Copyright (C) 2012 - 2017 WorkLogic Project
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
 	private static final int MINOR = 0;
 	private static final int MICRO = 0;
 	private static final String NAME = "ZProlog";
-	private static final String POWEREDBY = "LogicWare Project";
+	private static final String POWEREDBY = "WorkLogic Project";
 	private static final String COPYRIGHT = "Copyright(C) 2012-" + Calendar.YEAR;
 
 	// parser helper to build the goal from prolog string
