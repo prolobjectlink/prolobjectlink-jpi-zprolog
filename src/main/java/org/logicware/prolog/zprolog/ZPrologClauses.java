@@ -21,12 +21,12 @@ package org.logicware.prolog.zprolog;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
 
-import org.logicware.prolog.AbstractClauses;
 import org.logicware.prolog.PrologClause;
 import org.logicware.prolog.PrologClauses;
 
-public final class ZPrologClauses extends AbstractClauses implements PrologClauses {
+public final class ZPrologClauses extends LinkedList<PrologClause> implements PrologClauses {
 
 	private static final long serialVersionUID = 672192977298906786L;
 
