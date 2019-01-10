@@ -104,10 +104,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-import org.logicware.ArrayStack;
-import org.logicware.Stack;
-import org.logicware.logging.LoggerConstants;
-import org.logicware.logging.LoggerUtils;
 import org.logicware.prolog.PredicateIndicator;
 import org.logicware.prolog.PrologClause;
 import org.logicware.prolog.PrologClauses;
@@ -116,6 +112,10 @@ import org.logicware.prolog.PrologOperator;
 import org.logicware.prolog.PrologProgram;
 import org.logicware.prolog.PrologProvider;
 import org.logicware.prolog.PrologTerm;
+import org.worklogic.ArrayStack;
+import org.worklogic.Stack;
+import org.worklogic.logging.LoggerConstants;
+import org.worklogic.logging.LoggerUtils;
 
 abstract class ZPrologRuntime extends ZPrologMachine {
 

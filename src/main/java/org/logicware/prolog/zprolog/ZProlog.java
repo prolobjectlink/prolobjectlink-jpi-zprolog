@@ -21,12 +21,8 @@ package org.logicware.prolog.zprolog;
 
 import static org.logicware.prolog.PrologTermType.EMPTY_TYPE;
 
-import java.io.Reader;
-import java.util.Set;
-
 import org.logicware.prolog.AbstractProvider;
 import org.logicware.prolog.PrologAtom;
-import org.logicware.prolog.PrologClause;
 import org.logicware.prolog.PrologConverter;
 import org.logicware.prolog.PrologDouble;
 import org.logicware.prolog.PrologEngine;
@@ -151,7 +147,5 @@ public final class ZProlog extends AbstractProvider implements PrologProvider {
 	public String toString() {
 		return "ZPrologProvider [converter=" + converter + "]";
 	}
-
-	
 
 }

@@ -37,7 +37,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.logicware.Licenses;
 import org.logicware.prolog.PredicateIndicator;
 import org.logicware.prolog.PrologAtom;
 import org.logicware.prolog.PrologClause;
@@ -48,6 +47,7 @@ import org.logicware.prolog.PrologOperator;
 import org.logicware.prolog.PrologQuery;
 import org.logicware.prolog.PrologStructure;
 import org.logicware.prolog.PrologTerm;
+import org.worklogic.Licenses;
 
 public class PrologEngineTest extends PrologBaseTest {
 

@@ -24,12 +24,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.logicware.RuntimeError;
 import org.logicware.prolog.AbstractEngine;
 import org.logicware.prolog.AbstractQuery;
 import org.logicware.prolog.PrologProvider;
 import org.logicware.prolog.PrologQuery;
 import org.logicware.prolog.PrologTerm;
+import org.worklogic.RuntimeError;
 
 public final class ZPrologQuery extends AbstractQuery implements PrologQuery {
 
@@ -62,7 +62,7 @@ public final class ZPrologQuery extends AbstractQuery implements PrologQuery {
 
 	ZPrologQuery(AbstractEngine engine, PrologTerm term, PrologTerm[] terms) {
 		super(engine);
-		goal = new ZPrologGoal(term,terms);
+		goal = new ZPrologGoal(term, terms);
 		this.query = "" + goal + "";
 		hasSolution = engine.unwrap(ZPrologEngine.class).run(goal);
 	}

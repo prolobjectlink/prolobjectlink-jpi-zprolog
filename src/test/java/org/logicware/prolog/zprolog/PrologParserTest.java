@@ -130,8 +130,7 @@ public class PrologParserTest extends PrologBaseTest {
 				provider.newInteger(3)), parser.parseTerm("3.14*10/90+3"));
 
 		assertEquals(
-				provider.newStructure("-",
-						provider.newStructure("*", provider.newInteger(3), provider.newInteger(10)),
+				provider.newStructure("-", provider.newStructure("*", provider.newInteger(3), provider.newInteger(10)),
 						provider.newStructure("*", provider.newInteger(90), provider.newInteger(3))),
 				parser.parseTerm("3.14*10-90*3"));
 

@@ -22,13 +22,13 @@ package org.logicware.prolog.zprolog;
 import java.util.Calendar;
 import java.util.List;
 
-import org.logicware.Licenses;
 import org.logicware.prolog.PrologClause;
 import org.logicware.prolog.PrologEngine;
 import org.logicware.prolog.PrologProgram;
 import org.logicware.prolog.PrologProvider;
 import org.logicware.prolog.PrologQuery;
 import org.logicware.prolog.PrologTerm;
+import org.worklogic.Licenses;
 
 public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
 
