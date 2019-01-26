@@ -36,7 +36,7 @@ public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
 	private static final int MINOR = 0;
 	private static final int MICRO = 0;
 	private static final String NAME = "ZProlog";
-	private static final String POWEREDBY = "WorkLogic Project";
+	private static final String POWEREDBY = "Prolobjectlink Project";
 	private static final String COPYRIGHT = "Copyright(C) 2012-" + Calendar.YEAR;
 
 	// parser helper to build the goal from prolog string
