@@ -104,10 +104,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-import org.prolobjectlink.ArrayStack;
-import org.prolobjectlink.Stack;
 import org.prolobjectlink.logging.LoggerConstants;
 import org.prolobjectlink.logging.LoggerUtils;
+import org.prolobjectlink.prolog.ArrayStack;
 import org.prolobjectlink.prolog.PredicateIndicator;
 import org.prolobjectlink.prolog.PrologClause;
 import org.prolobjectlink.prolog.PrologClauses;
@@ -116,6 +115,7 @@ import org.prolobjectlink.prolog.PrologOperator;
 import org.prolobjectlink.prolog.PrologProgram;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologTerm;
+import org.prolobjectlink.prolog.Stack;
 
 abstract class ZPrologRuntime extends ZPrologMachine {
 

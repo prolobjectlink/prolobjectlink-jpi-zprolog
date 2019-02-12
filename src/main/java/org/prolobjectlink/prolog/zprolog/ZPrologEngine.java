@@ -22,7 +22,7 @@ package org.prolobjectlink.prolog.zprolog;
 import java.util.Calendar;
 import java.util.List;
 
-import org.prolobjectlink.Licenses;
+import org.prolobjectlink.prolog.Licenses;
 import org.prolobjectlink.prolog.PrologClause;
 import org.prolobjectlink.prolog.PrologEngine;
 import org.prolobjectlink.prolog.PrologProgram;

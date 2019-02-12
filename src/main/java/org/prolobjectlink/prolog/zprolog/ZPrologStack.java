@@ -19,8 +19,8 @@
  */
 package org.prolobjectlink.prolog.zprolog;
 
-import org.prolobjectlink.ArrayStack;
-import org.prolobjectlink.Stack;
+import org.prolobjectlink.prolog.ArrayStack;
+import org.prolobjectlink.prolog.Stack;
 
 final class ZPrologStack {
 
