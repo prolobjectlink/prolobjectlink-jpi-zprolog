@@ -299,17 +299,17 @@ public class PrologClauseBuilderTest extends PrologBaseTest {
 
 		assertFalse(builder.begin("fibonacci", provider.newInteger(1), provider.newInteger(1)).clause());
 		assertFalse(builder.begin("fibonacci", provider.newInteger(2), provider.newInteger(1)).clause());
-		assertFalse(builder.begin("fibonacci", n, f).neck(n, ">", 2).comma(n1, "is", e2).comma("fibonacci", n1, f1)
+		assertFalse(builder.begin("fibonacci", n, f).neck(n, ">", provider.newInteger(2)).comma(n1, "is", e2).comma("fibonacci", n1, f1)
 				.comma(e5).comma("fibonacci", n2, f2).comma(e7).clause());
 
 		builder.begin("fibonacci", provider.newInteger(1), provider.newInteger(1)).assertz();
 		builder.begin("fibonacci", provider.newInteger(2), provider.newInteger(1)).assertz();
-		builder.begin("fibonacci", n, f).neck(n, ">", 2).comma(n1, "is", e2).comma("fibonacci", n1, f1).comma(e5)
+		builder.begin("fibonacci", n, f).neck(n, ">", provider.newInteger(2)).comma(n1, "is", e2).comma("fibonacci", n1, f1).comma(e5)
 				.comma("fibonacci", n2, f2).comma(e7).assertz();
 
 		assertTrue(builder.begin("fibonacci", provider.newInteger(1), provider.newInteger(1)).clause());
 		assertTrue(builder.begin("fibonacci", provider.newInteger(2), provider.newInteger(1)).clause());
-		assertTrue(builder.begin("fibonacci", n, f).neck(n, ">", 2).comma(n1, "is", e2).comma("fibonacci", n1, f1)
+		assertTrue(builder.begin("fibonacci", n, f).neck(n, ">", provider.newInteger(2)).comma(n1, "is", e2).comma("fibonacci", n1, f1)
 				.comma(e5).comma("fibonacci", n2, f2).comma(e7).clause());
 
 		PrologInteger seven = provider.newInteger(7);
