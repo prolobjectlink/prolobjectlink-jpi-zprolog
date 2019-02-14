@@ -491,14 +491,14 @@ abstract class ZPrologRuntime extends ZPrologMachine {
 				clause = current_goal.nextClause();
 
 				variables = new ZPrologTerm[MAX_VAR_NUM];
-				ZPrologTerm goal_term = unwrap(current_goal.getTerm(), ZPrologTerm.class);
-				ZPrologTerm clause_term = unwrap(clause.getTerm(), ZPrologTerm.class).refresh(variables);
+				ZPrologTerm goal_term = (ZPrologTerm) current_goal.getTerm();
+				ZPrologTerm clause_term = ((ZPrologTerm) clause.getTerm()).refresh(variables);
 
 				// choice point elimination optimization
 				while (!goal_term.unify(clause_term) && current_goal.hasNextClause()) {
 					clause = current_goal.nextClause();
-					goal_term = unwrap(current_goal.getTerm(), ZPrologTerm.class);
-					clause_term = unwrap(clause.getTerm(), ZPrologTerm.class).refresh(variables);
+					goal_term = (ZPrologTerm) current_goal.getTerm();
+					clause_term = ((ZPrologTerm) current_goal.getTerm()).refresh(variables);
 				}
 
 				// choice point creation if it is possible

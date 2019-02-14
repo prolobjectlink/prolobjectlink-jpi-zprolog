@@ -48,10 +48,6 @@ import org.prolobjectlink.prolog.PrologOperator;
 import org.prolobjectlink.prolog.PrologQuery;
 import org.prolobjectlink.prolog.PrologStructure;
 import org.prolobjectlink.prolog.PrologTerm;
-import org.prolobjectlink.prolog.zprolog.ZPrologClause;
-import org.prolobjectlink.prolog.zprolog.ZPrologEngine;
-import org.prolobjectlink.prolog.zprolog.ZPrologRuntime;
-import org.prolobjectlink.prolog.zprolog.ZPrologTerm;
 
 public class PrologEngineTest extends PrologBaseTest {
 
@@ -1027,7 +1023,7 @@ public class PrologEngineTest extends PrologBaseTest {
 				pis.add(pi);
 			}
 		}
-		for (PrologClause clause : engine.unwrap(ZPrologEngine.class).program.getClauses().values()
+		for (PrologClause clause : ((ZPrologEngine) engine).program.getClauses().values()
 				.toArray(new ZPrologClause[0])) {
 			String functor = clause.getFunctor();
 			int arity = clause.getArity();

@@ -24,7 +24,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import org.prolobjectlink.AbstractIterator;
+import org.prolobjectlink.prolog.AbstractIterator;
 import org.prolobjectlink.prolog.PredicateIndicator;
 import org.prolobjectlink.prolog.PrologClause;
 import org.prolobjectlink.prolog.PrologIndicator;

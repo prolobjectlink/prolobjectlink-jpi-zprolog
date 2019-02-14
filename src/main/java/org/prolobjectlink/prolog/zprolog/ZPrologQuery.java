@@ -50,21 +50,21 @@ public final class ZPrologQuery extends AbstractQuery implements PrologQuery {
 		this.query = query;
 		PrologProvider provider = engine.getProvider();
 		goal = new ZPrologParser(provider).parseGoal(query);
-		hasSolution = engine.unwrap(ZPrologEngine.class).run(goal);
+		hasSolution = ((ZPrologEngine) engine).run(goal);
 	}
 
 	ZPrologQuery(AbstractEngine engine, PrologTerm[] goals) {
 		super(engine);
 		goal = new ZPrologGoal(goals);
 		this.query = "" + goal + "";
-		hasSolution = engine.unwrap(ZPrologEngine.class).run(goal);
+		hasSolution = ((ZPrologEngine) engine).run(goal);
 	}
 
 	ZPrologQuery(AbstractEngine engine, PrologTerm term, PrologTerm[] terms) {
 		super(engine);
 		goal = new ZPrologGoal(term, terms);
 		this.query = "" + goal + "";
-		hasSolution = engine.unwrap(ZPrologEngine.class).run(goal);
+		hasSolution = ((ZPrologEngine) engine).run(goal);
 	}
 
 	/**
@@ -96,7 +96,7 @@ public final class ZPrologQuery extends AbstractQuery implements PrologQuery {
 
 	public final PrologTerm[] oneSolution() {
 		int index = 0;
-		ZPrologStack stack = engine.unwrap(ZPrologEngine.class).stack;
+		ZPrologStack stack = ((ZPrologEngine) engine).stack;
 		PrologTerm[] result = new PrologTerm[stack.getMaxVarNumber()];
 		for (int i = 0; i < stack.size(); i++) {
 			if (stack.get(i) instanceof ZPrologTerm) {
@@ -111,7 +111,7 @@ public final class ZPrologQuery extends AbstractQuery implements PrologQuery {
 	}
 
 	public final Map<String, PrologTerm> oneVariablesSolution() {
-		ZPrologStack stack = engine.unwrap(ZPrologEngine.class).stack;
+		ZPrologStack stack = ((ZPrologEngine) engine).stack;
 		Map<String, PrologTerm> solution = new HashMap<String, PrologTerm>(stack.getMaxVarNumber());
 		for (int i = 0; i < stack.size(); i++) {
 			if (stack.get(i) instanceof ZPrologTerm) {
@@ -129,7 +129,7 @@ public final class ZPrologQuery extends AbstractQuery implements PrologQuery {
 	public final PrologTerm[] nextSolution() {
 		hasSolution = false;
 		PrologTerm[] solution = oneSolution();
-		ZPrologEngine e = engine.unwrap(ZPrologEngine.class);
+		ZPrologEngine e = ((ZPrologEngine) engine);
 		hasMoreSolution = (e.backtrack()) ? e.solve() : false;
 		return solution;
 	}
@@ -137,7 +137,7 @@ public final class ZPrologQuery extends AbstractQuery implements PrologQuery {
 	public final Map<String, PrologTerm> nextVariablesSolution() {
 		hasSolution = false;
 		Map<String, PrologTerm> solution = oneVariablesSolution();
-		ZPrologEngine e = engine.unwrap(ZPrologEngine.class);
+		ZPrologEngine e = ((ZPrologEngine) engine);
 		hasMoreSolution = e.backtrack() ? e.solve() : false;
 		return solution;
 	}
