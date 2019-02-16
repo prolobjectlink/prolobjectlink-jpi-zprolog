@@ -29,6 +29,7 @@ import org.prolobjectlink.prolog.PrologEngine;
 import org.prolobjectlink.prolog.PrologFloat;
 import org.prolobjectlink.prolog.PrologInteger;
 import org.prolobjectlink.prolog.PrologList;
+import org.prolobjectlink.prolog.PrologLogger;
 import org.prolobjectlink.prolog.PrologLong;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologStructure;
@@ -38,6 +39,7 @@ import org.prolobjectlink.prolog.PrologVariable;
 public final class ZProlog extends AbstractProvider implements PrologProvider {
 
 	static int vIndexer = 0;
+	static final PrologLogger logger = new ZPrologLogger();
 
 	public ZProlog() {
 		super(new ZPrologConverter());
@@ -141,6 +143,10 @@ public final class ZProlog extends AbstractProvider implements PrologProvider {
 
 	public PrologTerm[] parseTerms(String stringTerms) {
 		return new ZPrologParser(this).parseTerms(stringTerms);
+	}
+
+	public PrologLogger getLogger() {
+		return logger;
 	}
 
 	@Override
