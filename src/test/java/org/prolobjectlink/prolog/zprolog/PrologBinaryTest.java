@@ -2,8 +2,8 @@ package org.prolobjectlink.prolog.zprolog;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.prolobjectlink.logging.LoggerConstants.FILE_NOT_FOUND;
-import static org.prolobjectlink.logging.LoggerConstants.IO;
+import static org.prolobjectlink.prolog.LoggerConstants.FILE_NOT_FOUND;
+import static org.prolobjectlink.prolog.LoggerConstants.IO;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,9 +15,8 @@ import java.util.Properties;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.prolobjectlink.logging.LoggerUtils;
 
-public class PrologDistributionTest {
+public class PrologBinaryTest extends PrologBaseTest {
 
 	@Before
 	public void setUp() throws Exception {
@@ -76,22 +75,22 @@ public class PrologDistributionTest {
 			assertTrue(b.toString().contains(ZPrologConsole.class.getName()));
 
 		} catch (FileNotFoundException e) {
-			LoggerUtils.error(getClass(), FILE_NOT_FOUND, e);
+			provider.getLogger().error(getClass(), FILE_NOT_FOUND, e);
 		} catch (IOException e) {
-			LoggerUtils.error(getClass(), IO, e);
+			provider.getLogger().error(getClass(), IO, e);
 		} finally {
 			if (reader != null) {
 				try {
 					reader.close();
 				} catch (IOException e) {
-					LoggerUtils.error(getClass(), IO, e);
+					provider.getLogger().error(getClass(), IO, e);
 				}
 			}
 			if (buffer != null) {
 				try {
 					buffer.close();
 				} catch (IOException e) {
-					LoggerUtils.error(getClass(), IO, e);
+					provider.getLogger().error(getClass(), IO, e);
 				}
 			}
 		}

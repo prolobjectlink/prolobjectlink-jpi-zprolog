@@ -104,9 +104,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-import org.prolobjectlink.logging.LoggerConstants;
-import org.prolobjectlink.logging.LoggerUtils;
 import org.prolobjectlink.prolog.ArrayStack;
+import org.prolobjectlink.prolog.LoggerConstants;
 import org.prolobjectlink.prolog.PredicateIndicator;
 import org.prolobjectlink.prolog.PrologClause;
 import org.prolobjectlink.prolog.PrologClauses;
@@ -418,7 +417,7 @@ abstract class ZPrologRuntime extends ZPrologMachine {
 
 			File file = new File(path);
 			if (!file.exists() && !file.createNewFile()) {
-				LoggerUtils.error(getClass(), message);
+				getLogger().error(getClass(), message);
 			}
 
 			if (systemPath.isEmpty()) {
@@ -464,7 +463,7 @@ abstract class ZPrologRuntime extends ZPrologMachine {
 			writer.print(program);
 			writer.close();
 		} catch (FileNotFoundException e) {
-			LoggerUtils.error(getClass(), LoggerConstants.FILE_NOT_FOUND, e);
+			getLogger().error(getClass(), LoggerConstants.FILE_NOT_FOUND, e);
 		} finally {
 			long endTime = System.currentTimeMillis();
 			cputime = (endTime - startTime) / 1000F;
