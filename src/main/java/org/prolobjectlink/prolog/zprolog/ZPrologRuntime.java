@@ -105,11 +105,11 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.prolobjectlink.prolog.ArrayStack;
-import org.prolobjectlink.prolog.LoggerConstants;
 import org.prolobjectlink.prolog.PredicateIndicator;
 import org.prolobjectlink.prolog.PrologClause;
 import org.prolobjectlink.prolog.PrologClauses;
 import org.prolobjectlink.prolog.PrologIndicator;
+import org.prolobjectlink.prolog.PrologLogger;
 import org.prolobjectlink.prolog.PrologOperator;
 import org.prolobjectlink.prolog.PrologProgram;
 import org.prolobjectlink.prolog.PrologProvider;
@@ -463,7 +463,7 @@ abstract class ZPrologRuntime extends ZPrologMachine {
 			writer.print(program);
 			writer.close();
 		} catch (FileNotFoundException e) {
-			getLogger().error(getClass(), LoggerConstants.FILE_NOT_FOUND, e);
+			getLogger().error(getClass(), PrologLogger.FILE_NOT_FOUND, e);
 		} finally {
 			long endTime = System.currentTimeMillis();
 			cputime = (endTime - startTime) / 1000F;

@@ -26,7 +26,7 @@ import java.io.PrintStream;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.prolobjectlink.prolog.LoggerConstants;
+import org.prolobjectlink.prolog.PrologLogger;
 import org.prolobjectlink.prolog.PrologEngine;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologQuery;
@@ -107,7 +107,7 @@ class ZPrologMain {
 			}
 
 		} catch (IOException e) {
-			ZProlog.logger.error(ZPrologMain.class, LoggerConstants.IO, e);
+			ZProlog.logger.error(ZPrologMain.class, PrologLogger.IO, e);
 		}
 
 	}
