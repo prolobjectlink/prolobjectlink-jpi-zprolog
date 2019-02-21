@@ -114,7 +114,6 @@ import org.prolobjectlink.prolog.PrologOperator;
 import org.prolobjectlink.prolog.PrologProgram;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologTerm;
-import org.prolobjectlink.prolog.Stack;
 
 abstract class ZPrologRuntime extends ZPrologMachine {
 
@@ -155,7 +154,7 @@ abstract class ZPrologRuntime extends ZPrologMachine {
 	protected boolean hasMoreSolution;
 
 	// key of dynamics predicates
-	protected final Stack<File> systemPath = new ArrayStack<File>();
+	protected final ArrayStack<File> systemPath = new ArrayStack<File>();
 
 	// statistics collector map
 	protected final Map<PrologTerm, PrologTerm> statistics = new HashMap<PrologTerm, PrologTerm>();

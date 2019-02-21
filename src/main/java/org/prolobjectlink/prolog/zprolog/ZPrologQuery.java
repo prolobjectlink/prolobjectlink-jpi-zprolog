@@ -29,7 +29,7 @@ import org.prolobjectlink.prolog.AbstractQuery;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologQuery;
 import org.prolobjectlink.prolog.PrologTerm;
-import org.prolobjectlink.prolog.RuntimeError;
+import org.prolobjectlink.prolog.PrologError;
 
 public final class ZPrologQuery extends AbstractQuery implements PrologQuery {
 
@@ -162,7 +162,7 @@ public final class ZPrologQuery extends AbstractQuery implements PrologQuery {
 			}
 			return allSolutions;
 		}
-		throw new RuntimeError("Impossible find " + n + " solutions");
+		throw new PrologError("Impossible find " + n + " solutions");
 	}
 
 	public final Map<String, PrologTerm>[] nVariablesSolutions(int n) {
@@ -176,7 +176,7 @@ public final class ZPrologQuery extends AbstractQuery implements PrologQuery {
 			}
 			return solutionMaps;
 		}
-		throw new RuntimeError("Impossible find " + n + " solutions");
+		throw new PrologError("Impossible find " + n + " solutions");
 	}
 
 	public final PrologTerm[][] allSolutions() {
