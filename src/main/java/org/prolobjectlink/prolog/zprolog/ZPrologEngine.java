@@ -19,6 +19,7 @@
  */
 package org.prolobjectlink.prolog.zprolog;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -158,6 +159,10 @@ public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
 		if (program != null) {
 			program.clear();
 		}
+	}
+
+	public final List<String> verify() {
+		return Arrays.asList("OK");
 	}
 
 }
