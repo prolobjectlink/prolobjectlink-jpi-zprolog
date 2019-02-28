@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.prolobjectlink.prolog.AbstractIterator;
-import org.prolobjectlink.prolog.PredicateIndicator;
 import org.prolobjectlink.prolog.PrologClause;
 import org.prolobjectlink.prolog.PrologIndicator;
 import org.prolobjectlink.prolog.PrologTerm;
@@ -159,7 +158,7 @@ public class ZPrologClause /* extends AbstractClause */ implements PrologClause 
 	public PrologIndicator getPrologIndicator() {
 		int arity = getArity();
 		String functor = getFunctor();
-		return new PredicateIndicator(functor, arity);
+		return new ZPrologIndicator(functor, arity);
 	}
 
 	public final Iterator<PrologTerm> getBodyIterator() {

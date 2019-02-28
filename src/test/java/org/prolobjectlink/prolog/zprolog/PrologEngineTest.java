@@ -38,7 +38,6 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.prolobjectlink.prolog.Licenses;
-import org.prolobjectlink.prolog.PredicateIndicator;
 import org.prolobjectlink.prolog.PrologAtom;
 import org.prolobjectlink.prolog.PrologClause;
 import org.prolobjectlink.prolog.PrologClauses;
@@ -1019,7 +1018,7 @@ public class PrologEngineTest extends PrologBaseTest {
 			for (PrologClause clause : clauses) {
 				String functor = clause.getFunctor();
 				int arity = clause.getArity();
-				PrologIndicator pi = new PredicateIndicator(functor, arity);
+				PrologIndicator pi = new ZPrologIndicator(functor, arity);
 				pis.add(pi);
 			}
 		}
@@ -1027,7 +1026,7 @@ public class PrologEngineTest extends PrologBaseTest {
 				.toArray(new ZPrologClause[0])) {
 			String functor = clause.getFunctor();
 			int arity = clause.getArity();
-			PrologIndicator pi = new PredicateIndicator(functor, arity);
+			PrologIndicator pi = new ZPrologIndicator(functor, arity);
 			pis.add(pi);
 		}
 		assertEquals(pis, engine.currentPredicates());

@@ -105,7 +105,6 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import org.prolobjectlink.prolog.ArrayStack;
-import org.prolobjectlink.prolog.PredicateIndicator;
 import org.prolobjectlink.prolog.PrologClause;
 import org.prolobjectlink.prolog.PrologClauses;
 import org.prolobjectlink.prolog.PrologIndicator;
@@ -786,7 +785,7 @@ abstract class ZPrologRuntime extends ZPrologMachine {
 			for (PrologClause c : clauses) {
 				String functor = c.getFunctor();
 				int arity = c.getArity();
-				PrologIndicator pi = new PredicateIndicator(functor, arity);
+				PrologIndicator pi = new ZPrologIndicator(functor, arity);
 				pis.add(pi);
 			}
 		}
@@ -799,7 +798,7 @@ abstract class ZPrologRuntime extends ZPrologMachine {
 			for (PrologClause c : clauses) {
 				String functor = c.getFunctor();
 				int arity = c.getArity();
-				PrologIndicator pi = new PredicateIndicator(functor, arity);
+				PrologIndicator pi = new ZPrologIndicator(functor, arity);
 				pis.add(pi);
 			}
 		}
