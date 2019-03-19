@@ -77,6 +77,10 @@ public final class ZProlog extends AbstractProvider implements PrologProvider {
 		return ZPrologTerm.EMPTY_TERM;
 	}
 
+	public PrologTerm prologInclude(String file) {
+		return newStructure("ensure_loaded", newAtom(file));
+	}
+
 	public PrologEngine newEngine() {
 		return new ZPrologEngine(this);
 	}
