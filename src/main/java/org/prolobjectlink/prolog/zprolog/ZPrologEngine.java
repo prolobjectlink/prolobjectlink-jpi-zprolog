@@ -27,6 +27,7 @@ import org.prolobjectlink.prolog.Licenses;
 import org.prolobjectlink.prolog.PrologClause;
 import org.prolobjectlink.prolog.PrologEngine;
 import org.prolobjectlink.prolog.PrologProgram;
+import org.prolobjectlink.prolog.PrologProgrammer;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologQuery;
 import org.prolobjectlink.prolog.PrologTerm;
@@ -133,6 +134,10 @@ public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
 
 	public final int getProgramSize() {
 		return program.size();
+	}
+
+	public final PrologProgrammer getProgrammer() {
+		return new ZPrologProgrammer(provider);
 	}
 
 	public final String getPoweredby() {
