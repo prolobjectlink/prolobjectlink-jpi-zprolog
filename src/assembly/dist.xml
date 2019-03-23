@@ -66,6 +66,15 @@
 			<directory>${project.basedir}/obj</directory>
 			<outputDirectory>obj</outputDirectory>
 		</fileSet>
+		
+		<!-- install scripts -->
+		<fileSet>
+			<directory>${project.basedir}</directory>
+			<outputDirectory>/</outputDirectory>
+			<includes>
+				<include>install.*</include>
+			</includes>
+		</fileSet>
 
 	</fileSets>
 	<dependencySets>
