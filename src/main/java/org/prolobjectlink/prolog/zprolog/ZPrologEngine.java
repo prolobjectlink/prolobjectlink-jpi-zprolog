@@ -23,6 +23,8 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.script.ScriptEngine;
+
 import org.prolobjectlink.prolog.Licenses;
 import org.prolobjectlink.prolog.PrologClause;
 import org.prolobjectlink.prolog.PrologEngine;
@@ -30,6 +32,7 @@ import org.prolobjectlink.prolog.PrologProgram;
 import org.prolobjectlink.prolog.PrologProgrammer;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologQuery;
+import org.prolobjectlink.prolog.PrologScript;
 import org.prolobjectlink.prolog.PrologTerm;
 
 public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
@@ -130,6 +133,10 @@ public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
 
 	public PrologQuery query(PrologTerm term, PrologTerm... terms) {
 		return new ZPrologQuery(this, term, terms);
+	}
+
+	public final ScriptEngine getPrologScript() {
+		return new PrologScript(new ZPrologScriptFactory(this));
 	}
 
 	public final int getProgramSize() {
