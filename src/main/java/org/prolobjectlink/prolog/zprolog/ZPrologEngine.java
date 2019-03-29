@@ -32,7 +32,7 @@ import org.prolobjectlink.prolog.PrologProgram;
 import org.prolobjectlink.prolog.PrologProgrammer;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologQuery;
-import org.prolobjectlink.prolog.PrologScript;
+import org.prolobjectlink.prolog.PrologScriptEngine;
 import org.prolobjectlink.prolog.PrologTerm;
 
 public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
@@ -136,7 +136,7 @@ public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
 	}
 
 	public final ScriptEngine getPrologScript() {
-		return new PrologScript(new ZPrologScriptFactory(this));
+		return new PrologScriptEngine(new ZPrologScriptFactory(this));
 	}
 
 	public final int getProgramSize() {

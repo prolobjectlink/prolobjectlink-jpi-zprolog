@@ -21,6 +21,8 @@ package org.prolobjectlink.prolog.zprolog;
 
 import static org.prolobjectlink.prolog.PrologTermType.EMPTY_TYPE;
 
+import javax.script.ScriptEngineFactory;
+
 import org.prolobjectlink.prolog.AbstractProvider;
 import org.prolobjectlink.prolog.PrologAtom;
 import org.prolobjectlink.prolog.PrologConverter;
@@ -147,6 +149,10 @@ public final class ZProlog extends AbstractProvider implements PrologProvider {
 
 	public PrologTerm[] parseTerms(String stringTerms) {
 		return new ZPrologParser(this).parseTerms(stringTerms);
+	}
+
+	public ScriptEngineFactory getScriptFactory() {
+		return new ZPrologScriptFactory(newEngine());
 	}
 
 	public PrologLogger getLogger() {
