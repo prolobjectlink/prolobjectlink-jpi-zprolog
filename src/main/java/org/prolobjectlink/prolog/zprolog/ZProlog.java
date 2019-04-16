@@ -38,7 +38,7 @@ import org.prolobjectlink.prolog.PrologStructure;
 import org.prolobjectlink.prolog.PrologTerm;
 import org.prolobjectlink.prolog.PrologVariable;
 
-public final class ZProlog extends AbstractProvider implements PrologProvider {
+public class ZProlog extends AbstractProvider implements PrologProvider {
 
 	static int vIndexer = 0;
 	static final PrologLogger logger = new ZPrologLogger();
