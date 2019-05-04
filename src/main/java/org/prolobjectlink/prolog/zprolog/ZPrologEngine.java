@@ -135,7 +135,7 @@ public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
 	}
 
 	public final ScriptEngine getPrologScript() {
-		return new PrologScriptEngine(new ZPrologScriptFactory(this));
+		return new PrologScriptEngine(new ZPrologScriptFactory(this), this);
 	}
 
 	public final int getProgramSize() {
