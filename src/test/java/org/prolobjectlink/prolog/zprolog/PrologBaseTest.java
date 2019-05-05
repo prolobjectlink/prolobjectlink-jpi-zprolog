@@ -23,6 +23,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import javax.script.ScriptEngineManager;
+
 import org.prolobjectlink.prolog.Prolog;
 import org.prolobjectlink.prolog.PrologAtom;
 import org.prolobjectlink.prolog.PrologDouble;
@@ -31,7 +33,6 @@ import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologQuery;
 import org.prolobjectlink.prolog.PrologTerm;
 import org.prolobjectlink.prolog.PrologVariable;
-import org.prolobjectlink.prolog.zprolog.ZProlog;
 
 /** @author Jose Zalacain @since 1.0 */
 public abstract class PrologBaseTest {
@@ -51,6 +52,7 @@ public abstract class PrologBaseTest {
 	protected String department = "department";
 
 	protected static final PrologProvider provider = Prolog.getProvider(ZProlog.class);
+	protected static final ScriptEngineManager manager = new ScriptEngineManager();
 
 	protected PrologTerm nil = provider.prologNil();
 	protected PrologTerm empty = provider.prologEmpty();
