@@ -36,10 +36,10 @@ import org.prolobjectlink.prolog.PrologTerm;
 
 public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
 
-	private static final int MAJOR = 1;
-	private static final int MINOR = 0;
-	private static final int MICRO = 0;
-	private static final String NAME = "ZProlog";
+	static final int MAJOR = 1;
+	static final int MINOR = 0;
+	static final int MICRO = 0;
+	static final String NAME = "ZProlog";
 	private static final String POWEREDBY = "Prolobjectlink Project";
 	private static final String COPYRIGHT = "Copyright(C) 2012-" + Calendar.YEAR;
 

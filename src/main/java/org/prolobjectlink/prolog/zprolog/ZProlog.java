@@ -20,6 +20,9 @@
 package org.prolobjectlink.prolog.zprolog;
 
 import static org.prolobjectlink.prolog.PrologTermType.EMPTY_TYPE;
+import static org.prolobjectlink.prolog.zprolog.ZPrologEngine.MAJOR;
+import static org.prolobjectlink.prolog.zprolog.ZPrologEngine.MICRO;
+import static org.prolobjectlink.prolog.zprolog.ZPrologEngine.MINOR;
 
 import javax.script.ScriptEngineFactory;
 
@@ -41,6 +44,8 @@ import org.prolobjectlink.prolog.PrologVariable;
 public class ZProlog extends AbstractProvider implements PrologProvider {
 
 	static int vIndexer = 0;
+	public static final String VERSION = MAJOR + "." + MINOR + "." + MICRO;
+	public static final String NAME = "ZProlog";
 	static final PrologLogger logger = new ZPrologLogger();
 
 	public ZProlog() {
