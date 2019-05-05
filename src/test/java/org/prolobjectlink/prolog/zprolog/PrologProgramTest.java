@@ -40,11 +40,6 @@ import org.prolobjectlink.prolog.PrologClause;
 import org.prolobjectlink.prolog.PrologClauses;
 import org.prolobjectlink.prolog.PrologGoal;
 import org.prolobjectlink.prolog.PrologProgram;
-import org.prolobjectlink.prolog.zprolog.ZPrologClause;
-import org.prolobjectlink.prolog.zprolog.ZPrologClauses;
-import org.prolobjectlink.prolog.zprolog.ZPrologGoal;
-import org.prolobjectlink.prolog.zprolog.ZPrologProgram;
-import org.prolobjectlink.prolog.zprolog.ZPrologTerm;
 
 public class PrologProgramTest extends PrologBaseTest {
 

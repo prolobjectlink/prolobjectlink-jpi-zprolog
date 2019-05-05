@@ -34,8 +34,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.prolobjectlink.prolog.PrologClause;
 import org.prolobjectlink.prolog.PrologClauses;
-import org.prolobjectlink.prolog.zprolog.ZPrologClause;
-import org.prolobjectlink.prolog.zprolog.ZPrologClauses;
 
 public class PrologClausesTest extends PrologBaseTest {
 

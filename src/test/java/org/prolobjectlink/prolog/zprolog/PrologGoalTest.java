@@ -26,11 +26,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.prolobjectlink.prolog.PrologClauses;
 import org.prolobjectlink.prolog.PrologProgram;
-import org.prolobjectlink.prolog.zprolog.ZPrologClause;
-import org.prolobjectlink.prolog.zprolog.ZPrologClauses;
-import org.prolobjectlink.prolog.zprolog.ZPrologGoal;
-import org.prolobjectlink.prolog.zprolog.ZPrologProgram;
-import org.prolobjectlink.prolog.zprolog.ZPrologRuntime;
 
 public class PrologGoalTest extends PrologBaseTest {
 

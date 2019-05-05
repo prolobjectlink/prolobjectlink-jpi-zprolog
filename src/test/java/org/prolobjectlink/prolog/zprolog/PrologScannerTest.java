@@ -28,9 +28,6 @@ import java.io.StringReader;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.prolobjectlink.prolog.zprolog.ZPrologOperator;
-import org.prolobjectlink.prolog.zprolog.ZPrologScanner;
-import org.prolobjectlink.prolog.zprolog.ZPrologToken;
 
 public class PrologScannerTest {
 

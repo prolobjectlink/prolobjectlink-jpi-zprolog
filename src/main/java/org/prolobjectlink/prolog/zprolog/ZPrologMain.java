@@ -26,8 +26,8 @@ import java.io.PrintStream;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.prolobjectlink.prolog.PrologLogger;
 import org.prolobjectlink.prolog.PrologEngine;
+import org.prolobjectlink.prolog.PrologLogger;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologQuery;
 import org.prolobjectlink.prolog.PrologTerm;
