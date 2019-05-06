@@ -21,6 +21,7 @@ package org.prolobjectlink.prolog.zprolog;
 
 import static java.lang.Integer.MAX_VALUE;
 import static java.lang.Integer.MIN_VALUE;
+import static org.prolobjectlink.prolog.PrologTermType.CUT_TYPE;
 import static org.prolobjectlink.prolog.PrologTermType.EMPTY_TYPE;
 import static org.prolobjectlink.prolog.zprolog.ZPrologOperator.HIGH;
 import static org.prolobjectlink.prolog.zprolog.ZPrologOperator.LOW;
@@ -102,6 +103,55 @@ final class ZPrologParser extends ZPrologEngine {
 	}
 
 	/**
+	 * 
+	 * @param in
+	 * @return
+	 * @since 1.0
+	 */
+	ZPrologProgram parseProgram(Reader in) {
+		reset();
+		scanner = new ZPrologScanner(in);
+		advance();
+		ZPrologProgram p = new ZPrologProgram();
+		while (!current.isEndOfFile()) {
+			PrologTerm term = expr(HIGH, false);
+			if (term != null) {
+				PrologClause clause = new ZPrologClause(term);
+				if (term.hasIndicator(":-", 2)) {
+					PrologTerm h = term.getArguments()[0];
+					PrologTerm b = term.getArguments()[1];
+					clause = new ZPrologClause(h, b);
+				}
+				if (clause.isDirective()) {
+					PrologGoal d = new ZPrologGoal(clause.getBody());
+					p.addDirective(d);
+				} else {
+					p.add(clause);
+				}
+				while (current.isDot()) {
+					advance();
+					term = expr(HIGH, false);
+					if (term != null) {
+						clause = new ZPrologClause(term);
+						if (term.hasIndicator(":-", 2)) {
+							PrologTerm h = term.getArguments()[0];
+							PrologTerm b = term.getArguments()[1];
+							clause = new ZPrologClause(h, b);
+						}
+						if (clause.isDirective()) {
+							PrologGoal d = new ZPrologGoal(clause.getBody());
+							p.addDirective(d);
+						} else {
+							p.add(clause);
+						}
+					}
+				}
+			}
+		}
+		return p;
+	}
+
+	/**
 	 * term ::= expr(1200)
 	 * 
 	 * @param term
@@ -146,55 +196,6 @@ final class ZPrologParser extends ZPrologEngine {
 			return new ZPrologClause(h, b);
 		}
 		return new ZPrologClause(term);
-	}
-
-	/**
-	 * 
-	 * @param in
-	 * @return
-	 * @since 1.0
-	 */
-	private ZPrologProgram parseProgram(Reader in) {
-		reset();
-		scanner = new ZPrologScanner(in);
-		advance();
-		ZPrologProgram p = new ZPrologProgram();
-		while (!current.isEndOfFile()) {
-			PrologTerm term = expr(HIGH, false);
-			if (term != null) {
-				PrologClause clause = new ZPrologClause(term);
-				if (term.hasIndicator(":-", 2)) {
-					PrologTerm h = term.getArguments()[0];
-					PrologTerm b = term.getArguments()[1];
-					clause = new ZPrologClause(h, b);
-				}
-				if (clause.isDirective()) {
-					PrologGoal d = new ZPrologGoal(clause.getBody());
-					p.addDirective(d);
-				} else {
-					p.add(clause);
-				}
-				while (current.isDot()) {
-					advance();
-					term = expr(HIGH, false);
-					if (term != null) {
-						clause = new ZPrologClause(term);
-						if (term.hasIndicator(":-", 2)) {
-							PrologTerm h = term.getArguments()[0];
-							PrologTerm b = term.getArguments()[1];
-							clause = new ZPrologClause(h, b);
-						}
-						if (clause.isDirective()) {
-							PrologGoal d = new ZPrologGoal(clause.getBody());
-							p.addDirective(d);
-						} else {
-							p.add(clause);
-						}
-					}
-				}
-			}
-		}
-		return p;
 	}
 
 	private ZPrologTerm expr(int maxPriority, boolean commaIsEndMarker) {
@@ -309,6 +310,13 @@ final class ZPrologParser extends ZPrologEngine {
 
 	private ZPrologTerm exprA(int maxPriority) {
 		ZPrologTerm term = null;
+
+		// exprA(0) ::= !
+		if (current.isCut()) {
+			term = new ZPrologTerm(ZPrologToken.TOKEN_CUT, CUT_TYPE, provider, ZPrologBuiltin.CUT);
+			MAX_VAR_NUM = Math.max(varIndex, MAX_VAR_NUM);
+			advance();
+		}
 
 		// exprA(0) ::= anonymous
 		if (current.isAnonymous()) {

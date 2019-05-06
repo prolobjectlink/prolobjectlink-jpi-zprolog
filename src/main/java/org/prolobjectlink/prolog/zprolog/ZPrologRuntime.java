@@ -357,9 +357,9 @@ abstract class ZPrologRuntime extends ZPrologMachine {
 	// statistics
 	// private int gctime;
 	private float cputime;
-	private volatile int inferences;
-	private volatile int backtracks;
-	private volatile int unifications;
+	private int inferences;
+	private int backtracks;
+	private int unifications;
 
 	protected ZPrologRuntime(PrologProvider provider) {
 		super(provider);
@@ -672,7 +672,7 @@ abstract class ZPrologRuntime extends ZPrologMachine {
 								ZPrologTerm arg0 = clause_term.arguments[0];
 								arg0 = arg0.dereference();
 								// check that the arguments is an integer
-								System.exit(arg0.getIntValue());
+								System.exit(arg0.getIntegerValue());
 							} else if (clause_term.arity == 0) {
 								System.exit(0);
 							}

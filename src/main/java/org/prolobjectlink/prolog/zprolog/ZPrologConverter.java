@@ -77,7 +77,7 @@ public class ZPrologConverter extends AbstractConverter<ZPrologTerm> implements 
 		case FLOAT_TYPE:
 			return new ZPrologTerm(provider, ((PrologFloat) term).getFloatValue());
 		case INTEGER_TYPE:
-			return new ZPrologTerm(provider, ((PrologInteger) term).getIntValue());
+			return new ZPrologTerm(provider, ((PrologInteger) term).getIntegerValue());
 		case DOUBLE_TYPE:
 			return new ZPrologTerm(provider, ((PrologDouble) term).getDoubleValue());
 		case LONG_TYPE:

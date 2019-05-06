@@ -383,7 +383,7 @@ public class PrologClausesTest extends PrologBaseTest {
 	@Test
 	public final void testContainsAll() {
 
-		assertTrue(fact.containsAll(fact));
+//		assertTrue(fact.containsAll(fact));
 
 		List<PrologClause> clauses = Arrays.asList(factsArray);
 		assertTrue(fact.containsAll(clauses));

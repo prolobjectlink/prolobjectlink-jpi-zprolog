@@ -19,6 +19,7 @@
  */
 package org.prolobjectlink.prolog.zprolog;
 
+import java.io.Reader;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
@@ -61,6 +62,15 @@ public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
 
 	public final void consult(String path) {
 		load(path);
+	}
+
+	public final void include(Reader reader) {
+		PrologProgram p = parser.parseProgram(reader);
+		if (program != null) {
+			program.add(p);
+		} else {
+			program = p;
+		}
 	}
 
 	public final void persist(String path) {

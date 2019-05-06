@@ -47,6 +47,7 @@ import org.prolobjectlink.prolog.AbstractTerm;
 import org.prolobjectlink.prolog.ArityError;
 import org.prolobjectlink.prolog.CompoundExpectedError;
 import org.prolobjectlink.prolog.FunctorError;
+import org.prolobjectlink.prolog.IndicatorError;
 import org.prolobjectlink.prolog.PrologAtom;
 import org.prolobjectlink.prolog.PrologDouble;
 import org.prolobjectlink.prolog.PrologFloat;
@@ -448,11 +449,13 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	}
 
 	public final String getIndicator() {
-		assertHasIndicator();
-		if (isVariableBound()) {
-			return vValue.dereference().getIndicator();
+		if (assertHasIndicator()) {
+			if (isVariableBound()) {
+				return vValue.dereference().getIndicator();
+			}
+			return functor + "/" + arity;
 		}
-		return functor + "/" + arity;
+		throw new IndicatorError(this);
 	}
 
 	public final boolean hasIndicator(String functor, int arity) {
@@ -655,8 +658,8 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 
 		case INTEGER_TYPE: {
 
-			int thisValue = getIntValue();
-			int otherValue = ((ZPrologTerm) term).getIntValue();
+			int thisValue = getIntegerValue();
+			int otherValue = ((ZPrologTerm) term).getIntegerValue();
 
 			if (thisValue < otherValue) {
 				return -1;
@@ -708,7 +711,7 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 		case VARIABLE_TYPE:
 
 			PrologTerm thisVariable = this;
-			PrologTerm otherVariable = (PrologTerm) term;
+			PrologTerm otherVariable = term;
 			if (thisVariable.hashCode() < otherVariable.hashCode()) {
 				return -1;
 			} else if (thisVariable.hashCode() > otherVariable.hashCode()) {
@@ -888,7 +891,7 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 		return result;
 	}
 
-	public final int getIntValue() {
+	public final int getIntegerValue() {
 		return number.intValue();
 	}
 
@@ -909,7 +912,7 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	}
 
 	public final PrologInteger getPrologInteger() {
-		return new ZPrologTerm(provider, getIntValue());
+		return new ZPrologTerm(provider, getIntegerValue());
 	}
 
 	public final PrologDouble getPrologDouble() {
@@ -1019,18 +1022,21 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 		if (functor == null) {
 			if (other.functor != null)
 				return false;
-		} else if (!functor.equals(other.functor))
+		} else if (!functor.equals(other.functor)) {
 			return false;
+		}
 		if (number == null) {
 			if (other.number != null)
 				return false;
-		} else if (!number.equals(other.number))
+		} else if (!number.equals(other.number)) {
 			return false;
+		}
 		if (object == null) {
 			if (other.object != null)
 				return false;
-		} else if (!object.equals(other.object))
+		} else if (!object.equals(other.object)) {
 			return false;
+		}
 		if (type != other.type)
 			return false;
 		// if (vIndex != other.vIndex)
@@ -1038,13 +1044,15 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 		if (vName == null) {
 			if (other.vName != null)
 				return false;
-		} else if (!vName.equals(other.vName))
+		} else if (!vName.equals(other.vName)) {
 			return false;
+		}
 		if (vValue == null) {
 			if (other.vValue != null)
 				return false;
-		} else if (!vValue.equals(other.vValue))
+		} else if (!vValue.equals(other.vValue)) {
 			return false;
+		}
 		return true;
 	}
 
@@ -1127,60 +1135,6 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 		}
 
 		return string;
-	}
-
-	@Override
-	public final PrologTerm clone() {
-		PrologTerm term = null;
-		switch (type) {
-		case NIL_TYPE:
-			term = CUT_TERM;
-			break;
-		case CUT_TYPE:
-			term = CUT_TERM;
-			break;
-		case FAIL_TYPE:
-			term = FAIL_TERM;
-			break;
-		case FALSE_TYPE:
-			term = FALSE_TERM;
-			break;
-		case TRUE_TYPE:
-			term = TRUE_TERM;
-			break;
-		case EMPTY_TYPE:
-			term = EMPTY_TERM;
-			break;
-		case ATOM_TYPE:
-			term = new ZPrologTerm(provider, functor);
-			break;
-		case LONG_TYPE:
-			term = new ZPrologTerm(provider, getLongValue());
-			break;
-		case FLOAT_TYPE:
-			term = new ZPrologTerm(provider, getFloatValue());
-			break;
-		case DOUBLE_TYPE:
-			term = new ZPrologTerm(provider, getDoubleValue());
-			break;
-		case INTEGER_TYPE:
-			term = new ZPrologTerm(provider, getIntValue());
-			break;
-		case VARIABLE_TYPE:
-			term = new ZPrologTerm(provider, vName, vIndex);
-			break;
-		case STRUCTURE_TYPE:
-			term = new ZPrologTerm(provider, functor, arguments);
-			break;
-		case LIST_TYPE:
-			term = new ZPrologTerm(provider, arguments[0], arguments[1]);
-			break;
-		default:
-			term = new ZPrologTerm(id, type, provider, functor, arguments);
-			break;
-		}
-
-		return term;
 	}
 
 	boolean isBuiltin() {

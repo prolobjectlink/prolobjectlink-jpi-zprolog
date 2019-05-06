@@ -19,6 +19,8 @@
  */
 package org.prolobjectlink.prolog.zprolog;
 
+import java.io.Reader;
+
 import org.prolobjectlink.prolog.PrologClause;
 import org.prolobjectlink.prolog.PrologProgram;
 import org.prolobjectlink.prolog.PrologProvider;
@@ -33,6 +35,10 @@ public class ZPrologParserUtils {
 
 	PrologProgram parseProgram(String file) {
 		return parser.parseProgram(file);
+	}
+
+	PrologProgram parseProgram(Reader in) {
+		return parser.parseProgram(in);
 	}
 
 	PrologClause parseClause(String stringClause) {
