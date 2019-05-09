@@ -24,8 +24,6 @@ import static org.prolobjectlink.prolog.zprolog.ZPrologEngine.MAJOR;
 import static org.prolobjectlink.prolog.zprolog.ZPrologEngine.MICRO;
 import static org.prolobjectlink.prolog.zprolog.ZPrologEngine.MINOR;
 
-import javax.script.ScriptEngineFactory;
-
 import org.prolobjectlink.prolog.AbstractProvider;
 import org.prolobjectlink.prolog.PrologAtom;
 import org.prolobjectlink.prolog.PrologConverter;
@@ -159,10 +157,6 @@ public class ZProlog extends AbstractProvider implements PrologProvider {
 
 	public PrologJavaConverter getJavaConverter() {
 		return new ZPrologJavaConverter(this);
-	}
-
-	public ScriptEngineFactory getScriptFactory() {
-		return new ZPrologScriptFactory();
 	}
 
 	public PrologLogger getLogger() {
