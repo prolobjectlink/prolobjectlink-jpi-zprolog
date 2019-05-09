@@ -33,6 +33,7 @@ import org.prolobjectlink.prolog.PrologDouble;
 import org.prolobjectlink.prolog.PrologEngine;
 import org.prolobjectlink.prolog.PrologFloat;
 import org.prolobjectlink.prolog.PrologInteger;
+import org.prolobjectlink.prolog.PrologJavaConverter;
 import org.prolobjectlink.prolog.PrologList;
 import org.prolobjectlink.prolog.PrologLogger;
 import org.prolobjectlink.prolog.PrologLong;
@@ -156,8 +157,12 @@ public class ZProlog extends AbstractProvider implements PrologProvider {
 		return new ZPrologParser(this).parseTerms(stringTerms);
 	}
 
+	public PrologJavaConverter getJavaConverter() {
+		return new ZPrologJavaConverter(this);
+	}
+
 	public ScriptEngineFactory getScriptFactory() {
-		return new ZPrologScriptFactory(newEngine());
+		return new ZPrologScriptFactory();
 	}
 
 	public PrologLogger getLogger() {

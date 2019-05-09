@@ -24,15 +24,12 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.script.ScriptEngine;
-
 import org.prolobjectlink.prolog.Licenses;
 import org.prolobjectlink.prolog.PrologClause;
 import org.prolobjectlink.prolog.PrologEngine;
 import org.prolobjectlink.prolog.PrologProgram;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologQuery;
-import org.prolobjectlink.prolog.PrologScriptEngine;
 import org.prolobjectlink.prolog.PrologTerm;
 
 public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
@@ -51,6 +48,14 @@ public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
 		super(provider);
 	}
 
+	public final void consult(String path) {
+		load(path);
+	}
+
+	public void consult(Reader reader) {
+		load(reader);
+	}
+
 	public final void include(String file) {
 		PrologProgram p = parser.parseProgram(file);
 		if (program != null) {
@@ -58,10 +63,6 @@ public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
 		} else {
 			program = p;
 		}
-	}
-
-	public final void consult(String path) {
-		load(path);
 	}
 
 	public final void include(Reader reader) {
@@ -142,10 +143,6 @@ public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
 
 	public PrologQuery query(PrologTerm term, PrologTerm... terms) {
 		return new ZPrologQuery(this, term, terms);
-	}
-
-	public final ScriptEngine getPrologScript() {
-		return new PrologScriptEngine(new ZPrologScriptFactory(this), this);
 	}
 
 	public final int getProgramSize() {

@@ -23,17 +23,12 @@ package org.prolobjectlink.prolog.zprolog;
 
 import javax.script.ScriptEngineFactory;
 
-import org.prolobjectlink.prolog.PrologEngine;
 import org.prolobjectlink.prolog.PrologScriptEngineFactory;
 
 public final class ZPrologScriptFactory extends PrologScriptEngineFactory implements ScriptEngineFactory {
 
 	public ZPrologScriptFactory() {
 		super(new ZProlog().newEngine());
-	}
-
-	public ZPrologScriptFactory(PrologEngine engine) {
-		super(engine);
 	}
 
 	public String getMethodCallSyntax(String obj, String m, String... args) {

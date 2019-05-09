@@ -95,6 +95,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Reader;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -452,6 +453,14 @@ abstract class ZPrologRuntime extends ZPrologMachine {
 			long endTime = System.currentTimeMillis();
 			cputime = (endTime - startTime) / 1000F;
 		}
+	}
+
+	/**
+	 * ensure_loaded logic load and execute all directives and the initializations
+	 * if exists.
+	 */
+	protected final void load(Reader reader) {
+		// TODO
 	}
 
 	protected final void save(String path) {
