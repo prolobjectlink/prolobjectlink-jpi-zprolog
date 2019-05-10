@@ -154,9 +154,9 @@ public class PrologParserTest extends PrologBaseTest {
 				parser.parseTerm("a:-b;c"));
 
 		System.out.println(parser.parseTerm("a,b;c,d"));
-		// IPrologTerm ab = provider.newPrologStructure(",",
+		// PrologTerm ab = provider.newPrologStructure(",",
 		// provider.newPrologAtom("a"), provider.newPrologStructure("b"));
-		// IPrologTerm cd = provider.newPrologStructure(",",
+		// PrologTerm cd = provider.newPrologStructure(",",
 		// provider.newPrologAtom("c"), provider.newPrologStructure("d"));
 		// assertEquals(provider.newPrologStructure(";", ab, cd),
 		// parser.parseTerm("a,b;c,d"));
