@@ -43,7 +43,7 @@
 		<developerConnection>scm:git:https://github.com/prolobjectlink/${project.name}.git</developerConnection>
 		<connection>scm:git:https://github.com/prolobjectlink/${project.name}.git</connection>
 		<url>https://github.com/prolobjectlink/${project.name}</url>
-		
+
 	</scm>
 
 	<ciManagement>
@@ -161,6 +161,8 @@
 					<failOnMissingHeader>true</failOnMissingHeader>
 					<acceptPomPackaging>true</acceptPomPackaging>
 					<licenseName>apache_v2</licenseName>
+					<!-- <dryRun>true</dryRun> -->
+					<licenseFile>LICENSE.md</licenseFile>
 					<dryRun>true</dryRun>
 					<addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
 					<roots>
