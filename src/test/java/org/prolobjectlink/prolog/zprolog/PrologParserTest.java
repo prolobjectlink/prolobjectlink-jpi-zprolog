@@ -28,8 +28,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.prolobjectlink.prolog.PrologProgram;
 import org.prolobjectlink.prolog.PrologTerm;
+import org.prolobjectlink.prolog.engine.PrologProgram;
 
 public class PrologParserTest extends PrologBaseTest {
 

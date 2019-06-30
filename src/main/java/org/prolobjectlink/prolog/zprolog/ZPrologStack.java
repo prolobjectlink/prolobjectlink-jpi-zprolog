@@ -19,12 +19,10 @@
  */
 package org.prolobjectlink.prolog.zprolog;
 
-import org.prolobjectlink.prolog.ArrayStack;
-
 final class ZPrologStack {
 
 	private int maxVarNumber;
-	private final ArrayStack<Object> stack;
+	private final ZPrologArrayStack<Object> stack;
 
 	@Override
 	public String toString() {
@@ -40,7 +38,7 @@ final class ZPrologStack {
 
 	ZPrologStack() {
 		maxVarNumber = 0;
-		stack = new ArrayStack<Object>();
+		stack = new ZPrologArrayStack<Object>();
 	}
 
 	Object pop() {

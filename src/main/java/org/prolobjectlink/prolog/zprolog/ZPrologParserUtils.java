@@ -22,8 +22,8 @@ package org.prolobjectlink.prolog.zprolog;
 import java.io.Reader;
 
 import org.prolobjectlink.prolog.PrologClause;
-import org.prolobjectlink.prolog.PrologProgram;
 import org.prolobjectlink.prolog.PrologProvider;
+import org.prolobjectlink.prolog.engine.PrologProgram;
 
 public class ZPrologParserUtils {
 

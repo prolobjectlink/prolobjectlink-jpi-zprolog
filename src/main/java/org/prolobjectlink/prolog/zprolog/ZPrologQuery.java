@@ -208,6 +208,15 @@ public final class ZPrologQuery extends AbstractQuery implements PrologQuery {
 		return allVariables.toArray(new Map[0]);
 	}
 
+	public final List<Map<String, PrologTerm>> all() {
+		List<Map<String, PrologTerm>> allVariables = new ArrayList<Map<String, PrologTerm>>();
+		while (hasMoreSolutions()) {
+			Map<String, PrologTerm> variables = nextVariablesSolution();
+			allVariables.add(variables);
+		}
+		return allVariables;
+	}
+
 	@Override
 	public final int hashCode() {
 		final int prime = 31;
@@ -231,8 +240,9 @@ public final class ZPrologQuery extends AbstractQuery implements PrologQuery {
 		if (goal == null) {
 			if (other.goal != null)
 				return false;
-		} else if (!goal.equals(other.goal))
+		} else if (!goal.equals(other.goal)) {
 			return false;
+		}
 		if (hasMoreSolution != other.hasMoreSolution)
 			return false;
 		if (hasSolution != other.hasSolution)
@@ -240,8 +250,9 @@ public final class ZPrologQuery extends AbstractQuery implements PrologQuery {
 		if (query == null) {
 			if (other.query != null)
 				return false;
-		} else if (!query.equals(other.query))
+		} else if (!query.equals(other.query)) {
 			return false;
+		}
 		return true;
 	}
 
@@ -258,15 +269,6 @@ public final class ZPrologQuery extends AbstractQuery implements PrologQuery {
 	public final void dispose() {
 		this.hasSolution = false;
 		this.hasMoreSolution = false;
-	}
-
-	public final List<Map<String, PrologTerm>> all() {
-		List<Map<String, PrologTerm>> allVariables = new ArrayList<Map<String, PrologTerm>>();
-		while (hasMoreSolutions()) {
-			Map<String, PrologTerm> variables = nextVariablesSolution();
-			allVariables.add(variables);
-		}
-		return allVariables;
 	}
 
 }

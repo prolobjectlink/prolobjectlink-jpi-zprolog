@@ -22,7 +22,6 @@ package org.prolobjectlink.prolog.zprolog;
 import static org.prolobjectlink.prolog.PrologTermType.ATOM_TYPE;
 import static org.prolobjectlink.prolog.PrologTermType.CUT_TYPE;
 import static org.prolobjectlink.prolog.PrologTermType.DOUBLE_TYPE;
-import static org.prolobjectlink.prolog.PrologTermType.EMPTY_TYPE;
 import static org.prolobjectlink.prolog.PrologTermType.FAIL_TYPE;
 import static org.prolobjectlink.prolog.PrologTermType.FALSE_TYPE;
 import static org.prolobjectlink.prolog.PrologTermType.FLOAT_TYPE;
@@ -70,8 +69,6 @@ public class ZPrologConverter extends AbstractConverter<ZPrologTerm> implements 
 			return TRUE_TERM;
 		case FALSE_TYPE:
 			return FALSE_TERM;
-		case EMPTY_TYPE:
-			return EMPTY_TERM;
 		case ATOM_TYPE:
 			return new ZPrologTerm(provider, ((PrologAtom) term).getStringValue());
 		case FLOAT_TYPE:

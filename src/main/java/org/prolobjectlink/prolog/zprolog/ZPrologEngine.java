@@ -27,10 +27,10 @@ import java.util.List;
 import org.prolobjectlink.prolog.Licenses;
 import org.prolobjectlink.prolog.PrologClause;
 import org.prolobjectlink.prolog.PrologEngine;
-import org.prolobjectlink.prolog.PrologProgram;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologQuery;
 import org.prolobjectlink.prolog.PrologTerm;
+import org.prolobjectlink.prolog.engine.PrologProgram;
 
 public class ZPrologEngine extends ZPrologRuntime implements PrologEngine {
 

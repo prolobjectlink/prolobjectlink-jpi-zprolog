@@ -22,7 +22,6 @@ package org.prolobjectlink.prolog.zprolog;
 import static org.prolobjectlink.prolog.PrologTermType.ATOM_TYPE;
 import static org.prolobjectlink.prolog.PrologTermType.CUT_TYPE;
 import static org.prolobjectlink.prolog.PrologTermType.DOUBLE_TYPE;
-import static org.prolobjectlink.prolog.PrologTermType.EMPTY_TYPE;
 import static org.prolobjectlink.prolog.PrologTermType.FAIL_TYPE;
 import static org.prolobjectlink.prolog.PrologTermType.FALSE_TYPE;
 import static org.prolobjectlink.prolog.PrologTermType.FLOAT_TYPE;
@@ -111,7 +110,7 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	 */
 	static final ZPrologTerm FAIL_TERM = new ZPrologTerm(ZPrologToken.TOKEN_FAIL, FAIL_TYPE, provider,
 			ZPrologBuiltin.FAIL_FUNCTOR);
-	static final ZPrologTerm EMPTY_TERM = new ZPrologTerm(ZPrologToken.TOKEN_EMPTY, EMPTY_TYPE, provider,
+	static final ZPrologTerm EMPTY_TERM = new ZPrologTerm(ZPrologToken.TOKEN_EMPTY, LIST_TYPE, provider,
 			ZPrologBuiltin.EMPTY_FUNCTOR);
 
 	/**
@@ -383,7 +382,7 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	 */
 	ZPrologTerm(PrologProvider provider, ZPrologTerm... arguments) {
 		this(provider, arguments,
-				new ZPrologTerm(ZPrologToken.TOKEN_EMPTY, EMPTY_TYPE, provider, ZPrologBuiltin.EMPTY_FUNCTOR));
+				new ZPrologTerm(ZPrologToken.TOKEN_EMPTY, LIST_TYPE, provider, ZPrologBuiltin.EMPTY_FUNCTOR));
 	}
 
 	/**
@@ -394,7 +393,7 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	 */
 	ZPrologTerm(PrologProvider provider, PrologTerm... arguments) {
 		this(provider, arguments,
-				new ZPrologTerm(ZPrologToken.TOKEN_EMPTY, EMPTY_TYPE, provider, ZPrologBuiltin.EMPTY_FUNCTOR));
+				new ZPrologTerm(ZPrologToken.TOKEN_EMPTY, LIST_TYPE, provider, ZPrologBuiltin.EMPTY_FUNCTOR));
 	}
 
 	ZPrologTerm(PrologProvider provider, ZPrologTerm[] arguments, ZPrologTerm tail) {
@@ -469,7 +468,7 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	}
 
 	public final boolean isAtom() {
-		return type >> 8 == 3 || type == EMPTY_TYPE;
+		return type >> 8 == 3 || type == LIST_TYPE;
 	}
 
 	public final boolean isNumber() {
@@ -497,7 +496,7 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	}
 
 	public final boolean isList() {
-		return type == LIST_TYPE || type == EMPTY_TYPE;
+		return type == LIST_TYPE || type == LIST_TYPE;
 	}
 
 	public final boolean isStructure() {
@@ -509,7 +508,7 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 	}
 
 	public final boolean isEmptyList() {
-		return type == EMPTY_TYPE;
+		return type == LIST_TYPE;
 	}
 
 	public final boolean isAtomic() {
@@ -671,7 +670,6 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 			break;
 
 		case LIST_TYPE:
-		case EMPTY_TYPE:
 		case STRUCTURE_TYPE:
 
 			ZPrologTerm thisCompound = this;
@@ -964,26 +962,34 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 
 	public final void clear() {
 		arity = 0;
-		type = EMPTY_TYPE;
+		type = LIST_TYPE;
 		id = ZPrologToken.TOKEN_EMPTY;
 		arguments = new ZPrologTerm[0];
 		functor = ZPrologBuiltin.EMPTY_FUNCTOR;
 	}
 
 	public final boolean isEmpty() {
-		return type == EMPTY_TYPE;
+		return type == LIST_TYPE;
 	}
 
 	public final PrologTerm getHead() {
-		return !isEmpty() ? arguments[0] : EMPTY_TERM;
+		return !isEmpty() ? getArgument(0) : EMPTY_TERM;
 	}
 
 	public final PrologTerm getTail() {
-		return !isEmpty() ? arguments[1] : EMPTY_TERM;
+		return !isEmpty() ? getArgument(1) : EMPTY_TERM;
+	}
+
+	public final PrologTerm getRight() {
+		return getArgument(1);
+	}
+
+	public final PrologTerm getLeft() {
+		return getArgument(0);
 	}
 
 	public final String getOperator() {
-		return functor;
+		return getFunctor();
 	}
 
 	public int getPosition() {
@@ -1065,7 +1071,6 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 		case FALSE_TYPE:
 		case TRUE_TYPE:
 		case FAIL_TYPE:
-		case EMPTY_TYPE:
 		case ATOM_TYPE:
 			string = functor;
 			break;

@@ -22,7 +22,7 @@ package org.prolobjectlink.prolog.zprolog;
 import static java.lang.Integer.MAX_VALUE;
 import static java.lang.Integer.MIN_VALUE;
 import static org.prolobjectlink.prolog.PrologTermType.CUT_TYPE;
-import static org.prolobjectlink.prolog.PrologTermType.EMPTY_TYPE;
+import static org.prolobjectlink.prolog.PrologTermType.LIST_TYPE;
 import static org.prolobjectlink.prolog.zprolog.ZPrologOperator.HIGH;
 import static org.prolobjectlink.prolog.zprolog.ZPrologOperator.LOW;
 
@@ -38,10 +38,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.prolobjectlink.prolog.PrologClause;
-import org.prolobjectlink.prolog.PrologGoal;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologTerm;
 import org.prolobjectlink.prolog.SyntaxError;
+import org.prolobjectlink.prolog.engine.PrologGoal;
 
 final class ZPrologParser extends ZPrologEngine {
 
@@ -375,7 +375,7 @@ final class ZPrologParser extends ZPrologEngine {
 		else if (current.isLeftBracket()) {
 			advance();
 			if (current.isRightBracket()) {
-				term = new ZPrologTerm(ZPrologToken.TOKEN_EMPTY, EMPTY_TYPE, provider, ZPrologBuiltin.EMPTY_FUNCTOR);
+				term = new ZPrologTerm(ZPrologToken.TOKEN_EMPTY, LIST_TYPE, provider, ZPrologBuiltin.EMPTY_FUNCTOR);
 				advance();
 			} else {
 				ZPrologTerm[] arguments = exprs(HIGH);

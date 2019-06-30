@@ -24,9 +24,9 @@ import java.util.Map;
 
 import org.prolobjectlink.prolog.PrologClause;
 import org.prolobjectlink.prolog.PrologClauses;
-import org.prolobjectlink.prolog.PrologGoal;
-import org.prolobjectlink.prolog.PrologProgram;
 import org.prolobjectlink.prolog.PrologTerm;
+import org.prolobjectlink.prolog.engine.PrologGoal;
+import org.prolobjectlink.prolog.engine.PrologProgram;
 
 final class ZPrologGoal extends ZPrologClause implements PrologGoal {
 

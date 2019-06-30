@@ -23,7 +23,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.prolobjectlink.prolog.PrologTermType.EMPTY_TYPE;
+import static org.prolobjectlink.prolog.PrologTermType.LIST_TYPE;
 
 import org.junit.Test;
 import org.prolobjectlink.prolog.PrologAtom;
@@ -72,7 +72,7 @@ public class PrologEmptyTest extends PrologBaseTest {
 
 	@Test
 	public final void testGetType() {
-		assertEquals(EMPTY_TYPE, empty.getType());
+		assertEquals(LIST_TYPE, empty.getType());
 	}
 
 	@Test

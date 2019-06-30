@@ -60,7 +60,7 @@ public class PrologQueryBuilderTest extends PrologBaseTest {
 		dark = provider.newStructure("dark", x);
 		small = provider.newStructure("small", x);
 
-		query = engine.newQueryBuilder().begin(dark).dot();
+		query = engine.newQueryBuilder().begin(dark).query();
 		assertTrue(query.hasSolution());
 		assertArrayEquals(catExpected, query.oneSolution());
 
@@ -85,7 +85,7 @@ public class PrologQueryBuilderTest extends PrologBaseTest {
 		builder.comma(big);
 		builder.comma(big);
 
-		query = builder.dot();
+		query = builder.query();
 		assertTrue(query.hasSolution());
 		assertArrayEquals(bearExpected, query.oneSolution());
 
@@ -97,7 +97,7 @@ public class PrologQueryBuilderTest extends PrologBaseTest {
 		builder = engine.newQueryBuilder();
 		builder.begin(dark);
 		builder.comma(provider.newStructure("\\+", big));
-		query = builder.dot();
+		query = builder.query();
 		assertTrue(query.hasSolution());
 		assertArrayEquals(catExpected, query.oneSolution());
 
@@ -110,7 +110,7 @@ public class PrologQueryBuilderTest extends PrologBaseTest {
 		builder.begin(dark);
 		builder.comma(provider.newStructure("\\+", big));
 		builder.comma(small);
-		query = builder.dot();
+		query = builder.query();
 		assertTrue(query.hasSolution());
 		assertArrayEquals(catExpected, query.oneSolution());
 
@@ -135,7 +135,7 @@ public class PrologQueryBuilderTest extends PrologBaseTest {
 		builder.semicolon(big);
 		builder.semicolon(big);
 
-		query = builder.dot();
+		query = builder.query();
 		assertTrue(query.hasSolution());
 		assertArrayEquals(catExpected, query.oneSolution());
 
@@ -151,7 +151,7 @@ public class PrologQueryBuilderTest extends PrologBaseTest {
 
 		// solve second as alternative
 		builder.semicolon(big);
-		query = builder.dot();
+		query = builder.query();
 		assertTrue(query.hasSolution());
 		assertArrayEquals(bearExpected, query.oneSolution());
 
@@ -167,7 +167,7 @@ public class PrologQueryBuilderTest extends PrologBaseTest {
 
 		// solve second as alternative
 		builder.semicolon(big);
-		query = builder.dot();
+		query = builder.query();
 		assertTrue(query.hasSolution());
 		assertArrayEquals(bearExpected, query.oneSolution());
 
@@ -183,7 +183,7 @@ public class PrologQueryBuilderTest extends PrologBaseTest {
 
 		query = engine.query(dark);
 		builder = engine.newQueryBuilder().begin(dark);
-		assertEquals(query, builder.dot());
+		assertEquals(query, builder.query());
 		query.dispose();
 
 		x = provider.newVariable("X", 0);
@@ -193,7 +193,7 @@ public class PrologQueryBuilderTest extends PrologBaseTest {
 
 		query = engine.query("dark(X),big(X)");
 		builder = engine.newQueryBuilder().begin(dark).comma(big);
-		assertEquals(query, builder.dot());
+		assertEquals(query, builder.query());
 
 	}
 

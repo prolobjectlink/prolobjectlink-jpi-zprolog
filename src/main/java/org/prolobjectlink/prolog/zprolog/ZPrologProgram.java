@@ -29,8 +29,8 @@ import java.util.Set;
 
 import org.prolobjectlink.prolog.PrologClause;
 import org.prolobjectlink.prolog.PrologClauses;
-import org.prolobjectlink.prolog.PrologGoal;
-import org.prolobjectlink.prolog.PrologProgram;
+import org.prolobjectlink.prolog.engine.PrologGoal;
+import org.prolobjectlink.prolog.engine.PrologProgram;
 
 public final class ZPrologProgram extends AbstractSet<PrologClauses> implements PrologProgram {
 

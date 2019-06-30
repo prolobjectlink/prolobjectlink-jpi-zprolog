@@ -19,7 +19,7 @@
  */
 package org.prolobjectlink.prolog.zprolog;
 
-import static org.prolobjectlink.prolog.PrologTermType.EMPTY_TYPE;
+import static org.prolobjectlink.prolog.PrologTermType.LIST_TYPE;
 import static org.prolobjectlink.prolog.zprolog.ZPrologEngine.MAJOR;
 import static org.prolobjectlink.prolog.zprolog.ZPrologEngine.MICRO;
 import static org.prolobjectlink.prolog.zprolog.ZPrologEngine.MINOR;
@@ -91,6 +91,12 @@ public class ZProlog extends AbstractProvider implements PrologProvider {
 		return new ZPrologEngine(this);
 	}
 
+	public PrologEngine newEngine(String path) {
+		PrologEngine engine = newEngine();
+		engine.consult(path);
+		return engine;
+	}
+
 	public PrologAtom newAtom(String functor) {
 		return new ZPrologTerm(this, functor);
 	}
@@ -120,14 +126,14 @@ public class ZProlog extends AbstractProvider implements PrologProvider {
 	}
 
 	public PrologList newList() {
-		return new ZPrologTerm(ZPrologToken.TOKEN_EMPTY, EMPTY_TYPE, this, ZPrologBuiltin.EMPTY_FUNCTOR);
+		return new ZPrologTerm(ZPrologToken.TOKEN_EMPTY, LIST_TYPE, this, ZPrologBuiltin.EMPTY_FUNCTOR);
 	}
 
 	public PrologList newList(PrologTerm[] arguments) {
 		if (arguments.length > 0) {
 			return new ZPrologTerm(this, arguments);
 		}
-		return new ZPrologTerm(ZPrologToken.TOKEN_EMPTY, EMPTY_TYPE, this, ZPrologBuiltin.EMPTY_FUNCTOR);
+		return new ZPrologTerm(ZPrologToken.TOKEN_EMPTY, LIST_TYPE, this, ZPrologBuiltin.EMPTY_FUNCTOR);
 	}
 
 	public PrologList newList(PrologTerm head, PrologTerm tail) {

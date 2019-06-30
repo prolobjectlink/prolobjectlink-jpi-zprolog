@@ -96,7 +96,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
+import java.util.ArrayDeque;
 import java.util.Collection;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -105,15 +107,14 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-import org.prolobjectlink.prolog.ArrayStack;
 import org.prolobjectlink.prolog.PrologClause;
 import org.prolobjectlink.prolog.PrologClauses;
 import org.prolobjectlink.prolog.PrologIndicator;
 import org.prolobjectlink.prolog.PrologLogger;
 import org.prolobjectlink.prolog.PrologOperator;
-import org.prolobjectlink.prolog.PrologProgram;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologTerm;
+import org.prolobjectlink.prolog.engine.PrologProgram;
 
 abstract class ZPrologRuntime extends ZPrologMachine {
 
@@ -154,7 +155,7 @@ abstract class ZPrologRuntime extends ZPrologMachine {
 	protected boolean hasMoreSolution;
 
 	// key of dynamics predicates
-	protected final ArrayStack<File> systemPath = new ArrayStack<File>();
+	protected final Deque<File> systemPath = new ArrayDeque<File>();
 
 	// statistics collector map
 	protected final Map<PrologTerm, PrologTerm> statistics = new HashMap<PrologTerm, PrologTerm>();
