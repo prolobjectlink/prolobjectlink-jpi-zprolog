@@ -75,6 +75,18 @@ public class ZPrologClause /* extends AbstractClause */ implements PrologClause 
 	public String getFunctor() {
 		return term.getFunctor();
 	}
+	
+	
+
+	@Override
+	public PrologTerm[] getArguments() {
+		return term.getArguments();
+	}
+
+	@Override
+	public PrologTerm getArgument(int index) {
+		return term.getArgument(index);
+	}
 
 	public PrologTerm getTerm() {
 		return term;
