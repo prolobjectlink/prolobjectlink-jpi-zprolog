@@ -992,8 +992,36 @@ public class ZPrologTerm extends AbstractTerm implements PrologTerm, PrologAtom,
 		return getFunctor();
 	}
 
-	public int getPosition() {
+	public final int getPosition() {
 		return vIndex;
+	}
+
+	public final boolean isTrueType() {
+		return false;
+	}
+
+	public final boolean isFalseType() {
+		return false;
+	}
+
+	public final boolean isNullType() {
+		return false;
+	}
+
+	public final boolean isVoidType() {
+		return false;
+	}
+
+	public final boolean isObjectType() {
+		return false;
+	}
+
+	public final boolean isReference() {
+		return false;
+	}
+
+	public final Object getObject() {
+		return null;
 	}
 
 	@Override

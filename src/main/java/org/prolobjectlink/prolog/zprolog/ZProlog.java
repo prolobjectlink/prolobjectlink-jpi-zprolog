@@ -87,6 +87,14 @@ public class ZProlog extends AbstractProvider implements PrologProvider {
 		return newStructure("ensure_loaded", newAtom(file));
 	}
 
+	public PrologTerm parseTerm(String term) {
+		return new ZPrologParser(this).parseTerm(term);
+	}
+
+	public PrologTerm[] parseTerms(String stringTerms) {
+		return new ZPrologParser(this).parseTerms(stringTerms);
+	}
+
 	public PrologEngine newEngine() {
 		return new ZPrologEngine(this);
 	}
@@ -153,12 +161,8 @@ public class ZProlog extends AbstractProvider implements PrologProvider {
 		return new ZPrologTerm(this, left, operator, right);
 	}
 
-	public PrologTerm parseTerm(String term) {
-		return new ZPrologParser(this).parseTerm(term);
-	}
-
-	public PrologTerm[] parseTerms(String stringTerms) {
-		return new ZPrologParser(this).parseTerms(stringTerms);
+	public PrologTerm newReference(Object reference) {
+		throw new UnsupportedOperationException("newReference(Object reference)");
 	}
 
 	public PrologJavaConverter getJavaConverter() {
