@@ -211,7 +211,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<mainClass>
-								org.prolobjectlink.prolog.zprolog.ZPrologConsole
+								io.github.prolobjectlink.prolog.zprolog.ZPrologConsole
 							</mainClass>
 						</manifest>
 						<manifestEntries>
